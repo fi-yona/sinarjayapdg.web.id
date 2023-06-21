@@ -9,8 +9,10 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
 
     // Panggil fungsi untuk melakukan verifikasi login
     if (verifyLogin($username, $password)) {
-        // Jika login berhasil, redirect ke halaman lain atau tampilkan pesan sukses
-        header("Location: success.php");
+        // Jika login berhasil, set session dan redirect ke halaman home
+        session_start();
+        $_SESSION['login'] = true;
+        header("Location: ../staff/manajer/home.php");
         exit();
     } else {
         // Jika login gagal, redirect kembali ke halaman login atau tampilkan pesan error
@@ -28,7 +30,6 @@ function verifyLogin($username, $password)
     $username = $conn->real_escape_string($username);
     $password = $conn->real_escape_string($password);
 
-
     // Query untuk mendapatkan data pengguna dengan username yang sesuai
     $query = "SELECT * FROM tb_user WHERE username = '$username' AND password = '$password' AND status_akun = 'Aktif'";
     $result = $conn->query($query);
@@ -37,20 +38,19 @@ function verifyLogin($username, $password)
     if ($result->num_rows > 0) {
         $row = $result->fetch_assoc();
         $role = $row['role'];
-            // Cek role dan redirect ke halaman yang sesuai
-            if ($role === 'Manajer') {
-                header("Location: ../staff/manajer/home.html");
-                exit();
-            } elseif ($role === 'Admin') {
-                header("Location: ../staff/admin/home.html");
-                exit();
-            } else {
-                // Role tidak dikenali, tampilkan pesan error atau redirect ke halaman lain
-                // Contoh: tampilkan pesan error dan redirect ke halaman login
-                header("Location: ../staff/login.html");
-                echo "Role tidak valid!";
-                exit();
-            }
+        
+        // Cek role dan redirect ke halaman yang sesuai
+        if ($role === 'Manajer') {
+            return true;
+        } elseif ($role === 'Admin') {
+            return true;
+        } else {
+            // Role tidak dikenali, tampilkan pesan error atau redirect ke halaman lain
+            // Contoh: tampilkan pesan error dan redirect ke halaman login
+            header("Location: ../staff/login.html");
+            echo "Role tidak valid!";
+            exit();
+        }
     } else {
         // Tidak ada pengguna dengan username tersebut, tampilkan pesan error atau redirect ke halaman lain
         // Contoh: tampilkan pesan error dan redirect ke halaman login
@@ -59,5 +59,4 @@ function verifyLogin($username, $password)
         exit();
     }
 }
-
 ?>

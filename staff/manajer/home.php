@@ -1,9 +1,21 @@
+<?php
+session_start();
+
+// Periksa apakah pengguna sudah login
+if (!isset($_SESSION['login']) || $_SESSION['login'] !== true) {
+    header("Location: ../login.html");
+    exit();
+}
+?>
+
+<!DOCTYPE html>
 <html>
     <head>
 		<title>Home</title>
 		<link rel="stylesheet" href="../../assets/style/style.css">
         <link rel="shortcut icon" href="../../assets/img/logo.svg">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="../../script/logout.js"></script>
 	</head>
     <body>
         <header>
@@ -20,7 +32,7 @@
                     <li><a href="./riwayat-pesanan/riwayat-pesanan.html">Riwayat Pesanan</a></li>
                     <li><a href="./riwayat-pembayaran/riwayat-pembayaran.html">Riwayat Pembayaran</a></li>
                     <li><a href="./karyawan/karyawan.html">Karyawan</a></li>
-                    <li><a href="./logout.html"><button type="button" class="btn-log-out">Log Out</button></a></li>
+                    <li><a href="#" onclick="logout()"><button type="button" class="btn-log-out">Log Out</button></a></li>
                 </ul>
             </nav>
         </header>
