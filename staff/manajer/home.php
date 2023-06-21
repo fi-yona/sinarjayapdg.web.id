@@ -62,7 +62,106 @@ if (!isset($_SESSION['login']) || $_SESSION['login'] !== true) {
                     </div>
                 </div>
             </div>
-            
+            <table class="table-layout-home">
+                <tr>
+                    <td>
+                        <div class="box-white-black-stroke-3">
+                            <div class="title-data-home">
+                                Total Kunjungan Toko
+                            </div>
+                            <div class="box-white-black-stroke-2">
+                                <div class="title-nama-data-home">
+                                    Hari Ini
+                                </div>
+                                <div class="total-data-home">
+                                    Total: (Jumlah Data Kunjungan)
+                                </div>
+                            </div>
+                            <div class="box-white-black-stroke-2">
+                                <div class="title-nama-data-home">
+                                    Bulan Ini
+                                </div>
+                                <div class="total-data-home">
+                                    Total: (Jumlah Data Kunjungan)
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="box-white-black-stroke-4">
+                            <div class="title-data-home">
+                                Total Toko Terdaftar
+                            </div>
+                            <div class="box-white-black-stroke-2">
+                                <div class="title-nama-data-home">
+                                    Penambahan Bulan Ini
+                                </div>
+                                <div class="total-data-home">
+                                    Total: (Jumlah Data Toko)
+                                </div>
+                                </div>
+                                <div class="box-white-black-stroke-2">
+                                <div class="title-nama-data-home">
+                                    Bulan Ini
+                                </div>
+                                <div class="total-data-home">
+                                    Total: (Jumlah Data Toko)
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+            <table class="table-layout-home">
+                <tr>
+                    <td>
+                        <div class="box-white-black-stroke-3">
+                            <div class="title-data-home">
+                                Total Pesanan
+                            </div>
+                            <div class="box-white-black-stroke-2">
+                                <div class="title-nama-data-home">
+                                    Hari Ini
+                                </div>
+                                <div class="total-data-home">
+                                    Total: (Jumlah Data Pesanan)
+                                </div>
+                            </div>
+                            <div class="box-white-black-stroke-2">
+                                <div class="title-nama-data-home">
+                                    Bulan Ini
+                                </div>
+                                <div class="total-data-home">
+                                    Total: (Jumlah Data Pesanan)
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="box-white-black-stroke-4">
+                            <div class="title-data-home">
+                                Total Pembayaran
+                            </div>
+                            <div class="box-white-black-stroke-2">
+                                <div class="title-nama-data-home">
+                                    Hari Ini
+                                </div>
+                                <div class="total-data-home">
+                                    Total: (Jumlah Data Pembayaran)
+                                </div>
+                                </div>
+                                <div class="box-white-black-stroke-2">
+                                <div class="title-nama-data-home">
+                                    Bulan Ini
+                                </div>
+                                <div class="total-data-home">
+                                    Total: (Jumlah Data Pembayaran)
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
         </main>
         <footer>
             <center>

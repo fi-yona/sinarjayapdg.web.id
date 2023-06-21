@@ -356,7 +356,7 @@ nav ul{
 .title-data-home{
     font-size: 16px;
     font-weight: bold;
-    color: #3a3a3a;
+    color: #005109;
 }
 
 .box-white-black-stroke-2{
@@ -369,28 +369,23 @@ nav ul{
     align-items: center;
 }
 
-.title-nama-data-home{
-    font-size: 14px;
-    text-decoration: underline;
-    color: #005109;
-}
-
 .total-data-home{
     font-size: 14px;
     text-align: center;
     margin: 0.5%;
-    color: #3a3a3a;
+    color: #3A3A3A;
 }
 
 .table-data-home {
     border-collapse: collapse;
     width: 100%;
+    background-color: #DAF1D1;
 }
-  
-.title-atribut-data-home {
+
+.table-data-home th{
     border: 1px solid #3a3a3a;
     padding: 8px;
-    text-align: left;
+    text-align: center;
     color: #3A3A3A;
     font-size: 14px;
 }
