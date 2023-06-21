@@ -37,7 +37,34 @@ if (!isset($_SESSION['login']) || $_SESSION['login'] !== true) {
             </nav>
         </header>
         <main>
+            <div class="box-white-black-stroke-1">
+                <div class="title-data-home">
+                    Data Absensi Terkonfirmasi Hari Ini
+                </div>
+                <div class="box-white-black-stroke-2">
+                    <div class="title-nama-data-home">
+                        Masuk
+                    </div>
+                    <div class="total-data-home">
+                        Total: (Data Jumlah Orang)
+                    </div>
+                    <div>
+                        <table class="table-data-home">
+                            <tr>
+                                <th class=".title-atribut-data-home">Nama Lengkap</td>
+                                <th class=".title-atribut-data-home">Username</td>
+                                <th class=".title-atribut-data-home">Waktu Masuk</td>
+                                <th class=".title-atribut-data-home">Keterangan Masuk</td>
+                                <th class=".title-atribut-data-home">Waktu Pulang</td>
+                                <th class=".title-atribut-data-home">Keterangan Pulang</td>
+                            </tr>
+                            <tr>
 
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
         </main>
         <footer>
             <center>
