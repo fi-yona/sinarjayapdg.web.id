@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <title>Login SJP</title>
+		<link rel="stylesheet" href="../assets/style/style.css">
+        <link rel="shortcut icon" href="../assets/img/logo.svg">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+        <script src="../script/firebase-config.js"></script>
+        <script src="../script/function.js"></script>
+    </head>
+    <body>
+        
+        <header>
+            <center>
+                <h1><img src="../assets/img/logo-horizontal.png" class="logo-header"></h1>
+            </center>
+            <nav class="nav-home">
+                <ul class="nav-home-ul">
+                    <li><a href="../index.html">Landing Page</a></li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            <div class="box-login">
+                <center>
+                    <img src="../assets/img/login-logo.png" class="login-logo"><br>
+                    <h1>Login</h1>
+                    <div class="for-login">
+                        <form id="form-login" class="form-login" action="../php/submit-login.php" method="POST">
+                            <table class="tab-form-login">
+                                <tr>
+                                    <td>Username</td>
+                                    <td><input type="text" placeholder="Masukkan Username" name="username" id="username" class="input-text"></td>
+                                </tr>
+                                <tr>
+                                    <td>Password</td>
+                                    <td><input type="password" placeholder="Masukkan Password" name="password" id="password" class="input-text"></td>
+                                </tr>
+                            </table>
+                            <input type="submit" name="login" class="button-submit-login" value="Login Akun">
+                        </form>
+                    </div>
+                </center>
+            </div>
+            
+        </main>
+        <footer>
+            <center>
+                <div class="footer">
+                    Copyright UD Sinar Jaya Padang (IT Departement) - 2023
+                </div>
+            </center>
+        </footer>
+        <script type="module">
+            firebaseConfig(); 
+        </script>
+    </body>
+</html>
