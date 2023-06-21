@@ -356,7 +356,7 @@ nav ul{
 .title-data-home{
     font-size: 16px;
     font-weight: bold;
-    color: #3a3a3a;
+    color: #005109;
 }
 
 .box-white-black-stroke-2{
@@ -367,12 +367,6 @@ nav ul{
     border: 1px solid #3a3a3a;
     border-radius: 9px;
     align-items: center;
-}
-
-.title-nama-data-home{
-    font-size: 14px;
-    text-decoration: underline;
-    color: #3a3a3a;
 }
 
 .total-data-home{

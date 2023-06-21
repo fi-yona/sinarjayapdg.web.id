@@ -42,9 +42,6 @@ if (!isset($_SESSION['login']) || $_SESSION['login'] !== true) {
                     Data Absensi Terkonfirmasi Hari Ini
                 </div>
                 <div class="box-white-black-stroke-2">
-                    <div class="title-nama-data-home">
-                        Masuk
-                    </div>
                     <div class="total-data-home">
                         Total: (Data Jumlah Orang)
                     </div>
@@ -65,6 +62,7 @@ if (!isset($_SESSION['login']) || $_SESSION['login'] !== true) {
                     </div>
                 </div>
             </div>
+            
         </main>
         <footer>
             <center>
