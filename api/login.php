@@ -38,6 +38,4 @@ $conn->close();
 // Mengembalikan respons dalam format JSON
 header('Content-Type: application/json');
 echo json_encode($response);
-
-
 ?>
