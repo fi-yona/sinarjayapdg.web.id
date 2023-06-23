@@ -18,11 +18,11 @@ if ($_SESSION['role'] !== 'Manajer') {
 <!DOCTYPE html>
 <html>
     <head>
-		<title>Data Absensi</title>
+		<title>Data Tokos</title>
 		<link rel="stylesheet" href="../../../assets/style/styles.css">
         <link rel="shortcut icon" href="../../../assets/img/logo.svg">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-        <script src="./../../../script/logout1.js"></script>
+        <script src="../../../script/logout1.js"></script>
 	</head>
     <body>
         <header>
@@ -33,9 +33,9 @@ if ($_SESSION['role'] !== 'Manajer') {
             <nav class="nav-home">
                 <ul class="nav-home-ul">
                     <li><a href="../home.php">Home</a></li>
-                    <li><a href="./absensi.php">Absensi</a></li>
+                    <li><a href="../absensi/absensi.php">Absensi</a></li>
                     <li><a href="../kunjungan/kunjungan.php">Kunjungan</a></li>
-                    <li><a href="../toko/toko.php">Toko</a></li>
+                    <li><a href="./toko.php">Toko</a></li>
                     <li><a href="../barang/barang.php">Barang</a></li>
                     <li><a href="../riwayat-pesanan/riwayat-pesanan.php">Riwayat Pesanan</a></li>
                     <li><a href="../riwayat-pembayaran/riwayat-pembayaran.php">Riwayat Pembayaran</a></li>
