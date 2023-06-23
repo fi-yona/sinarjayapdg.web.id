@@ -20,9 +20,13 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
             header("Location: ../staff/manajer/home.php");
             exit();
         } elseif ($_SESSION['role'] === 'Admin') {
-            // Redirect ke halaman admin jika diperlukan
-            // header("Location: ../staff/admin/home.php");
-            // exit();
+            // Redirect ke halaman admin
+            header("Location: ../staff/admin/home.php");
+            exit();
+        } elseif ($_SESSION['role'] === 'Super Admin') {
+            // Redirect ke halaman super admin
+            header("Location: ../staff/super-admin/home.php");
+            exit();
         } else {
             // Role tidak dikenali, tampilkan pesan error atau redirect ke halaman lain
             // Contoh: tampilkan pesan error dan redirect ke halaman login
