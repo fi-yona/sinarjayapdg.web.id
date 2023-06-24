@@ -1,0 +1,52 @@
+.btn-log-in-home{
+    background: #F1B0B0;
+    border: 1px solid #3A3A3A;
+    box-shadow: 0px 5px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 30px;
+    font-family: 'Golos Text', sans-serif;
+    font-weight: bold;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.btn-log-out{
+    background: #F1B0B0;
+    border: 1px solid #3A3A3A;
+    box-shadow: 0px 5px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 30px;
+    font-family: 'Golos Text', sans-serif;
+    font-weight: bold;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.btn-log-out:hover{
+    background-color: #F76161;
+}
+
+.btn-log-in-home:hover{
+    background-color: #F76161;
+}
+
+.button-submit-login{
+    margin-top: 5%;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    padding-left: 5%;
+    padding-right: 5%;
+    font-family: 'Golos Text', sans-serif;
+    font-size: 100%;
+    background: #89F195;
+    border: 2px solid #3A3A3A;
+    box-shadow: 0px 10px 8px rgba(0, 0, 0, 0.25);
+    border-radius: 30px;
+    font-weight: bold;
+}
+
+.button-submit-login:hover{
+    background-color: #009E13;
+}

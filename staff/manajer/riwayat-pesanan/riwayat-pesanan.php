@@ -19,7 +19,9 @@ if ($_SESSION['role'] !== 'Manajer') {
 <html>
     <head>
 		<title>Data Riwayat Pesanan</title>
-		<link rel="stylesheet" href="../../../assets/style/styles.css">
+		<link rel="stylesheet" href="../../../assets/style/style-body.css">
+        <link rel="stylesheet" href="../../../assets/style/style-button.css">
+        <link rel="stylesheet" href="../../../assets/style/style-img.css">
         <link rel="shortcut icon" href="../../../assets/img/logo.svg">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
         <script src="../../../script/logout1.js"></script>

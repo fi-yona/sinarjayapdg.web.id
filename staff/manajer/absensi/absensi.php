@@ -19,7 +19,10 @@ if ($_SESSION['role'] !== 'Manajer') {
 <html>
     <head>
 		<title>Data Absensi</title>
-		<link rel="stylesheet" href="../../../assets/style/styles.css">
+		<link rel="stylesheet" href="../../../assets/style/style-body.css">
+        <link rel="stylesheet" href="../../../assets/style/style-button.css">
+        <link rel="stylesheet" href="../../../assets/style/style-img.css">
+        <link rel="stylesheet" href="../../../assets/style/style-input.css">
         <link rel="shortcut icon" href="../../../assets/img/logo.svg">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
         <script src="./../../../script/logout1.js"></script>
@@ -46,7 +49,51 @@ if ($_SESSION['role'] !== 'Manajer') {
         </header>
         </header>
         <main>
-
+            <div class = "title-page">
+                Data Absensi
+            </div>
+            <div class = "search-column">
+                <form id="form-search-absensi" class="form-search" action="../function/do-search-absensi.php" method="POST"> 
+                    <table class="table-layout-search">
+                        <tr>
+                            <td class = "td-search-tanggal">
+                                <div class="box-white-black-stroke-search">
+                                    <input type="text" placeholder="Tahun" name="tahun" id="tahun-search" class="input-tahun">/<input type="text" placeholder="Bulan" name="bulan" id="bulan-search" class="input-bulan">/<input type="text" placeholder="Hari" name="hari" id="hari-search" class="input-hari">
+                                </div>
+                            </td>
+                            <td class = "td-search-data">
+                                <div class="box-white-black-stroke-search">
+                                    <select class = "select-sales">
+                                        <option value="option1">Pilihan 1</option>
+                                        <option value="option2" selected>Pilihan 2</option>
+                                        <option value="option3">Pilihan 3</option>
+                                    </select>
+                                </div>
+                            </td>
+                            <td class = "td-button-search">
+                                <input type="submit" name="search" class="button-submit-search" value="Cari Data Absensi">
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+            <div class = "search-result">
+                <table class = "table-search-result">
+                    <tr>
+                        <th class=".title-atribut-data-absensi">Nama Lengkap</td>
+                        <th class=".title-atribut-data-absensi">Username</td>
+                        <th class=".title-atribut-data-absensi">Tanggal</td>
+                        <th class=".title-atribut-data-absensi">Waktu Masuk</td>
+                        <th class=".title-atribut-data-absensi">Koordinat Masuk</td>
+                        <th class=".title-atribut-data-absensi">Lokasi Masuk</td>
+                        <th class=".title-atribut-data-absensi">Keterangan Masuk</td>
+                        <th class=".title-atribut-data-absensi">Waktu Pulang</td>
+                        <th class=".title-atribut-data-absensi">Koordinat Pulang</td>
+                        <th class=".title-atribut-data-absensi">Lokasi Pulang</td>
+                        <th class=".title-atribut-data-absensi">Keterangan Pulang</td>
+                    </tr>
+                </table>
+            </div>
         </main>
         <?php include '../../../function/footer.php'; ?>
     </body>
