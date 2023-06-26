@@ -47,7 +47,51 @@ if ($_SESSION['role'] !== 'Manajer') {
             </nav>
         </header>
         <main>
-
+            <div class = "column-button-sub-menu">
+                <a href="./kunjungan.php"><button type="button" class="button-sub-menu-back">Kembali</button></a>
+            </div>
+            <div class = "title-page">
+                Data Penugasan
+            </div>
+            <div class = "search-column">
+                <form id="form-search-absensi" class="form-search" action="../function/do-search-absensi.php" method="POST"> 
+                    <table class="table-layout-search">
+                        <tr>
+                            <td class = "td-search-tanggal">
+                                <div class="box-white-black-stroke-search">
+                                    <input type="text" placeholder="Tahun" name="tahun" id="tahun-search" class="input-tahun">/<input type="text" placeholder="Bulan" name="bulan" id="bulan-search" class="input-bulan">/<input type="text" placeholder="Hari" name="hari" id="hari-search" class="input-hari">
+                                </div>
+                            </td>
+                            <td class = "td-search-data">
+                                <div class="box-white-black-stroke-search">
+                                    <select class = "select-sales">
+                                        <option value="option1">Pilihan 1</option>
+                                        <option value="option2" selected>Pilihan 2</option>
+                                        <option value="option3">Pilihan 3</option>
+                                    </select>
+                                </div>
+                            </td>
+                            <td class = "td-button-search">
+                                <input type="submit" name="search" class="button-submit-search" value="Cari Data Kunjungan">
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+            <div class = "add-data">
+                <a href="./add-penugasan.php"><button type="button" class="button-add-data">Tambah Penugasan</button></a>
+            </div>
+            <div class = "search-result">
+                <table class = "table-search-result">
+                    <tr>
+                        <th class=".title-atribut-data-penugasan">Tanggal Penugasan</td>
+                        <th class=".title-atribut-data-penugasan">Nama Lengkap</td>
+                        <th class=".title-atribut-data-penugasan">Username</td>
+                        <th class=".title-atribut-data-penugasan">Nama Rute Penugasan</td>
+                        <th class=".title-atribut-data-penugasan">Ditugaskan Oleh</td>
+                    </tr>
+                </table>
+            </div>
         </main>
         <?php include '../../../function/footer.php'; ?>
     </body>

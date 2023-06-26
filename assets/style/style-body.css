@@ -360,6 +360,7 @@ nav ul{
     width: fit-content;
     margin: 0% 0% 2% 0%;
     float: right;
+    padding: 0%;
 }
 
 .box-white-black-stroke-search{
@@ -373,12 +374,11 @@ nav ul{
 }
 
 .search-column{
-    margin: 2% 5% 0% 5%;
-    padding: 1% 0% 1% 0%;
+    margin: 10px 5% 10px 5%;
+    padding: 10px 0px 10px 0px;
     box-sizing: border-box;
     background: #FFFFFF;
     border-radius: 9px;
-    align-items: center;
 }
 
 .table-search-result {
