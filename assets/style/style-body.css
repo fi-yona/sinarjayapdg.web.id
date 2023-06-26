@@ -358,9 +358,9 @@ nav ul{
 .table-layout-search{
     background: #FFFFFF;
     width: fit-content;
-    margin: 0% 0% 2% 0%;
+    margin: 2% 5% 2% 5%;
     float: right;
-    padding: 0%;
+    padding: 10px 0px 10px 0px;
 }
 
 .box-white-black-stroke-search{
@@ -374,8 +374,8 @@ nav ul{
 }
 
 .search-column{
-    margin: 10px 5% 10px 5%;
-    padding: 10px 0px 10px 0px;
+    margin: 0px;
+    padding: 0px;
     box-sizing: border-box;
     background: #FFFFFF;
     border-radius: 9px;
