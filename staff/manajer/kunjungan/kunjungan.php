@@ -29,7 +29,6 @@ if ($_SESSION['role'] !== 'Manajer') {
 	</head>
     <body>
         <header>
-        <header>
             <center>
                 <h1><img src="../../../assets/img/logo-horizontal.png" class="logo-header"></h1>
             </center>
@@ -47,8 +46,10 @@ if ($_SESSION['role'] !== 'Manajer') {
                 </ul>
             </nav>
         </header>
-        </header>
         <main>
+            <div class = "column-button-sub-menu">
+                <a href="./penugasan.php"><button type="button" class="button-sub-menu">Lihat Kunjungan</button></a>
+            </div>
             <div class = "title-page">
                 Data Kunjungan
             </div>
