@@ -9,7 +9,7 @@ if ($conn->connect_error) {
     die("Koneksi ke database gagal: " . $conn->connect_error);
 }
 
-// Endpoint untuk mendapatkan data rute berdasarkan id_rute
+// Endpoint untuk mendapatkan data 
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     $get_token = $_GET['get_token'];
     $tanggal_absensi = $_GET['tanggal_absensi'];
