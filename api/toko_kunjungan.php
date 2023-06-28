@@ -9,7 +9,7 @@ if ($conn->connect_error) {
     die("Koneksi ke database gagal: " . $conn->connect_error);
 }
 
-// Endpoint untuk mendapatkan data rute berdasarkan token, username, dan tanggal penugasan
+// Endpoint untuk mendapatkan data
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     $get_token = $_GET['get_token'];
     $id_toko = $_GET['id_toko'];
