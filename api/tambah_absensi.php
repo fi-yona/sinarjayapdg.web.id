@@ -11,8 +11,8 @@ if ($conn->connect_error) {
 
 // Endpoint untuk mendapatkan data
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $insert_token = $_POST['insert_token'];
-    $status = $_POST['status'];
+    $token = $_POST['token'];
+    $status_absensi = $_POST['status_absensi'];
     $username = $_POST['username'];
     $tanggal_absensi = $_POST['tanggal_absensi'];
     $waktu_absensi = $_POST['waktu_absensi'];
@@ -21,11 +21,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $lokasi_absensi = $_POST['lokasi_absensi'];
     $keterangan_absensi = $_POST['keterangan_absensi'];
 
-    $tokenQuery = "SELECT * FROM token WHERE insert_token = '$insert_token'";
-    $tokenResult = $conn->query($tokenQuery);
-
-    if ($tokenResult->num_rows > 0) {
-        if ($status == "Masuk") {
+    if($status_absensi == "Masuk"){
+        $tokenQuery = "SELECT * FROM token WHERE insert_token = '$token'";
+        $tokenResult = $conn->query($tokenQuery);
+        if ($tokenResult->num_rows > 0) {
             $tambahAbsensiMasukQuery = "INSERT INTO tb_absensi(username, tanggal_absensi, waktu_masuk, latitude_masuk, longitude_masuk, lokasi_masuk, keterangan_masuk) VALUES ('$username','$tanggal_absensi','$waktu_absensi','$latitude_absensi','$longitude_absensi','$lokasi_absensi','$keterangan_absensi')";
             $tambahAbsensiMasukResult = $conn->query($tambahAbsensiMasukQuery);
             if ($tambahAbsensiMasukResult) {
@@ -35,8 +34,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $response = array('status' => 'Gagal', 'error' => $conn->error);
                 echo json_encode($response);
             }
-        } elseif ($status == "Pulang") {
-            $tambahAbsensiPulangQuery = "INSERT INTO tb_absensi(username, tanggal_absensi, waktu_pulang, latitude_pulang, longitude_pulang, lokasi_pulang, keterangan_pulang) VALUES ('$username','$tanggal_absensi','$waktu_absensi','$latitude_absensi','$longitude_absensi','$lokasi_absensi','$keterangan_absensi')";
+        } else {
+            header('HTTP/1.1 401 Unauthorized');
+            $response = array('message' => 'Invalid token');
+            echo json_encode($response);
+        }
+    } elseif ($status_absensi == "Pulang"){
+        $tokenQuery = "SELECT * FROM token WHERE update_token = '$token'";
+        $tokenResult = $conn->query($tokenQuery);
+        if ($tokenResult->num_rows > 0) {
+            $tambahAbsensiPulangQuery = "UPDATE tb_absensi SET waktu_pulang = '$waktu_absensi', latitude_pulang = '$latitude_absensi', longitude_pulang = '$longitude_absensi', lokasi_pulang = '$lokasi_absensi', keterangan_pulang = '$keterangan_absensi' WHERE username = '$username' AND tanggal_absensi = '$tanggal_absensi'";
             $tambahAbsensiPulangResult = $conn->query($tambahAbsensiPulangQuery);
             if ($tambahAbsensiPulangResult) {
                 $response = array('status' => 'Berhasil');
@@ -45,14 +52,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $response = array('status' => 'Gagal', 'error' => $conn->error);
                 echo json_encode($response);
             }
+        } else {
+            header('HTTP/1.1 401 Unauthorized');
+            $response = array('message' => 'Invalid token');
+            echo json_encode($response);
         }
-    } else {
-        header('HTTP/1.1 401 Unauthorized');
-        $response = array('message' => 'Invalid token');
-        echo json_encode($response);
     }
 }
-
 $conn->close();
-
 ?>
