@@ -87,9 +87,9 @@ if ($_SESSION['role'] !== 'Manajer') {
                 <table class = "table-search-result">
                     <tr>
                         <th class=".title-atribut-data-barang">Nama Merek</td>
-                        <th class=".title-atribut-data-toko">Nama Barang</td>
-                        <th class=".title-atribut-data-toko">Banyak Barang</td>
-                        <th class=".title-atribut-data-toko">Harga Barang</td>
+                        <th class=".title-atribut-data-barang">Nama Barang</td>
+                        <th class=".title-atribut-data-barang">Banyak Barang</td>
+                        <th class=".title-atribut-data-barang">Harga Barang</td>
                     </tr>
                 </table>
             </div>
