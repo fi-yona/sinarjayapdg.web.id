@@ -69,6 +69,23 @@
     color: #CEE4C5;
 }
 
+button.button-sub-menu1{
+    padding: 5px 10px 5px 10px;
+    font-family: 'Golos Text', sans-serif;
+    font-size: 14px;
+    background: #98C89E;
+    border: 1px solid #3A3A3A;
+    box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.3);
+    border-radius: 9px;
+    font-weight: bold;
+    color: #3A3A3A;
+}
+
+button.button-sub-menu1:hover{
+    background-color: #678F6C;
+    color: #CEE4C5;
+}
+
 .button-sub-menu-back{
     margin: 2% 5% 0% 5%;
     padding: 5px 10px 5px 10px;

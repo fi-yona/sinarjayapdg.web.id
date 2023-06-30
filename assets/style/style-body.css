@@ -409,3 +409,7 @@ nav ul{
 .search-result{
     padding: 2% 5% 2% 5%;
 }
+
+table.table-sub-menu {
+    margin: 2% 5% 0% 5%;
+}

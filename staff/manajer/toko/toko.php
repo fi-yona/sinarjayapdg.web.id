@@ -29,7 +29,6 @@ if ($_SESSION['role'] !== 'Manajer') {
 	</head>
     <body>
         <header>
-        <header>
             <center>
                 <h1><img src="../../../assets/img/logo-horizontal.png" class="logo-header"></h1>
             </center>
@@ -46,7 +45,6 @@ if ($_SESSION['role'] !== 'Manajer') {
                     <li><a href="#" onclick="logout()"><button type="button" class="btn-log-out">Log Out</button></a></li>
                 </ul>
             </nav>
-        </header>
         </header>
         <main>
             <div class = "column-button-sub-menu">
