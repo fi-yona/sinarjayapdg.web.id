@@ -48,7 +48,7 @@ if ($_SESSION['role'] !== 'Manajer') {
         </header>
         <main>
             <div class = "column-button-sub-menu">
-                <a href="./penugasan.php"><button type="button" class="button-sub-menu">Lihat Kunjungan</button></a>
+                <a href="./penugasan.php"><button type="button" class="button-sub-menu">Lihat Penugasan</button></a>
             </div>
             <div class = "title-page">
                 Data Kunjungan
