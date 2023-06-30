@@ -18,7 +18,7 @@ if ($_SESSION['role'] !== 'Manajer') {
 <!DOCTYPE html>
 <html>
     <head>
-		<title>Data Toko</title>
+        <title>Tambah Toko</title>
 		<link rel="stylesheet" href="../../../assets/style/style-body.css">
         <link rel="stylesheet" href="../../../assets/style/style-button.css">
         <link rel="stylesheet" href="../../../assets/style/style-img.css">
@@ -26,9 +26,8 @@ if ($_SESSION['role'] !== 'Manajer') {
         <link rel="shortcut icon" href="../../../assets/img/logo.svg">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
         <script src="../../../script/logout1.js"></script>
-	</head>
+    </head>
     <body>
-        <header>
         <header>
             <center>
                 <h1><img src="../../../assets/img/logo-horizontal.png" class="logo-header"></h1>
@@ -47,40 +46,19 @@ if ($_SESSION['role'] !== 'Manajer') {
                 </ul>
             </nav>
         </header>
-        </header>
         <main>
-            <div class = "title-page">
-                Data Toko
+            <div class = "column-button-sub-menu">
+                <a href="./toko.php"><button type="button" class="button-sub-menu-back">Kembali</button></a>
             </div>
-            <div class = "search-column">
-                <form id="form-search-absensi" class="form-search" action="../function/do-search-absensi.php" method="POST"> 
-                    <table class="table-layout-search">
-                        <tr>
-                            <td class = "td-search-tanggal">
-                                <div class="box-white-black-stroke-search">
-                                    <input type="text" placeholder="Masukkan Kata Kunci" name="kata-kunci" id="kata-kunci" class="input-kata-kunci">
-                                </div>
-                            </td>
-                            <td class = "td-button-search">
-                                <input type="submit" name="search" class="button-submit-search" value="Cari Data Toko">
-                            </td>
-                        </tr>
+            <div class = "title-page">
+                Tambah Toko
+            </div>
+            <div class = "column-add-data">
+                <form id="form-add-data-toko" class="table-form-add" action="../function/add-data-toko.php" method="POST">
+                    <table class="table-add-data">
+                        
                     </table>
                 </form>
-            </div>
-            <div class = "add-data">
-                <a href="./add-toko.php"><button type="button" class="button-add-data">Tambah Toko</button></a>
-            </div>
-            <div class = "search-result">
-                <table class = "table-search-result">
-                    <tr>
-                        <th class=".title-atribut-data-penugasan">Id Toko</td>
-                        <th class=".title-atribut-data-penugasan">Nama Toko</td>
-                        <th class=".title-atribut-data-penugasan">Nama Rute</td>
-                        <th class=".title-atribut-data-penugasan">Kontak Toko</td>
-                        <th class=".title-atribut-data-penugasan">Alamat Toko</td>
-                    </tr>
-                </table>
             </div>
         </main>
         <?php include '../../../function/footer.php'; ?>
