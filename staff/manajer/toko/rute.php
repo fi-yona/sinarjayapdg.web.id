@@ -18,7 +18,7 @@ if ($_SESSION['role'] !== 'Manajer') {
 <!DOCTYPE html>
 <html>
     <head>
-		<title>Data Toko</title>
+		<title>Data Rute</title>
 		<link rel="stylesheet" href="../../../assets/style/style-body.css">
         <link rel="stylesheet" href="../../../assets/style/style-button.css">
         <link rel="stylesheet" href="../../../assets/style/style-img.css">
@@ -50,10 +50,10 @@ if ($_SESSION['role'] !== 'Manajer') {
         </header>
         <main>
             <div class = "column-button-sub-menu">
-                <a href="./rute.php"><button type="button" class="button-sub-menu">Lihat Rute</button></a>
+                <a href="./toko.php"><button type="button" class="button-sub-menu-back">Kembali</button></a>
             </div>
             <div class = "title-page">
-                Data Toko
+                Data Rute
             </div>
             <div class = "search-column">
                 <form id="form-search-absensi" class="form-search" action="../function/do-search-absensi.php" method="POST"> 
@@ -65,23 +65,21 @@ if ($_SESSION['role'] !== 'Manajer') {
                                 </div>
                             </td>
                             <td class = "td-button-search">
-                                <input type="submit" name="search" class="button-submit-search" value="Cari Data Toko">
+                                <input type="submit" name="search" class="button-submit-search" value="Cari Data Rute">
                             </td>
                         </tr>
                     </table>
                 </form>
             </div>
             <div class = "add-data">
-                <a href="./add-toko.php"><button type="button" class="button-add-data">Tambah Toko</button></a>
+                <a href="./add-rute.php"><button type="button" class="button-add-data">Tambah Rute</button></a>
             </div>
             <div class = "search-result">
                 <table class = "table-search-result">
                     <tr>
-                        <th class=".title-atribut-data-toko">Id Toko</td>
-                        <th class=".title-atribut-data-toko">Nama Toko</td>
-                        <th class=".title-atribut-data-toko">Nama Rute</td>
-                        <th class=".title-atribut-data-toko">Kontak Toko</td>
-                        <th class=".title-atribut-data-toko">Alamat Toko</td>
+                        <th class=".title-atribut-data-rute">Id Rute</td>
+                        <th class=".title-atribut-data-rute">Nama Rute</td>
+                        <th class=".title-atribut-data-rute">Keterangan Rute</td>
                     </tr>
                 </table>
             </div>
