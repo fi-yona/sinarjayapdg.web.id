@@ -122,7 +122,7 @@ button.button-sub-menu1:hover{
     color: #98C89E;
 }
 
-.button-sub-menu-back1{
+button.button-sub-menu-back1{
     padding: 5px 10px 5px 10px;
     font-family: 'Golos Text', sans-serif;
     font-size: 14px;
@@ -134,7 +134,7 @@ button.button-sub-menu1:hover{
     color: #3A3A3A;
 }
 
-.button-sub-menu-back1:hover{
+button.button-sub-menu-back1:hover{
     background-color: #AEBC1B;
     color: #F7FFA6;
 }

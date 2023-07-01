@@ -48,7 +48,52 @@ if ($_SESSION['role'] !== 'Manajer') {
         </header>
         </header>
         <main>
-
+            <table class="table-sub-menu">
+                <tr>
+                    <td>
+                        <div class = "column-button-sub-menu">
+                            <a href="./jatuh-tempo.php"><button type="button" class="button-sub-menu1">Lihat Pesanan Jatuh Tempo</button></a>
+                        </div>
+                    </td>
+                    <td>
+                        <div class = "column-button-sub-menu">
+                            <a href="./penagihan.php"><button type="button" class="button-sub-menu1">Lihat Penagihan</button></a>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+            <div class = "title-page">
+                Data Riwayat Pesanan
+            </div>
+            <div class = "search-column">
+                <form id="form-search-absensi" class="form-search" action="../function/do-search-absensi.php" method="POST"> 
+                    <table class="table-layout-search">
+                        <tr>
+                            <td class = "td-search-tanggal">
+                                <div class="box-white-black-stroke-search">
+                                    <input type="text" placeholder="Masukkan Kata Kunci" name="kata-kunci" id="kata-kunci" class="input-kata-kunci">
+                                </div>
+                            </td>
+                            <td class = "td-button-search">
+                                <input type="submit" name="search" class="button-submit-search" value="Cari Data Riwayat Pesanan">
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+            <div class = "add-data">
+                <a href="./add-barang.php"><button type="button" class="button-add-data">Tambah Barang</button></a>
+            </div>
+            <div class = "search-result">
+                <table class = "table-search-result">
+                    <tr>
+                        <th class=".title-atribut-data-barang">Nama Merek</td>
+                        <th class=".title-atribut-data-barang">Nama Barang</td>
+                        <th class=".title-atribut-data-barang">Banyak Barang</td>
+                        <th class=".title-atribut-data-barang">Harga Barang</td>
+                    </tr>
+                </table>
+            </div>
         </main>
         <?php include '../../../function/footer.php'; ?>
     </body>

@@ -78,21 +78,7 @@ if ($_SESSION['role'] !== 'Manajer') {
                 </form>
             </div>
             <div class = "search-result">
-                <table class = "table-search-result">
-                    <tr>
-                        <th class=".title-atribut-data-absensi">Nama Lengkap</td>
-                        <th class=".title-atribut-data-absensi">Username</td>
-                        <th class=".title-atribut-data-absensi">Tanggal</td>
-                        <th class=".title-atribut-data-absensi">Waktu Masuk</td>
-                        <th class=".title-atribut-data-absensi">Koordinat Masuk</td>
-                        <th class=".title-atribut-data-absensi">Lokasi Masuk</td>
-                        <th class=".title-atribut-data-absensi">Keterangan Masuk</td>
-                        <th class=".title-atribut-data-absensi">Waktu Pulang</td>
-                        <th class=".title-atribut-data-absensi">Koordinat Pulang</td>
-                        <th class=".title-atribut-data-absensi">Lokasi Pulang</td>
-                        <th class=".title-atribut-data-absensi">Keterangan Pulang</td>
-                    </tr>
-                </table>
+                <?php include '../../../function/data-absensi.php'; ?>
             </div>
         </main>
         <?php include '../../../function/footer.php'; ?>
