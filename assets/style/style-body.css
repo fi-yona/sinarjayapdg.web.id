@@ -449,3 +449,8 @@ table.table-data-absensi {
     text-align: left;
     font-size: 12px;
 }
+
+td, th {
+    vertical-align: top;
+  }
+  

@@ -3,16 +3,46 @@ session_start();
 
 // Periksa apakah pengguna sudah login
 if (!isset($_SESSION['login']) || $_SESSION['login'] !== true) {
-    header("Location: ../login.html");
+    header("Location: ../../../staff/login.html");
     exit();
 }
 
 // Periksa role pengguna
 if ($_SESSION['role'] !== 'Manajer') {
-    header("Location: ../login.html");
+    header("Location: ../../../staff/login.html");
     echo "Anda tidak memiliki akses ke halaman ini!";
     exit();
 }
+
+$id_absensi = $_GET['id_absensi'];
+
+require_once '../../../function/dbconfig.php';
+
+$query = "SELECT tb_absensi.id_absensi, tb_karyawan.nama_lengkap, tb_user.username, tb_absensi.tanggal_absensi, tb_absensi.waktu_masuk, tb_absensi.latitude_masuk, tb_absensi.longitude_masuk, tb_absensi.lokasi_masuk, tb_absensi.keterangan_masuk, tb_absensi.waktu_pulang, tb_absensi.latitude_pulang, tb_absensi.longitude_pulang, tb_absensi.lokasi_pulang, tb_absensi.keterangan_pulang
+          FROM tb_absensi
+          INNER JOIN tb_karyawan ON tb_absensi.username = tb_karyawan.username
+          INNER JOIN tb_user ON tb_karyawan.username = tb_user.username
+          WHERE tb_absensi.id_absensi = '$id_absensi'";
+
+// Eksekusi query
+$result = $conn->query($query);
+
+// Periksa hasil query
+if (!$result) {
+    die("Query error: " . $conn->error);
+}
+
+// Periksa apakah data ditemukan
+if ($result->num_rows === 0) {
+    echo "Data absensi tidak ditemukan";
+    exit();
+}
+
+// Ambil data absensi
+$row = $result->fetch_assoc();
+
+$conn->close();
+
 ?>
 
 <!DOCTYPE html>
@@ -58,22 +88,24 @@ if ($_SESSION['role'] !== 'Manajer') {
                     <tr>
                         <td>Id Absensi</td>
                         <td> : </td>
-                        <td> </td>
+                        <?php 
+                        echo "<td>".$id_absensi."</th>";
+                        ?>
                     </tr>
                     <tr>
                         <td>Tanggal Absensi</td>
                         <td> : </td>
-                        <td> </td>
+                        <td><?php echo $row['tanggal_absensi']; ?></td>
                     </tr>
                     <tr>
                         <td>Nama Lengkap</td>
                         <td> : </td>
-                        <td> </td>
+                        <td><?php echo $row['nama_lengkap']; ?></td>
                     </tr>
                     <tr>
                         <td>Usename</td>
                         <td> : </td>
-                        <td> </td>
+                        <td><?php echo $row['username']; ?></td>
                     </tr>
                 </table>
             </div>
@@ -90,27 +122,27 @@ if ($_SESSION['role'] !== 'Manajer') {
                                         <tr>
                                             <th>Waktu</th>
                                             <td> : </td>
-                                            <td>(No Data)</td>
+                                            <td><?php echo $row['waktu_masuk']; ?></td>
                                         </tr>
                                         <tr>
                                             <th>Lokasi</th>
                                             <td> : </td>
-                                            <td>(No Data)</td>
+                                            <td><?php echo $row['lokasi_masuk']; ?></td>
                                         </tr>
                                         <tr>
                                             <th>Latitude</th>
                                             <td> : </td>
-                                            <td>(No Data)</td>
+                                            <td><?php echo $row['latitude_masuk']; ?></td>
                                         </tr>
                                         <tr>
                                             <th>Longitude</th>
                                             <td> : </td>
-                                            <td>(No Data)</td>
+                                            <td><?php echo $row['longitude_masuk']; ?></td>
                                         </tr>
                                         <tr>
                                             <th>Keterangan</th>
                                             <td> : </td>
-                                            <td>(No Data)</td>
+                                            <td><?php echo $row['keterangan_masuk']; ?></td>
                                         </tr>
                                     </table>
                                 </div>
@@ -129,27 +161,62 @@ if ($_SESSION['role'] !== 'Manajer') {
                                         <tr>
                                             <th>Waktu</th>
                                             <td> : </td>
-                                            <td>(No Data)</td>
+                                            <td><?php
+                                                $waktu_pulang = $row['waktu_pulang'];
+                                                if($waktu_pulang==NULL || $waktu_pulang=="00:00:00"){
+                                                    echo "(No Data)";
+                                                }else{
+                                                    echo $waktu_pulang;
+                                                }
+                                            ?></td>
                                         </tr>
                                         <tr>
                                             <th>Lokasi</th>
                                             <td> : </td>
-                                            <td>(No Data)</td>
+                                            <td><?php
+                                                $lokasi_pulang = $row['lokasi_pulang'];
+                                                if($lokasi_pulang==NULL){
+                                                    echo "(No Data)";
+                                                }else{
+                                                    echo $lokasi_pulang;
+                                                }
+                                            ?></td>
                                         </tr>
                                         <tr>
                                             <th>Latitude</th>
                                             <td> : </td>
-                                            <td>(No Data)</td>
+                                            <td><?php
+                                                $latitude_pulang = $row['latitude_pulang'];
+                                                if($latitude_pulang==NULL){
+                                                    echo "(No Data)";
+                                                }else{
+                                                    echo $latitude_pulang;
+                                                }
+                                            ?></td>
                                         </tr>
                                         <tr>
                                             <th>Longitude</th>
                                             <td> : </td>
-                                            <td>(No Data)</td>
+                                            <td><?php
+                                                $longitude_pulang = $row['longitude_pulang'];
+                                                if($longitude_pulang==NULL){
+                                                    echo "(No Data)";
+                                                }else{
+                                                    echo $longitude_pulang;
+                                                }
+                                            ?></td>
                                         </tr>
                                         <tr>
                                             <th>Keterangan</th>
                                             <td> : </td>
-                                            <td>(No Data)</td>
+                                            <td><?php
+                                                $keterangan_pulang = $row['keterangan_pulang'];
+                                                if($keterangan_pulang==NULL){
+                                                    echo "(No Data)";
+                                                }else{
+                                                    echo $keterangan_pulang;
+                                                }
+                                            ?></td>
                                         </tr>
                                     </table>
                                 </div>

@@ -16,6 +16,12 @@ if ($_SESSION['role'] !== 'Manajer') {
 
 require_once 'dbconfig.php';
 
+function createDetailAbsensiLink($id_absensi)
+{
+    $link = '<a href="detail-absensi.php?id_absensi=' . $id_absensi . '">Detail</a>';
+    return $link;
+}
+
 // Query SQL
 $sql = "SELECT
             tb_absensi.id_absensi,
@@ -59,6 +65,7 @@ if (mysqli_num_rows($result) > 0) {
     echo "<th class='.title-atribut-data-absensi'>Koordinat Pulang</th>";
     echo "<th class='.title-atribut-data-absensi'>Lokasi Pulang</th>";
     echo "<th class='.title-atribut-data-absensi'>Keterangan Pulang</th>";
+    echo "<th class='.title-atribut-data-absensi'>Detail</th>";
     echo "</tr>";
 
     // Tampilkan data dalam tabel
@@ -75,6 +82,7 @@ if (mysqli_num_rows($result) > 0) {
         echo "<td>" . $row['latitude_pulang'] . ", " . $row['longitude_pulang'] . "</td>";
         echo "<td>" . $row['lokasi_pulang'] . "</td>";
         echo "<td>" . $row['keterangan_pulang'] . "</td>";
+        echo "<td>" . createDetailAbsensiLink($row['id_absensi']) . "</td>";
         echo "</tr>";
     }
 
