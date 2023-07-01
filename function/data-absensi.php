@@ -1,5 +1,5 @@
 <?php
-session_start();
+//session_start();
 
 // Periksa apakah pengguna sudah login
 if (!isset($_SESSION['login']) || $_SESSION['login'] !== true) {
@@ -39,7 +39,7 @@ $sql = "SELECT
         JOIN
             tb_user ON tb_absensi.username = tb_user.username
         ORDER BY
-            tb_absensi.tanggal_absensi DESC, tb_absensi.waktu_masuk ASC";
+            tb_absensi.tanggal_absensi DESC, tb_absensi.waktu_masuk DESC";
 
 // Eksekusi query
 $result = mysqli_query($conn, $sql);

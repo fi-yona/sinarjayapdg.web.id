@@ -138,3 +138,19 @@ button.button-sub-menu-back1:hover{
     background-color: #AEBC1B;
     color: #F7FFA6;
 }
+
+button.button-lihat-foto {
+    margin: 0px 5px 0px 5px;
+    padding: 5px 10px 5px 10px;
+    font-size: 12px;
+    font-family: 'Golos Text', SANS-SERIF;
+    font-weight: bold;
+    background-color: #98C89E;
+    border-radius: 10px;
+    border: 1px solid #3A3A3A;
+}
+
+button.button-lihat-foto:hover {
+    background-color: #527A57;
+    color: #98C89E;
+}
