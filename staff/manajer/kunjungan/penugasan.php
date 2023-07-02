@@ -82,15 +82,7 @@ if ($_SESSION['role'] !== 'Manajer') {
                 <a href="./add-penugasan.php"><button type="button" class="button-add-data">Tambah Penugasan</button></a>
             </div>
             <div class = "search-result">
-                <table class = "table-search-result">
-                    <tr>
-                        <th class=".title-atribut-data-penugasan">Tanggal Penugasan</td>
-                        <th class=".title-atribut-data-penugasan">Nama Lengkap</td>
-                        <th class=".title-atribut-data-penugasan">Username</td>
-                        <th class=".title-atribut-data-penugasan">Nama Rute Penugasan</td>
-                        <th class=".title-atribut-data-penugasan">Ditugaskan Oleh</td>
-                    </tr>
-                </table>
+                <?php include '../../../function/data-penugasan.php'; ?>
             </div>
         </main>
         <?php include '../../../function/footer.php'; ?>
