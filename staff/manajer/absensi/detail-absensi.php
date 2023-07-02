@@ -18,18 +18,36 @@ $id_absensi = $_GET['id_absensi'];
 
 require_once '../../../function/dbconfig.php';
 
-$query = "SELECT tb_absensi.id_absensi, tb_karyawan.nama_lengkap, tb_user.username, tb_absensi.tanggal_absensi, tb_absensi.waktu_masuk, tb_absensi.latitude_masuk, tb_absensi.longitude_masuk, tb_absensi.lokasi_masuk, tb_absensi.keterangan_masuk, tb_absensi.waktu_pulang, tb_absensi.latitude_pulang, tb_absensi.longitude_pulang, tb_absensi.lokasi_pulang, tb_absensi.keterangan_pulang
-          FROM tb_absensi
-          INNER JOIN tb_karyawan ON tb_absensi.username = tb_karyawan.username
-          INNER JOIN tb_user ON tb_karyawan.username = tb_user.username
-          WHERE tb_absensi.id_absensi = '$id_absensi'";
+$query = "SELECT 
+            tb_absensi.id_absensi, 
+            tb_karyawan.nama_lengkap, 
+            tb_user.username, 
+            tb_absensi.tanggal_absensi, 
+            tb_absensi.waktu_masuk, 
+            tb_absensi.latitude_masuk, 
+            tb_absensi.longitude_masuk, 
+            tb_absensi.lokasi_masuk, 
+            tb_absensi.keterangan_masuk, 
+            tb_absensi.waktu_pulang, 
+            tb_absensi.latitude_pulang, 
+            tb_absensi.longitude_pulang, 
+            tb_absensi.lokasi_pulang, 
+            tb_absensi.keterangan_pulang
+          FROM 
+            tb_absensi
+          INNER JOIN 
+            tb_karyawan ON tb_absensi.username = tb_karyawan.username
+          INNER JOIN 
+            tb_user ON tb_karyawan.username = tb_user.username
+          WHERE 
+            tb_absensi.id_absensi = '$id_absensi'";
 
 // Eksekusi query
 $result = $conn->query($query);
 
 // Periksa hasil query
 if (!$result) {
-    die("Query error: " . $conn->error);
+    die("Query error: " . print_r($conn->errorInfo(), true));
 }
 
 // Periksa apakah data ditemukan

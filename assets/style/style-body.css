@@ -454,4 +454,16 @@ table.table-data-absensi {
 td, th {
     vertical-align: top;
   }
-  
+
+.detail-data{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.box-green-1 {
+    background-color: #DAF1D1;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 0px 5px 0px 5px;
+}
