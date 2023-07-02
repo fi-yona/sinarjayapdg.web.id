@@ -49,8 +49,8 @@ $conn->close();
 <html>
     <head>
         <title>Detail Absensi</title>
-        <link rel="stylesheet" href="../../../assets/style/style-body.css">
-        <link rel="stylesheet" href="../../../assets/style/style-button.css">
+        <link rel="stylesheet" href="../../../assets/style/style-body.css?v1.1">
+        <link rel="stylesheet" href="../../../assets/style/style-button.css?v1.1">
         <link rel="stylesheet" href="../../../assets/style/style-img.css">
         <link rel="stylesheet" href="../../../assets/style/style-input.css">
         <link rel="shortcut icon" href="../../../assets/img/logo.svg">
@@ -227,6 +227,9 @@ $conn->close();
                         </td>
                     </tr>
                 </table>
+            </div>
+            <div class = "layout-button-data">
+                <a href=""><button type="button" class="button-hapus-data">Hapus</button></a>
             </div>
         </main>
         <?php include '../../../function/footer.php'; ?>

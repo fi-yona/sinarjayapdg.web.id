@@ -73,13 +73,7 @@ if ($_SESSION['role'] !== 'Manajer') {
                 <a href="./add-rute.php"><button type="button" class="button-add-data">Tambah Rute</button></a>
             </div>
             <div class = "search-result">
-                <table class = "table-search-result">
-                    <tr>
-                        <th class=".title-atribut-data-rute">Id Rute</td>
-                        <th class=".title-atribut-data-rute">Nama Rute</td>
-                        <th class=".title-atribut-data-rute">Keterangan Rute</td>
-                    </tr>
-                </table>
+                <?php include '../../../function/data-rute.php'; ?>
             </div>
         </main>
         <?php include '../../../function/footer.php'; ?>

@@ -154,3 +154,27 @@ button.button-lihat-foto:hover {
     background-color: #527A57;
     color: #98C89E;
 }
+
+.layout-button-data {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0px 0px 0px;
+}
+
+button.button-hapus-data {
+    padding: 5px 10px 5px 10px;
+    font-family: 'Golos Text', sans-serif;
+    font-size: 14px;
+    background: #F1B0B0;
+    border: 1px solid #3A3A3A;
+    box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.3);
+    border-radius: 9px;
+    font-weight: bold;
+    color: #3A3A3A;
+}
+
+button.button-hapus-data:hover {
+    background: #B56F6F;
+    color: #F1B0B0;
+}
