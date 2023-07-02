@@ -73,15 +73,7 @@ if ($_SESSION['role'] !== 'Manajer') {
                 <a href="./add-toko.php"><button type="button" class="button-add-data">Tambah Toko</button></a>
             </div>
             <div class = "search-result">
-                <table class = "table-search-result">
-                    <tr>
-                        <th class=".title-atribut-data-toko">Id Toko</td>
-                        <th class=".title-atribut-data-toko">Nama Toko</td>
-                        <th class=".title-atribut-data-toko">Nama Rute</td>
-                        <th class=".title-atribut-data-toko">Kontak Toko</td>
-                        <th class=".title-atribut-data-toko">Alamat Toko</td>
-                    </tr>
-                </table>
+                <?php include '../../../function/data-toko.php'; ?>
             </div>
         </main>
         <?php include '../../../function/footer.php'; ?>
