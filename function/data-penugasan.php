@@ -48,7 +48,7 @@ if (mysqli_num_rows($result) > 0) {
     echo "<tr>";
     echo "<th class='.title-atribut-data-absensi'>Tanggal Penugasan</th>";
     echo "<th class='.title-atribut-data-absensi'>Nama Lengkap</th>";
-    echo "<th class='.title-atribut-data-absensi'>Username</th>";
+    echo "<th class='.title-atribut-data-absensi'>Username Sales</th>";
     echo "<th class='.title-atribut-data-absensi'>Nama Rute Penugasan</th>";
     echo "<th class='.title-atribut-data-absensi'>Ditugaskan Oleh</th>";
     echo "<th class='.title-atribut-data-absensi'>Detail</th>";
