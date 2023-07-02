@@ -79,17 +79,7 @@ if ($_SESSION['role'] !== 'Manajer') {
                 </form>
             </div>
             <div class = "search-result">
-                <table class = "table-search-result">
-                    <tr>
-                        <th class=".title-atribut-data-kunjungan">Nama Lengkap</td>
-                        <th class=".title-atribut-data-kunjungan">Username</td>
-                        <th class=".title-atribut-data-kunjungan">Tanggal Kunjungan</td>
-                        <th class=".title-atribut-data-kunjungan">Waktu Kunjungan</td>
-                        <th class=".title-atribut-data-kunjungan">Nama Toko</td>
-                        <th class=".title-atribut-data-kunjungan">Koordinat Kunjungan</td>
-                        <th class=".title-atribut-data-kunjungan">Lokasi Kunjungan</td>
-                    </tr>
-                </table>
+                <?php include '../../../function/data-kunjungan.php'; ?>
             </div>
         </main>
         <?php include '../../../function/footer.php'; ?>
