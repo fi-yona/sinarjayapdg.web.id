@@ -84,13 +84,7 @@ if ($_SESSION['role'] !== 'Manajer') {
                 <a href="./add-merek.php"><button type="button" class="button-add-data">Tambah Merek</button></a>
             </div>
             <div class = "search-result">
-                <table class = "table-search-result">
-                    <tr>
-                        <th class=".title-atribut-data-merek">Nama Merek</td>
-                        <th class=".title-atribut-data-merek">Nama Manufaktur</td>
-                        <th class=".title-atribut-data-merek">Website</td>
-                    </tr>
-                </table>
+                <?php include '../../../function/data-merek.php'; ?>
             </div>
         </main>
         <?php include '../../../function/footer.php'; ?>
