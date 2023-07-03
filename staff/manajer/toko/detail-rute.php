@@ -52,7 +52,7 @@ $conn->close();
     <head>
         <title>Detail Rute</title>
         <link rel="stylesheet" href="../../../assets/style/style-body.css?v1.1">
-        <link rel="stylesheet" href="../../../assets/style/style-button.css">
+        <link rel="stylesheet" href="../../../assets/style/style-button.css?v1.1">
         <link rel="stylesheet" href="../../../assets/style/style-img.css">
         <link rel="stylesheet" href="../../../assets/style/style-input.css">
         <link rel="shortcut icon" href="../../../assets/img/logo.svg">
@@ -104,7 +104,7 @@ $conn->close();
                 </div>
             </div>
             <div class = "layout-button-data">
-                <a href=""><button type="button" class="button-hapus-data">Hapus</button></a>
+                <a href=""><button type="button" class="button-edit-data">Edit</button></a><a href=""><button type="button" class="button-hapus-data">Hapus</button></a>
             </div>
         </main>
         <?php include '../../../function/footer.php'; ?>

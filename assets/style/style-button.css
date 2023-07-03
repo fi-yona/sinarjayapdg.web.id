@@ -178,3 +178,21 @@ button.button-hapus-data:hover {
     background: #B56F6F;
     color: #F1B0B0;
 }
+
+button.button-edit-data {
+    background: #BFC4EE;
+    font-size: 14px;
+    font-family: 'Golos Text', sans-serif;
+    color: #3A3A3A;
+    padding: 5px 10px 5px 10px;
+    border: 1px solid #3A3A3A;
+    box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.3);
+    border-radius: 9px;
+    font-weight: bold;
+    margin-right: 20px;
+}
+
+button.button-edit-data:hover {
+    background: #8589A8;
+    color: #BFC4EE;
+}
