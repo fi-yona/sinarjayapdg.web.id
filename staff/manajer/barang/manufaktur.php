@@ -73,15 +73,7 @@ if ($_SESSION['role'] !== 'Manajer') {
                 <a href="./add-manufaktur.php"><button type="button" class="button-add-data">Tambah Manufaktur</button></a>
             </div>
             <div class = "search-result">
-                <table class = "table-search-result">
-                    <tr>
-                        <th class=".title-atribut-data-manufaktur">Nama Manufaktur</td>
-                        <th class=".title-atribut-data-manukfatur">Kontak</td>
-                        <th class=".title-atribut-data-manufaktur">Email</td>
-                        <th class=".title-atribut-data-manufaktur">Alamat</td>
-                        <th class=".title-atribut-data-manufaktur">Kode Pos</td>
-                    </tr>
-                </table>
+                <?php include '../../../function/data-manufaktur.php'; ?>
             </div>
         </main>
         <?php include '../../../function/footer.php'; ?>
