@@ -43,7 +43,7 @@ if (!$result) {
 
 // Periksa apakah data ditemukan
 if ($result->num_rows === 0) {
-    echo "Data menufaktur tidak ditemukan";
+    echo "Data manufaktur tidak ditemukan";
     exit();
 }
 
