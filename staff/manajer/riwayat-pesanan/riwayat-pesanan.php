@@ -49,20 +49,9 @@ if ($_SESSION['role'] !== 'Manajer') {
         </header>
         </header>
         <main>
-            <table class="table-sub-menu">
-                <tr>
-                    <td>
-                        <div class = "column-button-sub-menu">
-                            <a href="./jatuh-tempo.php"><button type="button" class="button-sub-menu1">Lihat Pesanan Jatuh Tempo</button></a>
-                        </div>
-                    </td>
-                    <td>
-                        <div class = "column-button-sub-menu">
-                            <a href="./penagihan.php"><button type="button" class="button-sub-menu1">Lihat Penagihan</button></a>
-                        </div>
-                    </td>
-                </tr>
-            </table>
+            <div class = "column-button-sub-menu">
+                <a href="./jatuh-tempo.php"><button type="button" class="button-sub-menu">Lihat Pesanan Jatuh Tempo</button></a>
+            </div>
             <div class = "title-page">
                 Data Riwayat Pesanan
             </div>
