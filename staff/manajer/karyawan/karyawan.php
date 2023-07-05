@@ -18,10 +18,11 @@ if ($_SESSION['role'] !== 'Manajer') {
 <!DOCTYPE html>
 <html>
     <head>
-		<title>Data Barang</title>
-		<link rel="stylesheet" href="../../../assets/style/style-body.css">
-        <link rel="stylesheet" href="../../../assets/style/style-button.css">
+		<title>Data Karyawan</title>
+		<link rel="stylesheet" href="../../../assets/style/style-body.css?v1.1">
+        <link rel="stylesheet" href="../../../assets/style/style-button.css?v1.1">
         <link rel="stylesheet" href="../../../assets/style/style-img.css">
+        <link rel="stylesheet" href="../../../assets/style/style-input.css">
         <link rel="shortcut icon" href="../../../assets/img/logo.svg">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
         <script src="../../../script/logout1.js"></script>
@@ -49,7 +50,7 @@ if ($_SESSION['role'] !== 'Manajer') {
         </header>
         <main>
             <div class = "title-page">
-                Data Toko
+                Data Karyawan
             </div>
             <div class = "search-column">
                 <form id="form-search-absensi" class="form-search" action="../function/do-search-absensi.php" method="POST"> 
@@ -61,17 +62,17 @@ if ($_SESSION['role'] !== 'Manajer') {
                                 </div>
                             </td>
                             <td class = "td-button-search">
-                                <input type="submit" name="search" class="button-submit-search" value="Cari Data Toko">
+                                <input type="submit" name="search" class="button-submit-search" value="Cari Data Karyawan">
                             </td>
                         </tr>
                     </table>
                 </form>
             </div>
             <div class = "add-data">
-                <a href="./add-toko.php"><button type="button" class="button-add-data">Tambah Toko</button></a>
+                <a href="./add-toko.php"><button type="button" class="button-add-data">Tambah Karyawan</button></a>
             </div>
             <div class = "search-result">
-                <?php include '../../../function/data-toko.php'; ?>
+                <?php include '../../../function/data-karyawan.php'; ?>
             </div>
         </main>
         <?php include '../../../function/footer.php'; ?>
