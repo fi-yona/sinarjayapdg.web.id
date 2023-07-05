@@ -19,9 +19,10 @@ if ($_SESSION['role'] !== 'Manajer') {
 <html>
     <head>
 		<title>Data Riwayat Pesanan</title>
-		<link rel="stylesheet" href="../../../assets/style/style-body.css">
-        <link rel="stylesheet" href="../../../assets/style/style-button.css">
+		<link rel="stylesheet" href="../../../assets/style/style-body.css?v1.1">
+        <link rel="stylesheet" href="../../../assets/style/style-button.css?v1.1">
         <link rel="stylesheet" href="../../../assets/style/style-img.css">
+        <link rel="stylesheet" href="../../../assets/style/style-input.css">
         <link rel="shortcut icon" href="../../../assets/img/logo.svg">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
         <script src="../../../script/logout1.js"></script>
@@ -81,18 +82,8 @@ if ($_SESSION['role'] !== 'Manajer') {
                     </table>
                 </form>
             </div>
-            <div class = "add-data">
-                <a href="./add-barang.php"><button type="button" class="button-add-data">Tambah Barang</button></a>
-            </div>
             <div class = "search-result">
-                <table class = "table-search-result">
-                    <tr>
-                        <th class=".title-atribut-data-barang">Nama Merek</td>
-                        <th class=".title-atribut-data-barang">Nama Barang</td>
-                        <th class=".title-atribut-data-barang">Banyak Barang</td>
-                        <th class=".title-atribut-data-barang">Harga Barang</td>
-                    </tr>
-                </table>
+                <?php include '../../../function/data-riwayat-pesanan.php'; ?>
             </div>
         </main>
         <?php include '../../../function/footer.php'; ?>
