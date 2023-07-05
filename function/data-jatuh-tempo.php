@@ -56,6 +56,7 @@ if (mysqli_num_rows($result) > 0) {
     echo "<tr>";
     echo "<th class='.title-atribut-data-pesanan'>Jatuh Tempo</th>";
     echo "<th class='.title-atribut-data-pesanan'>Tanggal Pesanan</th>";
+    echo "<th class='.title-atribut-data-pesanan'>Id Pesanan</th>";
     echo "<th class='.title-atribut-data-pesanan'>Nama Rute</th>";
     echo "<th class='.title-atribut-data-pesanan'>Nama Toko</th>";
     echo "<th class='.title-atribut-data-pesanan'>Total Harga Pesanan</th>";
@@ -69,6 +70,7 @@ if (mysqli_num_rows($result) > 0) {
         echo "<tr>";
         echo "<td>" . $row['jatuh_tempo'] . "</td>";
         echo "<td>" . $row['tanggal_pesanan'] . "</td>";
+        echo "<td>" . $row['id_pesanan'] . "</td>";
         echo "<td>" . $row['nama_rute'] . "</td>";
         echo "<td>" . $row['nama_toko'] . "</td>";
         echo "<td>" . number_format($row['total_harga_pesanan'], 0, ',', '.') . "</td>";
@@ -81,6 +83,6 @@ if (mysqli_num_rows($result) > 0) {
     echo "</table>";
 } else {
     // Jika query tidak mengembalikan hasil
-    echo "<p>Tidak ada data riwayat pesanan.</p>";
+    echo "<p>Tidak ada data pesanan jatuh tempo.</p>";
 }
 ?>

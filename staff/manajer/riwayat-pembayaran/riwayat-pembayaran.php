@@ -19,9 +19,10 @@ if ($_SESSION['role'] !== 'Manajer') {
 <html>
     <head>
 		<title>Data Riwayat Pembayaran</title>
-		<link rel="stylesheet" href="../../../assets/style/style-body.css">
+		<link rel="stylesheet" href="../../../assets/style/style-body.css?v1.1">
         <link rel="stylesheet" href="../../../assets/style/style-button.css">
         <link rel="stylesheet" href="../../../assets/style/style-img.css">
+        <link rel="stylesheet" href="../../../assets/style/style-input.css">
         <link rel="shortcut icon" href="../../../assets/img/logo.svg">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
         <script src="../../../script/logout1.js"></script>
@@ -48,7 +49,28 @@ if ($_SESSION['role'] !== 'Manajer') {
         </header>
         </header>
         <main>
-
+            <div class = "title-page">
+                Data Riwayat Pembayaran
+            </div>
+            <div class = "search-column">
+                <form id="form-search-absensi" class="form-search" action="../function/do-search-absensi.php" method="POST"> 
+                    <table class="table-layout-search">
+                        <tr>
+                            <td class = "td-search-tanggal">
+                                <div class="box-white-black-stroke-search">
+                                    <input type="text" placeholder="Masukkan Kata Kunci" name="kata-kunci" id="kata-kunci" class="input-kata-kunci">
+                                </div>
+                            </td>
+                            <td class = "td-button-search">
+                                <input type="submit" name="search" class="button-submit-search" value="Cari Data Riwayat Pesanan">
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+            <div class = "search-result">
+                <?php include '../../../function/data-riwayat-pembayaran.php'; ?>
+            </div>
         </main>
         <?php include '../../../function/footer.php'; ?>
     </body>

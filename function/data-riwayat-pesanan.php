@@ -50,6 +50,7 @@ $result = mysqli_query($conn, $sql);
 if (mysqli_num_rows($result) > 0) {
     echo "<table class='table-search-result'>";
     echo "<tr>";
+    echo "<th class='.title-atribut-data-pesanan'>Id Pesanan</th>";
     echo "<th class='.title-atribut-data-pesanan'>Tanggal Pesanan</th>";
     echo "<th class='.title-atribut-data-pesanan'>Waktu Pesanan</th>";
     echo "<th class='.title-atribut-data-pesanan'>Nama Toko</th>";
@@ -65,6 +66,7 @@ if (mysqli_num_rows($result) > 0) {
     // Tampilkan data dalam tabel
     while ($row = mysqli_fetch_assoc($result)) {
         echo "<tr>";
+        echo "<td>" . $row['id_pesanan'] . "</td>";
         echo "<td>" . $row['tanggal_pesanan'] . "</td>";
         echo "<td>" . $row['waktu_pesanan'] . "</td>";
         echo "<td>" . $row['nama_toko'] . "</td>";
