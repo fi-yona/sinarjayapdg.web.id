@@ -48,7 +48,31 @@ if ($_SESSION['role'] !== 'Manajer') {
         </header>
         </header>
         <main>
-
+            <div class = "title-page">
+                Data Toko
+            </div>
+            <div class = "search-column">
+                <form id="form-search-absensi" class="form-search" action="../function/do-search-absensi.php" method="POST"> 
+                    <table class="table-layout-search">
+                        <tr>
+                            <td class = "td-search-tanggal">
+                                <div class="box-white-black-stroke-search">
+                                    <input type="text" placeholder="Masukkan Kata Kunci" name="kata-kunci" id="kata-kunci" class="input-kata-kunci">
+                                </div>
+                            </td>
+                            <td class = "td-button-search">
+                                <input type="submit" name="search" class="button-submit-search" value="Cari Data Toko">
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+            <div class = "add-data">
+                <a href="./add-toko.php"><button type="button" class="button-add-data">Tambah Toko</button></a>
+            </div>
+            <div class = "search-result">
+                <?php include '../../../function/data-toko.php'; ?>
+            </div>
         </main>
         <?php include '../../../function/footer.php'; ?>
     </body>
