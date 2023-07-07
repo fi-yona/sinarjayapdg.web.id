@@ -13,6 +13,11 @@ if ($_SESSION['role'] !== 'Manajer') {
     echo "Anda tidak memiliki akses ke halaman ini!";
     exit();
 }
+
+if(isset($_GET['status']) && $_GET['status'] === 'success-delete') {
+    echo '<script>alert("Data Berhasil Terhapus");</script>';
+}
+
 ?>
 
 <!DOCTYPE html>
