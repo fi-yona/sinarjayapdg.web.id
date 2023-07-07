@@ -43,7 +43,7 @@ if (!$result) {
 
 // Periksa apakah data ditemukan
 if ($result->num_rows === 0) {
-    echo "Data toko tidak ditemukan";
+    echo "Data penugasan tidak ditemukan";
     exit();
 }
 
@@ -126,9 +126,16 @@ $conn->close();
                 </div>
             </div>
             <div class = "layout-button-data">
-                <a href="edit-penugasan.php?id_penugasan=<?php echo $id_penugasan; ?>"><button type="button" class="button-edit-data">Edit</button></a><a href=""><button type="button" class="button-hapus-data">Hapus</button></a>
+                <a href="edit-penugasan.php?id_penugasan=<?php echo $id_penugasan; ?>"><button type="button" class="button-edit-data">Edit</button></a><button type="button" class="button-hapus-data" onclick="hapusData(<?php echo $id_penugasan; ?>)">Hapus</button>
             </div>
         </main>
         <?php include '../../../function/footer.php'; ?>
+        <script>
+            function hapusData(id) {
+                if (confirm("Apakah Anda yakin ingin menghapus data ini?")) {
+                    window.location.href = "../../../function/delete-data-penugasan.php?id_penugasan=" + id;
+                }
+            }
+        </script>
     </body>
 </html>

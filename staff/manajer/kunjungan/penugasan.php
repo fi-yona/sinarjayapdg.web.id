@@ -17,7 +17,10 @@ if ($_SESSION['role'] !== 'Manajer') {
 //memuncul data berhasil tersimpan
 if (isset($_GET['status']) && $_GET['status'] === 'success') {
     echo '<script>alert("Data Berhasil Tersimpan");</script>';
+}elseif(isset($_GET['status']) && $_GET['status'] === 'success-delete') {
+    echo '<script>alert("Data Berhasil Terhapus");</script>';
 }
+
 ?>
 
 <!DOCTYPE html>

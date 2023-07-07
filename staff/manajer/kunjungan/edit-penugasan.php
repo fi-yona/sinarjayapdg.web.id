@@ -88,7 +88,7 @@ $row = $result->fetch_assoc();
             </div>
             <div class = "detail-data">
                 <div class="box-green-1">
-                <form id="form-edit-data-penugasan" class="table-form-add" action="../../../function/edit-data-penugasan.php?id_penugasan=<?php echo $id_penugasan; ?>" method="POST">
+                    <form id="form-edit-data-penugasan" class="table-form-add" action="../../../function/edit-data-penugasan.php?id_penugasan=<?php echo $id_penugasan; ?>" method="POST">
                         <table class="table-add-data">
                             <tr>
                                 <th>Tanggal Penugasan</th>
