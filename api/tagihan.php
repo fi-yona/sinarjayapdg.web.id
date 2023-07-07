@@ -38,7 +38,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
                         INNER JOIN 
                             tb_karyawan ON tb_pesanan.username = tb_karyawan.username
                         WHERE 
-                            tb_pesanan.id_toko = '$id_toko' AND tb_pesanan.status_bayar_pesanan = 'Belum Lunas'";
+                            tb_pesanan.id_toko = '$id_toko' AND tb_pesanan.status_bayar_pesanan = 'Belum Lunas'
+                        ORDER BY
+                            tb_pesanan.jatuh_tempo ASC";
         $tagihanResult = $conn->query($tagihanQuery);
 
         $rows = array();
@@ -46,18 +48,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             $rows[] = $row;
         }
 
-        if (!empty($rows)) {
-            $response['status'] = 'Ada Data';
-            $response['data'] = $rows;
-            header('Content-Type: application/json');
-            echo json_encode($response);
-        } else {
-            $response['status'] = 'Tidak Ada Data';
-            header('Content-Type: application/json');
-            echo json_encode($response);
-        }
-        //header('Content-Type: application/json');
-        //echo json_encode($rows);
+        header('Content-Type: application/json');
+        echo json_encode($rows);
     } else {
         header('HTTP/1.1 401 Unauthorized');
         $response = array('message' => 'Invalid token');
