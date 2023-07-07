@@ -32,7 +32,7 @@ $username = $_SESSION['username'];
     <head>
         <title>Tambah Penugasan</title>
 		<link rel="stylesheet" href="../../../assets/style/style-body.css?v1.4">
-        <link rel="stylesheet" href="../../../assets/style/style-button.css?v1.1">
+        <link rel="stylesheet" href="../../../assets/style/style-button.css?v1.5">
         <link rel="stylesheet" href="../../../assets/style/style-img.css?v1.1">
         <link rel="stylesheet" href="../../../assets/style/style-input.css?v1.2">
         <link rel="shortcut icon" href="../../../assets/img/logo.svg">
@@ -99,8 +99,14 @@ $username = $_SESSION['username'];
                                 <td><?php echo $username; ?></td>
                             </tr>
                         </table>
+                        <div class="layout-button-submit">
+                            <input type="submit" name="add-data-penugasan" class="button-submit-add" value="Submit">
+                        </div>
                     </form>
                 </div>
+            </div>
+            <div class = "layout-button-data">
+                <a href="javascript:history.back()"><button type="button" class="button-hapus-data">Batal</button></a>
             </div>
         </main>
         <?php include '../../../function/footer.php'; ?>

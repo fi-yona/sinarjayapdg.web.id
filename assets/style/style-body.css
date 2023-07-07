@@ -490,3 +490,7 @@ table.table-add-data{
     text-align: left;
     font-size: 12px;
 }
+
+form#form-add-data-penugasan {
+    margin-bottom: 0px;
+}

@@ -196,3 +196,28 @@ button.button-edit-data:hover {
     background: #8589A8;
     color: #BFC4EE;
 }
+
+.layout-button-submit{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.button-submit-add{
+    margin: 2% 5% 0% 5%;
+    padding: 5px 10px 5px 10px;
+    font-family: 'Golos Text', sans-serif;
+    font-size: 14px;
+    background: #98C89E;
+    border: 1px solid #3A3A3A;
+    box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.3);
+    border-radius: 9px;
+    font-weight: bold;
+    color: #3A3A3A;
+}
+
+.button-submit-add:hover{
+    background-color: #527A57;
+    color: #98C89E;
+}

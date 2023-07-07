@@ -122,3 +122,9 @@ input#kata-kunci{
 .input-text-add::placeholder{
     color: #B0B0B0;
 }
+
+.layout-button-submit{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
