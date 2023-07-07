@@ -63,9 +63,6 @@ $username = $_SESSION['username'];
             </nav>
         </header>
         <main>
-            <div class = "column-button-sub-menu">
-                <a href="./penugasan.php"><button type="button" class="button-sub-menu-back">Kembali</button></a>
-            </div>
             <div class = "title-page">
                 Tambah Penugasan
             </div>
@@ -95,7 +92,7 @@ $username = $_SESSION['username'];
                                 </td>
                             </tr>
                             <tr>
-                                <th>Penanggung Jawab</th>
+                                <th>Ditugaskan Oleh</th>
                                 <td><?php echo $username; ?></td>
                             </tr>
                         </table>
