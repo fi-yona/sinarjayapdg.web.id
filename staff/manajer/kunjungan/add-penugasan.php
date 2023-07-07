@@ -71,7 +71,7 @@ $username = $_SESSION['username'];
             </div>
             <div class="detail-data">
                 <div class = "box-green-1">
-                    <form id="form-add-data-penugasan" class="table-form-add" action="../function/add-data-penugasan.php" method="POST">
+                    <form id="form-add-data-penugasan" class="table-form-add" action="../../../function/add-data-penugasan.php" method="POST">
                         <table class="table-add-data">
                             <tr>
                                 <th>Tanggal Penugasan</th>
@@ -89,7 +89,7 @@ $username = $_SESSION['username'];
                             <tr>
                                 <th>Rute Penugasan</th>
                                 <td>
-                                    <select name="username_penugasan" id="username_penugasan" class="input-text-add">
+                                    <select name="rute_penugasan" id="rute_penugasan" class="input-text-add">
                                         <?php require_once '../../../function/select-rute.php';?>
                                     </select>
                                 </td>
