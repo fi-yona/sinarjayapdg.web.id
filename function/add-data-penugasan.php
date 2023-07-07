@@ -51,7 +51,8 @@ if (isset($_POST['add-data-penugasan'])) {
 
     if ($conn->query($query_insert) === true) {
         // Jika penyimpanan berhasil
-        header("Location: ../staff/manajer/kunjungan/penugasan.php");
+        header("Location: ../staff/manajer/kunjungan/penugasan.php?status=success");
+        exit();
     } else {
         // Jika terjadi kesalahan saat penyimpanan
         echo "Terjadi kesalahan saat menyimpan data penugasan: " . $conn->error;
