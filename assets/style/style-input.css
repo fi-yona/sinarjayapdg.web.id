@@ -104,3 +104,21 @@ input#kata-kunci {
 input#kata-kunci{
     color: #B0B0B0;
 }
+
+.input-text-add{
+    font-family: 'Golos Text', sans-serif;
+    box-sizing: border-box;
+    border: 1px solid #3A3A3A;
+    border-radius: 10px;
+    margin: 0px;
+    width: fit-content;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-size: 12px;
+}
+
+.input-text-add::placeholder{
+    color: #B0B0B0;
+}

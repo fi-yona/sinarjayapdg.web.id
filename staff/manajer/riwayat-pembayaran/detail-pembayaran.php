@@ -44,7 +44,7 @@ $result = $conn->query($query);
 
 // Periksa hasil query
 if (!$result) {
-    die("Query error: " . print_r($conn->errorInfo(), true));
+    die("Query error: " . $conn->error);
 }
 
 // Periksa apakah data ditemukan
@@ -154,7 +154,7 @@ $row = $result->fetch_assoc();
                 <?php require_once '../../../function/data-detail-barang-pembayaran.php'; ?>
             </div>
             <div class = "layout-button-data">
-            <?php require_once '../../../function/search-konf-pembayaran.php'; ?>
+                <?php require_once '../../../function/search-konf-pembayaran.php'; ?>
             </div>
         </main>
         <?php include '../../../function/footer.php'; ?>
