@@ -13,6 +13,10 @@ if ($_SESSION['role'] !== 'Manajer') {
     echo "Anda tidak memiliki akses ke halaman ini!";
     exit();
 }
+
+// Dapatkan username dari session
+$username = $_SESSION['username'];
+
 ?>
 
 <!DOCTYPE html>
@@ -56,7 +60,22 @@ if ($_SESSION['role'] !== 'Manajer') {
             <div class = "column-add-data">
                 <form id="form-add-data-penugasan" class="table-form-add" action="../function/add-data-penugasan.php" method="POST">
                     <table class="table-add-data">
-                        
+                        <tr>
+                            <th>Tanggal Penugasan</th>
+                            <td><input type="text" placeholder="Tahun-Bulan-Hari" name="tanggal_penugasan" id="tanggal_penugasan" class="input-text"></td>
+                        </tr>
+                        <tr>
+                            <th>Username Penugasan</th>
+                            <td><input type="text" placeholder="Masukkan Username Penugasan" name="username_penugasan" id="username_penugasan" class="input-text"></td>
+                        </tr>
+                        <tr>
+                            <th>Rute Penugasan</th>
+                            <td><input type="text" placeholder="Masukkan Rute Penugasan" name="rute_penugasan" id="rute_penugasan" class="input-text"></td>
+                        </tr>
+                        <tr>
+                            <th>Penanggung Jawab</th>
+                            <td><?php echo $username; ?></td>
+                        </tr>
                     </table>
                 </form>
             </div>

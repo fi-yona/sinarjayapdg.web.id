@@ -12,11 +12,11 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
 
     // Jika login berhasil, set session dan redirect ke halaman home
     if ($loginResult['success']) {
-        $_SESSION['username'] = $username;
         session_start();
         $_SESSION['login'] = true;
         $_SESSION['role'] = $loginResult['role'];
-
+        $_SESSION['username'] = $username;
+        
         if ($_SESSION['role'] === 'Manajer') {
             header("Location: ../staff/manajer/home.php");
             exit();
