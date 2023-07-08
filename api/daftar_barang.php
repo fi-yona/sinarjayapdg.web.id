@@ -12,23 +12,27 @@ if ($conn->connect_error) {
 // Endpoint untuk mendapatkan data 
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     $get_token = $_GET['get_token'];
-    $tanggal = $_GET['tanggal'];
 
     $tokenQuery = "SELECT * FROM token WHERE get_token = '$get_token'";
     $tokenResult = $conn->query($tokenQuery);
 
     if ($tokenResult->num_rows > 0) {
-        $daftarPromoQuery = "SELECT 
-                                tb_promo.id_promo, 
-                                tb_promo.nama_promo, 
-                                tb_promo.bentuk_promo 
-                            FROM 
-                                `tb_promo` 
-                            WHERE tb_promo.mulai_berlaku <= '$tanggal' AND tb_promo.akhir_berlaku >= '$tanggal' AND tb_promo.status_promo = 'Berlaku'";
-        $daftarPromoResult = $conn->query($daftarPromoQuery);
+        $daftarBarangQuery = "SELECT
+                                tb_barang.id_barang,
+                                tb_merek.nama_merek,
+                                tb_barang.nama_barang,
+                                tb_barang.banyak_barang,
+                                tb_barang.harga_barang
+                            FROM
+                                tb_barang
+                            JOIN
+                                tb_merek ON tb_barang.id_merek = tb_merek.id_merek
+                            ORDER BY
+                                tb_merek.nama_merek ASC, tb_barang.nama_barang ASC";
+        $daftarBarangResult = $conn->query($daftarBarangQuery);
 
         $rows = array();
-        while ($row = $daftarPromoResult->fetch_assoc()) {
+        while ($row = $daftarBarangResult->fetch_assoc()) {
             $rows[] = $row;
         }
 
