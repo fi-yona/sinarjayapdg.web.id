@@ -32,7 +32,7 @@ if (isset($_GET['id_penugasan'])) {
         exit();
     } else {
         // Jika terjadi kesalahan saat penghapusan
-        echo "Terjadi kesalahan saat menghapus data penugasan: " . $conn->error;
+        echo "Terjadi kesalahan saat menghapus data penugasan: " . mysqli_error($conn);
     }
 
     $conn->close();

@@ -32,7 +32,7 @@ if (isset($_GET['id_kunjungan'])) {
         exit();
     } else {
         // Jika terjadi kesalahan saat penghapusan
-        echo "Terjadi kesalahan saat menghapus data kunjungan: " . $conn->error;
+        echo "Terjadi kesalahan saat menghapus data kunjungan: " . mysqli_error($conn);
     }
 
     $conn->close();
