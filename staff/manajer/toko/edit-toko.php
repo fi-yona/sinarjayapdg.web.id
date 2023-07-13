@@ -55,7 +55,7 @@ $row = $result->fetch_assoc();
 <html>
     <head>
         <title>Edit Toko</title>
-        <link rel="stylesheet" href="../../../assets/style/style-body.css?v1.4">
+        <link rel="stylesheet" href="../../../assets/style/style-body.css?v2.2">
         <link rel="stylesheet" href="../../../assets/style/style-button.css?v1.5">
         <link rel="stylesheet" href="../../../assets/style/style-img.css">
         <link rel="stylesheet" href="../../../assets/style/style-input.css?v1.2">
@@ -112,7 +112,9 @@ $row = $result->fetch_assoc();
                             </tr>
                             <tr>
                                 <th>Alamat</th>
-                                <td><input type="text" placeholder="Alamat Toko" name="alamat_toko" id="alamat_toko" class="input-text-add" value="<?php echo $row['alamat_toko']; ?>"></td>
+                                <td>
+                                    <textarea placeholder="Alamat Toko" name="alamat_toko" id="alamat_toko" class="input-text-add" rows="4"><?php echo $row['alamat_toko']; ?></textarea>
+                                </td>
                             </tr>
                             <tr>
                                 <th>Latitude</th>

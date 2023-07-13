@@ -18,13 +18,12 @@ $id_rute = $_GET['id_rute'];
 
 require_once '../../../function/dbconfig.php';
 
-$query = "SELECT 
-            tb_rute.nama_rute, 
-            tb_rute.keterangan_rute 
-        FROM 
-            tb_rute 
-        WHERE  
-            tb_rute.id_rute = '$id_rute'";
+$query = "SELECT
+                tb_rute.nama_rute,
+                tb_rute.keterangan_rute
+            FROM
+                tb_rute
+            WHERE id_rute = '$id_rute'";
 
 // Eksekusi query
 $result = $conn->query($query);
@@ -40,24 +39,26 @@ if ($result->num_rows === 0) {
     exit();
 }
 
-// Ambil data absensi
+// Ambil data 
 $row = $result->fetch_assoc();
-
-$conn->close();
 
 ?>
 
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Detail Rute</title>
-        <link rel="stylesheet" href="../../../assets/style/style-body.css?v1.1">
-        <link rel="stylesheet" href="../../../assets/style/style-button.css?v1.1">
+        <title>Edit Rute</title>
+        <link rel="stylesheet" href="../../../assets/style/style-body.css?v2.2">
+        <link rel="stylesheet" href="../../../assets/style/style-button.css?v1.5">
         <link rel="stylesheet" href="../../../assets/style/style-img.css">
-        <link rel="stylesheet" href="../../../assets/style/style-input.css">
+        <link rel="stylesheet" href="../../../assets/style/style-input.css?v1.2">
         <link rel="shortcut icon" href="../../../assets/img/logo.svg">
+        <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
         <script src="../../../script/logout1.js"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js"></script>
+        <script src="../../../script/show-calender.js"></script>
     </head>
     <body>
         <header>
@@ -68,8 +69,8 @@ $conn->close();
                 <ul class="nav-home-ul">
                     <li><a href="../home.php">Home</a></li>
                     <li><a href="../absensi/absensi.php">Absensi</a></li>
-                    <li><a href="../kunjungan/kunjungan.php">Kunjungan</a></li>
-                    <li><a href="./toko.php">Toko</a></li>
+                    <li><a href="./kunjungan.php">Kunjungan</a></li>
+                    <li><a href="../toko/toko.php">Toko</a></li>
                     <li><a href="../barang/barang.php">Barang</a></li>
                     <li><a href="../riwayat-pesanan/riwayat-pesanan.php">Riwayat Pesanan</a></li>
                     <li><a href="../riwayat-pembayaran/riwayat-pembayaran.php">Riwayat Pembayaran</a></li>
@@ -79,32 +80,32 @@ $conn->close();
             </nav>
         </header>
         <main>
-            <div class = "column-button-sub-menu">
-                <a href="./rute.php"><button type="button" class="button-sub-menu-back">Kembali</button></a>
-            </div>
             <div class = "title-page">
-                Detail Rute
+                Edit Rute
             </div>
             <div class = "detail-data">
                 <div class="box-green-1">
-                    <div class = "layout-table-absensi">
-                        <table class = "table-data-absensi">
+                    <form id="form-edit-data-rute" class="table-form-add" action="../../../function/edit-data-rute.php?id_rute=<?php echo $id_rute; ?>" method="POST">
+                        <table class="table-add-data">
                             <tr>
                                 <th>Nama Rute</th>
-                                <td> : </td>
-                                <td><?php echo $row['nama_rute']; ?></td>
+                                <td><input type="text" placeholder="Nama Rute" name="nama_rute" id="nama_rute" class="input-text-add" value="<?php echo $row['nama_rute']; ?>"></td>
                             </tr>
                             <tr>
                                 <th>Keterangan Rute</th>
-                                <td> : </td>
-                                <td><?php echo $row['keterangan_rute']; ?></td>
+                                <td>
+                                    <textarea placeholder="Tentang Daerah-Daerah Rute" name="keterangan_rute" id="keterangan_rute" class="input-text-add" rows="4"><?php echo $row['keterangan_rute']; ?></textarea>
+                                </td>
                             </tr>
                         </table>
-                    </div>
+                        <div class="layout-button-submit">
+                            <input type="submit" name="edit-data-rute" class="button-submit-add" value="Submit">
+                        </div>
+                    </form>
                 </div>
             </div>
             <div class = "layout-button-data">
-                <a href="edit-rute.php?id_rute=<?php echo $id_rute; ?>"><button type="button" class="button-edit-data">Edit</button></a><button type="button" class="button-hapus-data" onclick="hapusData(<?php echo $id_rute; ?>)">Hapus</button>
+                <a href="javascript:history.back()"><button type="button" class="button-hapus-data">Batal</button></a>
             </div>
         </main>
         <?php include '../../../function/footer.php'; ?>
