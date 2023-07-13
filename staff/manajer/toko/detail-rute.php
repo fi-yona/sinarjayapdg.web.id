@@ -108,5 +108,12 @@ $conn->close();
             </div>
         </main>
         <?php include '../../../function/footer.php'; ?>
+        <script>
+            function hapusData(id) {
+                if (confirm("Apakah Anda yakin ingin menghapus data ini?")) {
+                    window.location.href = "../../../function/delete-data-rute.php?id_rute=" + id;
+                }
+            }
+        </script>
     </body>
 </html>
