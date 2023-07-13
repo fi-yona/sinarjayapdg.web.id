@@ -47,7 +47,7 @@ $result = $conn->query($query);
 
 // Periksa hasil query
 if (!$result) {
-    die("Query error: " . print_r($conn->errorInfo(), true));
+    die("Query error: " . $conn->error);
 }
 
 // Periksa apakah data ditemukan
@@ -247,9 +247,16 @@ $conn->close();
                 </table>
             </div>
             <div class = "layout-button-data">
-                <a href=""><button type="button" class="button-hapus-data">Hapus</button></a>
+                <button type="button" class="button-hapus-data" onclick="hapusData(<?php echo $id_absensi; ?>)">Hapus</button>
             </div>
         </main>
         <?php include '../../../function/footer.php'; ?>
+        <script>
+            function hapusData(id) {
+                if (confirm("Apakah Anda yakin ingin menghapus data ini?")) {
+                    window.location.href = "../../../function/delete-data-absensi.php?id_absensi=" + id;
+                }
+            }
+        </script>
     </body>
 </html>

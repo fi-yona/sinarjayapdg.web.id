@@ -13,6 +13,16 @@ if ($_SESSION['role'] !== 'Manajer') {
     echo "Anda tidak memiliki akses ke halaman ini!";
     exit();
 }
+
+if(isset($_GET['status']) && $_GET['status'] === 'success-delete-absensi') {
+    echo '<script>alert("Data Absensi Berhasil Terhapus");</script>';
+}
+
+if (isset($_GET['status']) && $_GET['status'] === 'error-delete-absensi') {
+    echo '<script>alert("Terjadi kesalahan saat menghapus data absensi");</script>';
+}
+
+
 ?>
 
 <!DOCTYPE html>
