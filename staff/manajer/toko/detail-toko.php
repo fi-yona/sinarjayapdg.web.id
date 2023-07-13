@@ -26,7 +26,8 @@ $query = "SELECT
             tb_toko.alamat_toko,
             tb_toko.latitude_toko,
             tb_toko.longitude_toko,
-            tb_toko.link_gmaps
+            tb_toko.link_gmaps,
+            tb_toko.gambar_toko
         FROM
             tb_toko
         JOIN
@@ -38,7 +39,7 @@ $result = $conn->query($query);
 
 // Periksa hasil query
 if (!$result) {
-    die("Query error: " . print_r($conn->errorInfo(), true));
+    die("Query error: " . $conn->error);
 }
 
 // Periksa apakah data ditemukan
@@ -94,6 +95,14 @@ $conn->close();
             </div>
             <div class = "detail-data">
                 <div class="box-green-1">
+                    <div class="layout-img-barang">
+                        <?php $gambar_toko = $row['gambar_toko'];
+                            if($gambar_toko==NULL){
+                                echo "(No Gambar)";
+                            }else{
+                                echo '<img src="'.$gambar_toko.'" alt="'.$row['nama_toko']." ".$row['nama_toko'].'" class="img-barang">';
+                            } ?>
+                    </div>
                     <div class = "layout-table-absensi">
                         <table class = "table-data-absensi">
                             <tr>
