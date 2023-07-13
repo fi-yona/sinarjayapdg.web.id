@@ -93,7 +93,7 @@ $username = $_SESSION['username'];
                             </tr>
                             <tr>
                                 <th>Ditugaskan Oleh</th>
-                                <td><?php echo $username; ?></td>
+                                <td class = "td-username"><?php echo $username; ?></td>
                             </tr>
                         </table>
                         <div class="layout-button-submit">

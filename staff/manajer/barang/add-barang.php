@@ -13,13 +13,20 @@ if ($_SESSION['role'] !== 'Manajer') {
     echo "Anda tidak memiliki akses ke halaman ini!";
     exit();
 }
+
+//memuncul data berhasil tersimpan
+if (isset($_GET['status']) && $_GET['status'] === 'success') {
+    echo '<script>alert("Data Berhasil Tersimpan");</script>';
+}elseif(isset($_GET['status']) && $_GET['status'] === 'success-delete') {
+    echo '<script>alert("Data Berhasil Terhapus");</script>';
+}
 ?>
 
 <!DOCTYPE html>
 <html>
     <head>
         <title>Tambah Barang</title>
-		<link rel="stylesheet" href="../../../assets/style/style-body.css">
+		<link rel="stylesheet" href="../../../assets/style/style-body.css?v2.2">
         <link rel="stylesheet" href="../../../assets/style/style-button.css">
         <link rel="stylesheet" href="../../../assets/style/style-img.css">
         <link rel="stylesheet" href="../../../assets/style/style-input.css">
@@ -47,18 +54,54 @@ if ($_SESSION['role'] !== 'Manajer') {
             </nav>
         </header>
         <main>
-            <div class = "column-button-sub-menu">
-                <a href="./barang.php"><button type="button" class="button-sub-menu-back">Kembali</button></a>
-            </div>
             <div class = "title-page">
                 Tambah Barang
             </div>
-            <div class = "column-add-data">
-                <form id="form-add-data-toko" class="table-form-add" action="../function/add-data-toko.php" method="POST">
-                    <table class="table-add-data">
-                        
-                    </table>
-                </form>
+            <div class = "detail-data">
+                <div class = "box-green-1">
+                    <form id="form-add-data-barang" class="table-form-add" action="../../../function/add-data-barang.php" method="POST">
+                        <table class="table-add-data">
+                            <tr>
+                                <th>Merek</th>
+                                <td>
+                                    <select name="id_merek" id="id_merek" class="input-text-add">
+                                        <?php require_once '../../../function/select-merek.php';?>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Nama Barang</th>
+                                <td><input type="text" placeholder="Nama Barang" name="nama_barang" id="nama_barang" class="input-text-add"></td>
+                            </tr>
+                            <tr>
+                                <th>Kode BPOM</th>
+                                <td><input type="text" placeholder="Kode BPOM" name="kode_bpom" id="kode_bpom" class="input-text-add"></td>
+                            </tr>
+                            <tr>
+                                <th>Banyak Barang</th>
+                                <td><input type="text" placeholder="Tanpa Titik" name="banyak_barang" id="banyak_barang" class="input-text-add"></td>
+                            </tr>
+                            <tr>
+                                <th>Harga</th>
+                                <td><input type="text" placeholder="Tanpa Titik & Rupiah" name="harga_barang" id="harga_barang" class="input-text-add"></td>
+                            </tr>
+                            <tr>
+                                <th>Link Gambar</th>
+                                <td><input type="text" placeholder="Masukkan Link Gambar Barang" name="gambar_barang" id="gambar_barang" class="input-text-add"></td>
+                            </tr>
+                            <tr>
+                                <th>Deskripsi</th>
+                                <td><textarea placeholder="Tulis deskripsi, detail, fungsi, manfaat, cara pakai, dan sebagainya di sini!" name="keterangan" id="keterangan" class="input-text-add" rows="10"></textarea></td>
+                            </tr>
+                        </table>
+                        <div class="layout-button-submit">
+                            <input type="submit" name="add-data-barang" class="button-submit-add" value="Submit">
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class = "layout-button-data">
+                <a href="javascript:history.back()"><button type="button" class="button-hapus-data">Batal</button></a>
             </div>
         </main>
         <?php include '../../../function/footer.php'; ?>
