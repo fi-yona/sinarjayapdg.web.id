@@ -26,6 +26,9 @@ if (isset($_POST['edit-data-toko'])) {
     $link_gmaps = $_POST['link_gmaps'];
     $gambar_toko = $_POST['gambar_toko'];
 
+    // Mengambil tanggal dan waktu saat ini
+    $dateTime = date('Y-m-d H:i:s');
+
     // Lakukan validasi data jika diperlukan
 
     // Lakukan proses penyimpanan data ke database
@@ -49,7 +52,8 @@ if (isset($_POST['edit-data-toko'])) {
                          latitude_toko = '$latitude_toko', 
                          longitude_toko = '$longitude_toko', 
                          link_gmaps = '$link_gmaps', 
-                         gambar_toko = '$gambar_toko'
+                         gambar_toko = '$gambar_toko',
+                         update_at = '$dateTime'
                      WHERE id_toko = '$id_toko'";
 
     if ($conn->query($query_update) === true) {

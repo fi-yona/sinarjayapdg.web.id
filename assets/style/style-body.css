@@ -494,3 +494,11 @@ table.table-add-data{
 form#form-add-data-penugasan {
     margin-bottom: 0px;
 }
+
+table.table-add-data td {
+    vertical-align: top;
+}
+
+table.table-add-data th {
+    vertical-align: top;
+}

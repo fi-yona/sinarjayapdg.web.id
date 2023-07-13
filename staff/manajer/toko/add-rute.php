@@ -19,7 +19,7 @@ if ($_SESSION['role'] !== 'Manajer') {
 <html>
     <head>
         <title>Tambah Rute</title>
-		<link rel="stylesheet" href="../../../assets/style/style-body.css">
+		<link rel="stylesheet" href="../../../assets/style/style-body.css?v2.2">
         <link rel="stylesheet" href="../../../assets/style/style-button.css">
         <link rel="stylesheet" href="../../../assets/style/style-img.css">
         <link rel="stylesheet" href="../../../assets/style/style-input.css">
@@ -47,18 +47,30 @@ if ($_SESSION['role'] !== 'Manajer') {
             </nav>
         </header>
         <main>
-            <div class = "column-button-sub-menu">
-                <a href="./rute.php"><button type="button" class="button-sub-menu-back">Kembali</button></a>
-            </div>
             <div class = "title-page">
                 Tambah Rute
             </div>
-            <div class = "column-add-data">
-                <form id="form-add-data-toko" class="table-form-add" action="../function/add-data-toko.php" method="POST">
-                    <table class="table-add-data">
-                        
-                    </table>
-                </form>
+            <div class = "detail-data">
+                <div class = "box-green-1">
+                    <form id="form-add-data-rute" class="table-form-add" action="../../../function/add-data-rute.php" method="POST">
+                        <table class="table-add-data">
+                            <tr>
+                                <th>Nama Rute</th>
+                                <td><input type="text" placeholder="Nama Rute" name="nama_rute" id="nama_rute" class="input-text-add"></td>
+                            </tr>
+                            <tr>
+                                <th>Keterangan Rute</th>
+                                <td><textarea placeholder="Tentang Daerah-Daerah Rute" name="keterangan_rute" id="keterangan_rute" class="input-text-add" rows="4"></textarea></td>
+                            </tr>
+                        </table>
+                        <div class="layout-button-submit">
+                            <input type="submit" name="add-data-rute" class="button-submit-add" value="Submit">
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class = "layout-button-data">
+                <a href="javascript:history.back()"><button type="button" class="button-hapus-data">Batal</button></a>
             </div>
         </main>
         <?php include '../../../function/footer.php'; ?>
