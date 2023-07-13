@@ -13,6 +13,13 @@ if ($_SESSION['role'] !== 'Manajer') {
     echo "Anda tidak memiliki akses ke halaman ini!";
     exit();
 }
+
+//memuncul data berhasil tersimpan
+if (isset($_GET['status']) && $_GET['status'] === 'success') {
+    echo '<script>alert("Data Berhasil Tersimpan");</script>';
+}elseif(isset($_GET['status']) && $_GET['status'] === 'success-delete') {
+    echo '<script>alert("Data Berhasil Terhapus");</script>';
+}
 ?>
 
 <!DOCTYPE html>
@@ -73,15 +80,7 @@ if ($_SESSION['role'] !== 'Manajer') {
                 <a href="./add-promo.php"><button type="button" class="button-add-data">Tambah Promo</button></a>
             </div>
             <div class = "search-result">
-                <table class = "table-search-result">
-                    <tr>
-                        <th class=".title-atribut-data-promo">Nama Promo</td>
-                        <th class=".title-atribut-data-promo">Kategori Promo</td>
-                        <th class=".title-atribut-data-promo">Mulai Berlaku</td>
-                        <th class=".title-atribut-data-promo">Akhir Berlaku</td>
-                        <th class=".title-atribut-data-promo">Status Promo</td>
-                    </tr>
-                </table>
+                <?php include '../../../function/data-promo.php'; ?>
             </div>
         </main>
         <?php include '../../../function/footer.php'; ?>
