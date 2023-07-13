@@ -18,14 +18,12 @@ $id_merek = $_GET['id_merek'];
 
 require_once '../../../function/dbconfig.php';
 
-$query = "SELECT
+$query = "SELECT 
                 tb_merek.nama_merek,
-                tb_manufaktur.nama_manufaktur,
+                tb_merek.id_manufaktur,
                 tb_merek.website_merek
-            FROM
+            FROM 
                 tb_merek
-            JOIN
-                tb_manufaktur ON tb_merek.id_manufaktur = tb_manufaktur.id_manufaktur
             WHERE 
                 tb_merek.id_merek = '$id_merek'";
 
@@ -43,24 +41,26 @@ if ($result->num_rows === 0) {
     exit();
 }
 
-// Ambil data barang
+// Ambil data 
 $row = $result->fetch_assoc();
-
-$conn->close();
 
 ?>
 
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Detail Merek</title>
-        <link rel="stylesheet" href="../../../assets/style/style-body.css">
-        <link rel="stylesheet" href="../../../assets/style/style-button.css?v1.1">
-        <link rel="stylesheet" href="../../../assets/style/style-img.css?v1.1">
-        <link rel="stylesheet" href="../../../assets/style/style-input.css">
+        <title>Edit Merek</title>
+        <link rel="stylesheet" href="../../../assets/style/style-body.css?v2.2">
+        <link rel="stylesheet" href="../../../assets/style/style-button.css?v1.5">
+        <link rel="stylesheet" href="../../../assets/style/style-img.css">
+        <link rel="stylesheet" href="../../../assets/style/style-input.css?v2">
         <link rel="shortcut icon" href="../../../assets/img/logo.svg">
+        <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
         <script src="../../../script/logout1.js"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js"></script>
+        <script src="../../../script/show-calender.js"></script>
     </head>
     <body>
         <header>
@@ -82,53 +82,40 @@ $conn->close();
             </nav>
         </header>
         <main>
-            <div class = "column-button-sub-menu">
-                <a href="./merek.php"><button type="button" class="button-sub-menu-back">Kembali</button></a>
-            </div>
             <div class = "title-page">
-                Detail Merek
+                Edit Merek
             </div>
             <div class = "detail-data">
                 <div class="box-green-1">
-                    <div class = "layout-table-absensi">
-                        <table class = "table-data-absensi">
+                    <form id="form-edit-data-merek" class="table-form-add" action="../../../function/edit-data-merek.php?id_merek=<?php echo $id_merek; ?>" method="POST">
+                        <table class="table-add-data">
                             <tr>
-                                <th>Nama Merek</th>
-                                <td> : </td>
-                                <td><?php echo $row['nama_merek']; ?></td>
+                                <th>Manufaktur</th>
+                                <td>
+                                    <select name="id_manufaktur" id="id_manufaktur" class="input-text-add">
+                                        <?php require_once '../../../function/edit-select-manufaktur-merek.php';?>
+                                    </select>
+                                </td>
                             </tr>
                             <tr>
-                                <th>Nama Manufaktur</th>
-                                <td> : </td>
-                                <td><?php echo $row['nama_manufaktur']; ?></td>
+                                <th>Nama Merek</th>
+                                <td><input type="text" placeholder="Nama Merek" name="nama_merek" id="nama_merek" class="input-text-add" value="<?php echo $row['nama_merek']; ?>"></td>
                             </tr>
                             <tr>
                                 <th>Website</th>
-                                <td> : </td>
-                                <td><?php 
-                                        $website = $row['website_merek'];
-                                        if($website==NULL){
-                                            echo "(No Data)";
-                                        }else{
-                                            echo $website;
-                                        } 
-                                ?></td>
+                                <td><textarea placeholder="Link Website Merek" name="website_merek" id="website_merek" class="input-text-add" rows="3"><?php echo $row['website_merek']; ?></textarea></td>
                             </tr>
                         </table>
-                    </div>
+                        <div class="layout-button-submit">
+                            <input type="submit" name="edit-data-merek" class="button-submit-add" value="Submit">
+                        </div>
+                    </form>
                 </div>
             </div>
             <div class = "layout-button-data">
-                <a href="edit-merek.php?id_merek=<?php echo $id_merek; ?>"><button type="button" class="button-edit-data">Edit</button></a><button type="button" class="button-hapus-data" onclick="hapusData(<?php echo $id_merek; ?>)">Hapus</button>
+                <a href="javascript:history.back()"><button type="button" class="button-hapus-data">Batal</button></a>
             </div>
         </main>
         <?php include '../../../function/footer.php'; ?>
-        <script>
-            function hapusData(id) {
-                if (confirm("Apakah Anda yakin ingin menghapus data ini?")) {
-                    window.location.href = "../../../function/delete-data-merek.php?id_merek=" + id;
-                }
-            }
-        </script>
     </body>
 </html>
