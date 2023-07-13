@@ -29,7 +29,7 @@ if (isset($_GET['status']) && $_GET['status'] === 'success') {
 		<link rel="stylesheet" href="../../../assets/style/style-body.css?v2.2">
         <link rel="stylesheet" href="../../../assets/style/style-button.css">
         <link rel="stylesheet" href="../../../assets/style/style-img.css">
-        <link rel="stylesheet" href="../../../assets/style/style-input.css">
+        <link rel="stylesheet" href="../../../assets/style/style-input.css?v2">
         <link rel="shortcut icon" href="../../../assets/img/logo.svg">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
         <script src="../../../script/logout1.js"></script>

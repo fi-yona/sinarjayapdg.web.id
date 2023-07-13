@@ -19,10 +19,10 @@ if ($_SESSION['role'] !== 'Manajer') {
 <html>
     <head>
         <title>Tambah Merek</title>
-		<link rel="stylesheet" href="../../../assets/style/style-body.css">
+		<link rel="stylesheet" href="../../../assets/style/style-body.css?v2.2">
         <link rel="stylesheet" href="../../../assets/style/style-button.css">
         <link rel="stylesheet" href="../../../assets/style/style-img.css">
-        <link rel="stylesheet" href="../../../assets/style/style-input.css">
+        <link rel="stylesheet" href="../../../assets/style/style-input.css?v2">
         <link rel="shortcut icon" href="../../../assets/img/logo.svg">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
         <script src="../../../script/logout1.js"></script>
@@ -47,18 +47,38 @@ if ($_SESSION['role'] !== 'Manajer') {
             </nav>
         </header>
         <main>
-            <div class = "column-button-sub-menu">
-                <a href="./merek.php"><button type="button" class="button-sub-menu-back">Kembali</button></a>
-            </div>
             <div class = "title-page">
                 Tambah Merek
             </div>
-            <div class = "column-add-data">
-                <form id="form-add-data-toko" class="table-form-add" action="../function/add-data-toko.php" method="POST">
-                    <table class="table-add-data">
-                        
-                    </table>
-                </form>
+            <div class = "detail-data">
+                <div class = "box-green-1">
+                    <form id="form-add-data-merek" class="table-form-add" action="../../../function/add-data-merek.php" method="POST">
+                        <table class="table-add-data">
+                            <tr>
+                                <th>Manufaktur</th>
+                                <td>
+                                    <select name="id_manufaktur" id="id_manufaktur" class="input-text-add">
+                                        <?php require_once '../../../function/select-manufaktur.php';?>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Nama Merek</th>
+                                <td><input type="text" placeholder="Nama Merek" name="nama_merek" id="nama_merek" class="input-text-add"></td>
+                            </tr>
+                            <tr>
+                                <th>Website</th>
+                                <td><textarea placeholder="Link Website Merek" name="website_merek" id="website_merek" class="input-text-add" rows="3"></textarea></td>
+                            </tr>
+                        </table>
+                        <div class="layout-button-submit">
+                            <input type="submit" name="add-data-merek" class="button-submit-add" value="Submit">
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class = "layout-button-data">
+                <a href="javascript:history.back()"><button type="button" class="button-hapus-data">Batal</button></a>
             </div>
         </main>
         <?php include '../../../function/footer.php'; ?>
