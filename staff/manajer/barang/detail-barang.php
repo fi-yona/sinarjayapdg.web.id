@@ -153,9 +153,16 @@ $conn->close();
                 </div>
             </div>
             <div class = "layout-button-data">
-                <a href=""><button type="button" class="button-edit-data">Edit</button></a><a href=""><button type="button" class="button-hapus-data">Hapus</button></a>
+                <a href="edit-barang.php?id_barang=<?php echo $id_barang; ?>"><button type="button" class="button-edit-data">Edit</button></a><button type="button" class="button-hapus-data" onclick="hapusData(<?php echo $id_barang; ?>)">Hapus</button>
             </div>
         </main>
         <?php include '../../../function/footer.php'; ?>
+        <script>
+            function hapusData(id) {
+                if (confirm("Apakah Anda yakin ingin menghapus data ini?")) {
+                    window.location.href = "../../../function/delete-data-barang.php?id_barang=" + id;
+                }
+            }
+        </script>
     </body>
 </html>
