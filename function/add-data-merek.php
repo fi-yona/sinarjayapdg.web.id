@@ -44,7 +44,7 @@ if (isset($_POST['add-data-merek'])) {
         exit();
     } else {
         // Jika terjadi kesalahan saat penyimpanan
-        echo "Terjadi kesalahan saat menyimpan data merek: " . $conn->error;
+        echo "Terjadi kesalahan saat menyimpan data merek: " . $conn->connect_error;
     }
 
     $conn->close();

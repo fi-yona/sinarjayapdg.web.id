@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
                                 tb_promo.bentuk_promo 
                             FROM 
                                 `tb_promo` 
-                            WHERE tb_promo.mulai_berlaku <= '$tanggal' AND tb_promo.akhir_berlaku >= '$tanggal' AND tb_promo.status_promo = 'Berlaku'";
+                            WHERE tb_promo.mulai_berlaku <= '$tanggal' AND tb_promo.akhir_berlaku >= '$tanggal' AND tb_promo.status_promo = 'Aktif'";
         $daftarPromoResult = $conn->query($daftarPromoQuery);
 
         $rows = array();

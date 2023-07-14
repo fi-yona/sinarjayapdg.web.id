@@ -393,7 +393,6 @@ nav ul{
     text-align: center;
     color: #3A3A3A;
     font-size: 12px;
-    width: 9.0909090%;
     background-color: #DAF1D1;
 }
 
@@ -403,7 +402,6 @@ nav ul{
     text-align: left;
     color: #3A3A3A;
     font-size: 12px;
-    width: 9.0909090%;
 }
 
 .search-result{
@@ -507,4 +505,17 @@ table.table-add-data th {
 
 td.td-username {
     padding-top: 5px;
+}
+
+.table-wrapper {
+    max-height: 400px;
+    overflow: auto;
+}
+
+table.table-search-result td {
+    vertical-align: top;
+}
+
+table.table-search-result th {
+    vertical-align: top;
 }

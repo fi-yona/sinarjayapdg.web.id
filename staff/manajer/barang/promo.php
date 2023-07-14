@@ -19,6 +19,8 @@ if (isset($_GET['status']) && $_GET['status'] === 'success') {
     echo '<script>alert("Data Berhasil Tersimpan");</script>';
 }elseif(isset($_GET['status']) && $_GET['status'] === 'success-delete') {
     echo '<script>alert("Data Berhasil Terhapus");</script>';
+}elseif(isset($_GET['status']) && $_GET['status'] === 'success-batal') {
+    echo '<script>alert("Berhasil Membatalkan Penambahan Data");</script>';
 }
 ?>
 
