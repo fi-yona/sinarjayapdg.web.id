@@ -13,6 +13,13 @@ if ($_SESSION['role'] !== 'Manajer') {
     echo "Anda tidak memiliki akses ke halaman ini!";
     exit();
 }
+
+//memuncul data berhasil tersimpan
+if (isset($_GET['status']) && $_GET['status'] === 'success') {
+    echo '<script>alert("Data Berhasil Tersimpan");</script>';
+}elseif(isset($_GET['status']) && $_GET['status'] === 'success-delete') {
+    echo '<script>alert("Data Berhasil Terhapus");</script>';
+}
 ?>
 
 <!DOCTYPE html>
@@ -69,7 +76,7 @@ if ($_SESSION['role'] !== 'Manajer') {
                 </form>
             </div>
             <div class = "add-data">
-                <a href="./add-toko.php"><button type="button" class="button-add-data">Tambah Karyawan</button></a>
+                <a href="./add-karyawan.php"><button type="button" class="button-add-data">Tambah Karyawan</button></a>
             </div>
             <div class = "search-result">
                 <?php include '../../../function/data-karyawan.php'; ?>

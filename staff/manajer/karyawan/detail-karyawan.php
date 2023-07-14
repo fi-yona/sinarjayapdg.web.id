@@ -46,7 +46,7 @@ $result = $conn->query($query);
 
 // Periksa hasil query
 if (!$result) {
-    die("Query error: " . print_r($conn->errorInfo(), true));
+    die("Query error: " . $conn->connect_error);
 }
 
 // Periksa apakah data ditemukan

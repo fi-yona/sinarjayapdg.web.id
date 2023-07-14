@@ -1,6 +1,10 @@
 $(function() {
+    var currentYear = new Date().getFullYear();
+    var startYear = currentYear - 100; // Start year (100 years ago from the current year)
+    var endYear = currentYear;
     $(".tanggal-penugasan").datepicker({
-        dateFormat: 'yy-mm-dd' // Format tanggal yang diinginkan
+        changeYear: true, // Enable year selection
+        yearRange: startYear + ':' + endYear, // Custom year range
+        dateFormat: 'yy-mm-dd' // Date format
     });
 });
-  

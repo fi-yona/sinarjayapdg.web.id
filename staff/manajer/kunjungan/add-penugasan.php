@@ -41,7 +41,7 @@ $username = $_SESSION['username'];
         <script src="../../../script/logout1.js"></script>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js"></script>
-        <script src="../../../script/show-calender.js"></script>
+        <script src="../../../script/show-calender.js?v2"></script>
     </head>
     <body>
         <header>
@@ -73,7 +73,6 @@ $username = $_SESSION['username'];
                             <tr>
                                 <th>Tanggal Penugasan</th>
                                 <td><input type="text" placeholder="Tahun-Bulan-Hari" name="tanggal_penugasan" id="tanggal_penugasan" class="input-text-add tanggal-penugasan"></td>
-                                </td>
                             </tr>
                             <tr>
                                 <th>Username Penugasan</th>
