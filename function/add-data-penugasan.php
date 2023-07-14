@@ -55,7 +55,7 @@ if (isset($_POST['add-data-penugasan'])) {
         exit();
     } else {
         // Jika terjadi kesalahan saat penyimpanan
-        echo "Terjadi kesalahan saat menyimpan data penugasan: " . $conn->error;
+        echo "Terjadi kesalahan saat menyimpan data penugasan: " . $conn->connect_error;
     }
 
     $conn->close();

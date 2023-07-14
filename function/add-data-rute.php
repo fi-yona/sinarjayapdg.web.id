@@ -35,7 +35,7 @@ if (isset($_POST['add-data-rute'])) {
         exit();
     } else {
         // Jika terjadi kesalahan saat penyimpanan
-        echo "Terjadi kesalahan saat menyimpan data toko: " . $conn->error;
+        echo "Terjadi kesalahan saat menyimpan data toko: " . $conn->connect_error;
     }
 
     $conn->close();

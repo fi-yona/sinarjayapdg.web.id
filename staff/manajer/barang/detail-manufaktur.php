@@ -38,7 +38,7 @@ $result = $conn->query($query);
 
 // Periksa hasil query
 if (!$result) {
-    die("Query error: " . $conn->error);
+    die("Query error: " . $conn->connect_error);
 }
 
 // Periksa apakah data ditemukan
@@ -202,9 +202,16 @@ $conn->close();
                 </div>
             </div>
             <div class = "layout-button-data">
-                <a href=""><button type="button" class="button-edit-data">Edit</button></a><a href=""><button type="button" class="button-hapus-data">Hapus</button></a>
+                <a href="edit-manufaktur.php?id_manufaktur=<?php echo $id_manufaktur; ?>"><button type="button" class="button-edit-data">Edit</button></a><button type="button" class="button-hapus-data" onclick="hapusData(<?php echo $id_manufaktur; ?>)">Hapus</button>
             </div>
         </main>
         <?php include '../../../function/footer.php'; ?>
+        <script>
+            function hapusData(id) {
+                if (confirm("Apakah Anda yakin ingin menghapus data ini?")) {
+                    window.location.href = "../../../function/delete-data-manufaktur.php?id_manufaktur=" + id;
+                }
+            }
+        </script>
     </body>
 </html>
