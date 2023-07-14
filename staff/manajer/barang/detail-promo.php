@@ -53,7 +53,7 @@ $row = $result->fetch_assoc();
 <html>
     <head>
         <title>Detail Promo</title>
-        <link rel="stylesheet" href="../../../assets/style/style-body.css?v1.2">
+        <link rel="stylesheet" href="../../../assets/style/style-body.css?v5">
         <link rel="stylesheet" href="../../../assets/style/style-button.css">
         <link rel="stylesheet" href="../../../assets/style/style-img.css">
         <link rel="stylesheet" href="../../../assets/style/style-input.css">
@@ -130,9 +130,16 @@ $row = $result->fetch_assoc();
                 <?php require_once '../../../function/data-detail-barang-promo.php'; ?>
             </div>
             <div class = "layout-button-data">
-                <a href=""><button type="button" class="button-edit-data">Edit</button></a><a href=""><button type="button" class="button-hapus-data">Hapus</button></a>
+                <a href="edit-promo.php?id_promo=<?php echo $id_promo; ?>"><button type="button" class="button-edit-data">Edit</button></a><button type="button" class="button-hapus-data" onclick="hapusData(<?php echo $id_promo; ?>)">Hapus</button>
             </div>
         </main>
         <?php include '../../../function/footer.php'; ?>
+        <script>
+        function hapusData(id) {
+            if (confirm("Apakah Anda yakin ingin menghapus data ini?")) {
+                window.location.href = "../../../function/delete-data-promo.php?id_promo=" + id;
+                }
+            }
+        </script>
     </body>
 </html>

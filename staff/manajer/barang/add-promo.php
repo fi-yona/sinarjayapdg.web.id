@@ -19,7 +19,7 @@ if ($_SESSION['role'] !== 'Manajer') {
 <html>
     <head>
         <title>Tambah Promo</title>
-		<link rel="stylesheet" href="../../../assets/style/style-body.css?v4">
+		<link rel="stylesheet" href="../../../assets/style/style-body.css?v5">
         <link rel="stylesheet" href="../../../assets/style/style-button.css">
         <link rel="stylesheet" href="../../../assets/style/style-img.css">
         <link rel="stylesheet" href="../../../assets/style/style-input.css?v2">
@@ -92,7 +92,7 @@ if ($_SESSION['role'] !== 'Manajer') {
                 </div>
                 <!--table pilih barang-->
                 <div class = "search-result">
-                    <?php include '../../../function/table-select-data-barang.php'; ?>
+                    <?php include '../../../function/table-select-data-barang-promo.php'; ?>
                 </div>
                 <div class="layout-button-submit">
                     <input type="submit" name="add-data-promo" class="button-submit-add" value="Submit">

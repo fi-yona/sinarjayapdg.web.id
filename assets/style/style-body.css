@@ -510,6 +510,7 @@ td.td-username {
 .table-wrapper {
     max-height: 400px;
     overflow: auto;
+    padding: 25px;
 }
 
 table.table-search-result td {
