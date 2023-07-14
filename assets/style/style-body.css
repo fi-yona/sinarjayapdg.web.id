@@ -355,6 +355,14 @@ nav ul{
     margin: 2% 0% 2% 0%;
 }
 
+.sub-title-page{
+    text-align: center;
+    color: #005109;
+    font-weight: bold;
+    font-size: 16px;
+    margin: 4% 0% 0% 0%;
+}
+
 .table-layout-search{
     background: #FFFFFF;
     width: fit-content;

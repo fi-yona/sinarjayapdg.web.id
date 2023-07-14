@@ -81,7 +81,7 @@ while ($row_detail_promo = mysqli_fetch_assoc($result_detail_promo)) {
     $detail_promos[] = $row_detail_promo;
 }
 
-function createDetailBarangLink($id_barang)
+function createDetailBarang1Link($id_barang)
 {
     $link = '<a href="detail-barang.php?id_barang=' . $id_barang . '">Detail</a>';
     return $link;
@@ -93,7 +93,7 @@ function createDetailBarangLink($id_barang)
 <html>
     <head>
         <title>Edit Promo</title>
-        <link rel="stylesheet" href="../../../assets/style/style-body.css?v5">
+        <link rel="stylesheet" href="../../../assets/style/style-body.css?v6">
         <link rel="stylesheet" href="../../../assets/style/style-button.css?v1.5">
         <link rel="stylesheet" href="../../../assets/style/style-img.css">
         <link rel="stylesheet" href="../../../assets/style/style-input.css?v1.2">
@@ -168,6 +168,9 @@ function createDetailBarangLink($id_barang)
                 <?php
                     // Periksa hasil query data detail promo
                     if (count($detail_promos) > 0) {
+                        echo "<div class='sub-title-page'>";
+                        echo "Edit Detail Barang Promo";
+                        echo "</div>";
                         echo "<div class='table-wrapper'>";
                         echo "<table class='table-search-result'>";
                         echo "<tr>";
@@ -188,7 +191,7 @@ function createDetailBarangLink($id_barang)
                             echo "<td>" . number_format($detail_promo['harga_barang'], 0, ',', '.') . "</td>";
                             echo "<td><input type='text' placeholder='Tanpa Titik dan Koma' name='harga_promo[]' value='" . $detail_promo['harga_promo'] . "' class='input-text-add'></td>";
                             echo "<td><textarea placeholder='Keterangan Barang Promo' name='keterangan_barang_promo[]' class='input-text-add' rows='5'>" . $detail_promo['keterangan_barang_promo'] . "</textarea></td>";
-                            echo "<td>" . createDetailBarangLink($detail_promo['id_barang']) . "</td>";
+                            echo "<td>" . createDetailBarang1Link($detail_promo['id_barang']) . "</td>";
                             echo "</tr>";
                         }
                         echo "</table>";
@@ -199,12 +202,25 @@ function createDetailBarangLink($id_barang)
                     }
                 ?>    
                 <div class="layout-button-submit">
-                    <input type="submit" name="edit-data-promo" class="button-submit-add" value="Submit">
+                    <input type="submit" name="edit-data-promo" class="button-submit-add" value="Submit Edit Barang Promo">
                 </div>
             </form>
             <div class="layout-button-data">
                 <a href="javascript:history.back()"><button type="button" class="button-hapus-data">Batal</button></a>
             </div>
+            <p></p>
+            <hr>
+            <div class="sub-title-page">
+                Tambah Barang Promo
+            </div>
+            <form id="form-add-data-edit-promo" class="table-form-add" action="../../../function/edit-add-data-promo.php?id_promo=<?php echo $id_promo; ?>" method="POST">
+                <div class = "search-result">
+                    <?php include '../../../function/table-select-data-barang-promo-edit.php'; ?>
+                </div>
+                <div class="layout-button-submit">
+                    <input type="submit" name="add-edit-data-promo" class="button-submit-add" value="Submit Tambah Barang Promo">
+                </div>
+            </form>
         </main>
         <?php include '../../../function/footer.php'; ?>
     </body>
