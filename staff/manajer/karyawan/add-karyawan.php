@@ -125,7 +125,8 @@ if ($_SESSION['role'] !== 'Manajer') {
                                         <option value="S3">S3</option>
                                         <option value="S2">S2</option>
                                         <option value="S1">S1</option>
-                                        <option value="SMA">SMA/SMK/SMU</option>
+                                        <option value="SMA">SMA</option>
+                                        <option value="SMK">SMK</option>
                                         <option value="SMP">SMP</option>
                                         <option value="SD">SD</option>
                                     </select>
