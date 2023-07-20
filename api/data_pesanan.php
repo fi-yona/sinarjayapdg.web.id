@@ -12,30 +12,31 @@ if ($conn->connect_error) {
 // Endpoint untuk mendapatkan data 
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     $get_token = $_GET['get_token'];
-    $id_barang = $_GET['id_barang'];
+    $id_pesanan = $_GET['id_pesanan'];
 
     $tokenQuery = "SELECT * FROM token WHERE get_token = '$get_token'";
     $tokenResult = $conn->query($tokenQuery);
 
     if ($tokenResult->num_rows > 0) {
-        $detailBarangQuery = "SELECT 
-                                    tb_barang.gambar_barang,
-                                    tb_merek.nama_merek,
-                                    tb_barang.nama_barang,
-                                    tb_barang.kode_bpom,
-                                    tb_barang.banyak_barang,
-                                    tb_barang.harga_barang,
-                                    tb_barang.keterangan
+        $dataPesananQuery = "SELECT 
+                                    tb_pesanan.id_pesanan,
+                                    tb_pesanan.tanggal_pesanan,
+                                    tb_pesanan.waktu_pesanan,
+                                    tb_pesanan.id_toko,
+                                    tb_toko.nama_toko,
+                                    tb_pesanan.cara_penagihan,
+                                    tb_pesanan.jatuh_tempo,
+                                    tb_pesanan.sisa_pembayaran_pesanan
                                 FROM
-                                    tb_barang
+                                    tb_pesanan
                                 INNER JOIN
-                                    tb_merek ON tb_barang.id_merek = tb_merek.id_merek
+                                    tb_toko ON tb_pesanan.id_toko = tb_toko.id_toko
                                 WHERE
-                                    tb_barang.id_barang = '$id_barang'";
-        $detailBarangResult = $conn->query($detailBarangQuery);
+                                tb_pesanan.id_pesanan = '$id_pesanan'";
+        $dataPesananResult = $conn->query($dataPesananQuery);
 
         $rows = array();
-        while ($row = $detailBarangResult->fetch_assoc()) {
+        while ($row = $dataPesananResult->fetch_assoc()) {
             $rows[] = $row;
         }
 
