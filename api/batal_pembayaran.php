@@ -28,6 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                 WHERE id_pembayaran = '$id_pembayaran'";
             $deletePembayaranResult = $conn->query($deletePembayaranQuery);
             if ($deletePembayaranResult){
+                $updateDetailPesananQuery = 
                 $response = array('status' => 'Berhasil');
                 echo json_encode($response);
             }else{
