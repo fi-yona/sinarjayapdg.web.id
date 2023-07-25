@@ -20,21 +20,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $tokenResult = $conn->query($tokenQuery);
 
     if ($tokenResult->num_rows > 0) {
-        $deleteDetailPembayaranQuery = "DELETE FROM tb_detail_pembayaran 
+        $deletePembayaranQuery = "DELETE FROM tb_pembayaran 
                                 WHERE id_pembayaran = '$id_pembayaran'";
-        $deleteDetailPembayaranResult = $conn->query($deleteDetailPembayaranQuery);
-        if ($deleteDetailPembayaranResult) {
-            $deletePembayaranQuery = "DELETE FROM tb_pembayaran 
-                                WHERE id_pembayaran = '$id_pembayaran'";
-            $deletePembayaranResult = $conn->query($deletePembayaranQuery);
-            if ($deletePembayaranResult){
-                $response = array('status' => 'Berhasil');
-                echo json_encode($response);
-            }else{
-                $response = array('status' => 'Gagal');
-                echo json_encode($response);
-            }           
-        } else {
+        $deletePembayaranResult = $conn->query($deletePembayaranQuery);
+        if ($deletePembayaranResult){
+            $response = array('status' => 'Berhasil');
+            echo json_encode($response);
+        }else{
             $response = array('status' => 'Gagal');
             echo json_encode($response);
         }
