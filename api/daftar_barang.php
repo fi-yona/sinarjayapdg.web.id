@@ -27,6 +27,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
                                 tb_barang
                             JOIN
                                 tb_merek ON tb_barang.id_merek = tb_merek.id_merek
+                            WHERE 
+                                tb_barang.banyak_barang > 0
                             ORDER BY
                                 tb_merek.nama_merek ASC, tb_barang.nama_barang ASC";
         $daftarBarangResult = $conn->query($daftarBarangQuery);

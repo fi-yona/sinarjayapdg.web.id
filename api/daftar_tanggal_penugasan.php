@@ -13,7 +13,7 @@ if ($conn->connect_error) {
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     $get_token = $_GET['get_token'];
     $username = $_GET['username'];
-    $dateNow = date('Y-m-d');
+    $tanggal_penugasan = $_GET['tanggal_penugasan'];
 
     $tokenQuery = "SELECT * FROM token WHERE get_token = '$get_token'";
     $tokenResult = $conn->query($tokenQuery);
@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
                             WHERE 
                                 tb_penugasan.username_penugasan = '$username'
                             AND 
-                                tb_penugasan.tanggal_penugasan > '$dateNow'
+                                tb_penugasan.tanggal_penugasan > '$tanggal_penugasan'
                             ORDER BY
                                 tb_penugasan.tanggal_penugasan ASC";
         $daftarPenugasanResult = $conn->query($daftarPenugasanQuery);
