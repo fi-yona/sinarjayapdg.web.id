@@ -36,7 +36,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
                                 INNER JOIN
                                     tb_merek ON tb_barang.id_merek = tb_merek.id_merek
                                 WHERE
-                                    tb_detail_pesanan.id_pesanan = '$id_pesanan'";
+                                    tb_detail_pesanan.id_pesanan = '$id_pesanan'
+                                AND tb_detail_pesanan.status_barang = 'Belum Lunas'";
         $detailBarangTagihanResult = $conn->query($detailBarangTagihanQuery);
 
         $rows = array();

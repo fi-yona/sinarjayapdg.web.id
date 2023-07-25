@@ -1,6 +1,4 @@
 <?php
-//update sisa_pembayaran = 0, status_bayar_pesanan = "Lunas", update_at = datetime untuk id_pesanan pada tb_pesanan
-
 require_once 'config.php';
 
 // Membuat koneksi ke database
@@ -15,7 +13,6 @@ if ($conn->connect_error) {
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $update_token = $_POST['update_token'];
     $id_pesanan = $_POST['id_pesanan'];
-    $sisa_pembayaran_pesanan = $_POST['sisa_pembayaran_pesanan'];
     $status_bayar_pesanan = $_POST['status_bayar_pesanan'];
     $dateTime = date('Y-m-d H:i:s');
 
@@ -24,16 +21,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if ($tokenResult->num_rows > 0) {
         $updatePesananQuery = "UPDATE tb_pesanan 
-                                SET sisa_pembayaran_pesanan = '$sisa_pembayaran_pesanan',
-                                    status_bayar_pesanan = '$status_bayar_pesanan',
-                                    update_at = '$dateTime'
-                                WHERE id_pesanan = '$id_pesanan'";
+                                        SET status_bayar_pesanan = '$status_bayar_pesanan',
+                                            update_at = '$dateTime'
+                                        WHERE id_pesanan = '$id_pesanan'";
         $updatePesananResult = $conn->query($updatePesananQuery);
-        
-        if ($updatePesananResult) {
+        if($updatePesananResult){
             $response = array('status' => 'Berhasil');
-                echo json_encode($response);
-        } else {
+            echo json_encode($response);
+        }else{
             $response = array('status' => 'Gagal');
             echo json_encode($response);
         }
