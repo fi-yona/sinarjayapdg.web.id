@@ -7,4 +7,9 @@ $(function() {
         yearRange: startYear + ':' + endYear, // Custom year range
         dateFormat: 'yy-mm-dd' // Date format
     });
+    $(".tanggal-search").datepicker({
+        changeYear: true, // Enable year selection
+        yearRange: startYear + ':' + endYear, // Custom year range
+        dateFormat: 'yy-mm-dd' // Date format
+    });
 });

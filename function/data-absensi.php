@@ -52,8 +52,11 @@ $result = mysqli_query($conn, $sql);
 
 // Periksa hasil query
 if (mysqli_num_rows($result) > 0) {
+    $total = mysqli_num_rows($result);
+    echo "<div class='total-data'>Total Data: " . $total . "</div>";
     echo "<table class='table-search-result'>";
     echo "<tr>";
+    echo "<th class='.title-atribut-data-absensi'>No</th>";
     echo "<th class='.title-atribut-data-absensi'>Nama Lengkap</th>";
     echo "<th class='.title-atribut-data-absensi'>Username</th>";
     echo "<th class='.title-atribut-data-absensi'>Tanggal</th>";
@@ -68,9 +71,12 @@ if (mysqli_num_rows($result) > 0) {
     echo "<th class='.title-atribut-data-absensi'>Detail</th>";
     echo "</tr>";
 
+    $counter = 1;
     // Tampilkan data dalam tabel
     while ($row = mysqli_fetch_assoc($result)) {
         echo "<tr>";
+        echo "<td>" . $counter . "</td>";
+            $counter++;
         echo "<td>" . $row['nama_lengkap'] . "</td>";
         echo "<td>" . $row['username'] . "</td>";
         echo "<td>" . $row['tanggal_absensi'] . "</td>";

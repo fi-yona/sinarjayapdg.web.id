@@ -416,6 +416,10 @@ nav ul{
     padding: 2% 5% 2% 5%;
 }
 
+.view{
+    padding: 2% 5% 2% 5%;
+}
+
 table.table-sub-menu {
     margin: 2% 5% 0% 5%;
 }
@@ -527,4 +531,11 @@ table.table-search-result td {
 
 table.table-search-result th {
     vertical-align: top;
+}
+
+.total-data {
+    font-size: 12px;
+    font-weight: 700;
+    color: #3A3A3A;
+    margin-top: 50px;
 }

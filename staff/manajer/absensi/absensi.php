@@ -21,76 +21,107 @@ if(isset($_GET['status']) && $_GET['status'] === 'success-delete-absensi') {
 if (isset($_GET['status']) && $_GET['status'] === 'error-delete-absensi') {
     echo '<script>alert("Terjadi kesalahan saat menghapus data absensi");</script>';
 }
-
-
 ?>
 
 <!DOCTYPE html>
 <html>
-    <head>
-		<title>Data Absensi</title>
-		<link rel="stylesheet" href="../../../assets/style/style-body.css">
-        <link rel="stylesheet" href="../../../assets/style/style-button.css">
-        <link rel="stylesheet" href="../../../assets/style/style-img.css">
-        <link rel="stylesheet" href="../../../assets/style/style-input.css">
-        <link rel="shortcut icon" href="../../../assets/img/logo.svg">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-        <script src="./../../../script/logout1.js"></script>
-	</head>
-    <body>
-        <header>
-        <header>
-            <center>
-                <h1><img src="../../../assets/img/logo-horizontal.png" class="logo-header"></h1>
-            </center>
-            <nav class="nav-home">
-                <ul class="nav-home-ul">
-                    <li><a href="../home.php">Home</a></li>
-                    <li><a href="./absensi.php">Absensi</a></li>
-                    <li><a href="../kunjungan/kunjungan.php">Kunjungan</a></li>
-                    <li><a href="../toko/toko.php">Toko</a></li>
-                    <li><a href="../barang/barang.php">Barang</a></li>
-                    <li><a href="../riwayat-pesanan/riwayat-pesanan.php">Riwayat Pesanan</a></li>
-                    <li><a href="../riwayat-pembayaran/riwayat-pembayaran.php">Riwayat Pembayaran</a></li>
-                    <li><a href="../karyawan/karyawan.php">Karyawan</a></li>
-                    <li><a href="#" onclick="logout()"><button type="button" class="btn-log-out">Log Out</button></a></li>
-                </ul>
-            </nav>
-        </header>
-        </header>
-        <main>
-            <div class = "title-page">
-                Data Absensi
-            </div>
-            <div class = "search-column">
-                <form id="form-search-absensi" class="form-search" action="../function/do-search-absensi.php" method="POST"> 
-                    <table class="table-layout-search">
-                        <tr>
-                            <td class = "td-search-tanggal">
-                                <div class="box-white-black-stroke-search">
-                                    <input type="text" placeholder="Tahun" name="tahun" id="tahun-search" class="input-tahun">/<input type="text" placeholder="Bulan" name="bulan" id="bulan-search" class="input-bulan">/<input type="text" placeholder="Hari" name="hari" id="hari-search" class="input-hari">
-                                </div>
-                            </td>
-                            <td class = "td-search-data">
-                                <div class="box-white-black-stroke-search">
-                                    <select class = "select-sales">
-                                        <option value="option1">Pilihan 1</option>
-                                        <option value="option2" selected>Pilihan 2</option>
-                                        <option value="option3">Pilihan 3</option>
-                                    </select>
-                                </div>
-                            </td>
-                            <td class = "td-button-search">
-                                <input type="submit" name="search" class="button-submit-search" value="Cari Data Absensi">
-                            </td>
-                        </tr>
-                    </table>
-                </form>
-            </div>
-            <div class = "search-result">
-                <?php include '../../../function/data-absensi.php'; ?>
-            </div>
-        </main>
-        <?php include '../../../function/footer.php'; ?>
-    </body>
+<head>
+    <title>Data Absensi</title>
+    <link rel="stylesheet" href="../../../assets/style/style-body.css?v1.2">
+    <link rel="stylesheet" href="../../../assets/style/style-button.css">
+    <link rel="stylesheet" href="../../../assets/style/style-img.css">
+    <link rel="stylesheet" href="../../../assets/style/style-input.css?v1.1">
+    <link rel="shortcut icon" href="../../../assets/img/logo.svg">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
+    <script src="./../../../script/logout1.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js"></script>
+    <script src="../../../script/show-calender.js?v3"></script>
+</head>
+<body>
+<header>
+    <center>
+        <h1><img src="../../../assets/img/logo-horizontal.png" class="logo-header"></h1>
+    </center>
+    <nav class="nav-home">
+        <ul class="nav-home-ul">
+            <li><a href="../home.php">Home</a></li>
+            <li><a href="./absensi.php">Absensi</a></li>
+            <li><a href="../kunjungan/kunjungan.php">Kunjungan</a></li>
+            <li><a href="../toko/toko.php">Toko</a></li>
+            <li><a href="../barang/barang.php">Barang</a></li>
+            <li><a href="../riwayat-pesanan/riwayat-pesanan.php">Riwayat Pesanan</a></li>
+            <li><a href="../riwayat-pembayaran/riwayat-pembayaran.php">Riwayat Pembayaran</a></li>
+            <li><a href="../karyawan/karyawan.php">Karyawan</a></li>
+            <li><a href="#" onclick="logout()"><button type="button" class="btn-log-out">Log Out</button></a></li>
+        </ul>
+    </nav>
+</header>
+<main>
+    <div class="title-page">
+        Data Absensi
+    </div>
+    <div class="search-column">
+        <form id="form-search-absensi" class="form-search" action="../../../function/do-search-absensi.php" method="POST" onsubmit="cariDataAbsensi()">
+            <table class="table-layout-search">
+                <tr>
+                    <td class="td-search-tanggal">
+                        <div class="box-white-black-stroke-search">
+                            <input type="text" placeholder="Tahun-Bulan-Hari" name="tanggal_search" id="tanggal_search"
+                                   class="input-text-search tanggal-search">
+                        </div>
+                    </td>
+                    <td class="td-search-data">
+                        <div class="box-white-black-stroke-search">
+                            <select name="username_search" id="username_search" class="select-sales">
+                                <option value="Semua">Semua</option>
+                                <?php require_once '../../../function/select-username.php';?>
+                            </select>
+                        </div>
+                    </td>
+                    <td class="td-button-search">
+                        <input type="submit" name="search" class="button-submit-search" value="Cari Data Absensi">
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+    <div class="search-result">
+        <?php include '../../../function/data-absensi.php'; ?>
+    </div>
+</main>
+<?php include '../../../function/footer.php'; ?>
+<script>
+    $(document).ready(function () {
+        $("#form-search-absensi").submit(function (event) {
+            event.preventDefault(); // Mencegah submit form secara default
+            cariDataAbsensi(); // Panggil fungsi cariDataAbsensi() untuk melakukan AJAX request
+        });
+
+        function cariDataAbsensi() {
+            // Ambil nilai tanggal dan username dari elemen input
+            const tanggal = $("#tanggal_search").val();
+            const username = $("#username_search").val();
+
+            // Lakukan request AJAX ke halaman do-search-absensi.php
+            $.ajax({
+                url: '../../../function/do-search-absensi.php',
+                type: 'POST',
+                data: {
+                    tanggal_search: tanggal,
+                    username_search: username
+                },
+                success: function (response) {
+                    // Tampilkan hasil pencarian di elemen dengan class search-result
+                    $('.search-result').html(response);
+                },
+                error: function (error) {
+                    alert('Terjadi kesalahan saat melakukan pencarian data absensi');
+                }
+            });
+        }
+    });
+</script>
+</body>
 </html>
