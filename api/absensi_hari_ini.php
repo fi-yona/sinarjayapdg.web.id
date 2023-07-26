@@ -19,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     $tokenResult = $conn->query($tokenQuery);
 
     if ($tokenResult->num_rows > 0) {
-        $absensiHariIniQuery = "SELECT waktu_masuk, lokasi_masuk, latitude_masuk, longitude_masuk, keterangan_masuk, waktu_pulang, lokasi_pulang, latitude_pulang, longitude_pulang, keterangan_pulang FROM tb_absensi WHERE tanggal_absensi = '$tanggal_absensi' AND username = '$username'";
+        $absensiHariIniQuery = "SELECT waktu_masuk, lokasi_masuk, latitude_masuk, longitude_masuk, keterangan_masuk, gambar_masuk, waktu_pulang, lokasi_pulang, latitude_pulang, longitude_pulang, keterangan_pulang, gambar_pulang FROM tb_absensi WHERE tanggal_absensi = '$tanggal_absensi' AND username = '$username'";
         $absensiHariIniResult = $conn->query($absensiHariIniQuery);
 
         $rows = array();

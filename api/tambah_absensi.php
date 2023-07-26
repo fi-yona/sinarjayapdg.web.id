@@ -20,12 +20,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $longitude_absensi = $_POST['longitude_absensi'];
     $lokasi_absensi = $_POST['lokasi_absensi'];
     $keterangan_absensi = $_POST['keterangan_absensi'];
+    $gambar_absensi = $_POST['gambar_absensi'];
 
     if($status_absensi == "Masuk"){
         $tokenQuery = "SELECT * FROM token WHERE insert_token = '$token'";
         $tokenResult = $conn->query($tokenQuery);
         if ($tokenResult->num_rows > 0) {
-            $tambahAbsensiMasukQuery = "INSERT INTO tb_absensi(username, tanggal_absensi, waktu_masuk, latitude_masuk, longitude_masuk, lokasi_masuk, keterangan_masuk) VALUES ('$username','$tanggal_absensi','$waktu_absensi','$latitude_absensi','$longitude_absensi','$lokasi_absensi','$keterangan_absensi')";
+            $tambahAbsensiMasukQuery = "INSERT INTO tb_absensi(username, tanggal_absensi, waktu_masuk, latitude_masuk, longitude_masuk, lokasi_masuk, keterangan_masuk, gambar_masuk) VALUES ('$username','$tanggal_absensi','$waktu_absensi','$latitude_absensi','$longitude_absensi','$lokasi_absensi','$keterangan_absensi', '$gambar_absensi')";
             $tambahAbsensiMasukResult = $conn->query($tambahAbsensiMasukQuery);
             if ($tambahAbsensiMasukResult) {
                 $response = array('status' => 'Berhasil');
@@ -43,7 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $tokenQuery = "SELECT * FROM token WHERE update_token = '$token'";
         $tokenResult = $conn->query($tokenQuery);
         if ($tokenResult->num_rows > 0) {
-            $tambahAbsensiPulangQuery = "UPDATE tb_absensi SET waktu_pulang = '$waktu_absensi', latitude_pulang = '$latitude_absensi', longitude_pulang = '$longitude_absensi', lokasi_pulang = '$lokasi_absensi', keterangan_pulang = '$keterangan_absensi' WHERE username = '$username' AND tanggal_absensi = '$tanggal_absensi'";
+            $tambahAbsensiPulangQuery = "UPDATE tb_absensi SET waktu_pulang = '$waktu_absensi', latitude_pulang = '$latitude_absensi', longitude_pulang = '$longitude_absensi', lokasi_pulang = '$lokasi_absensi', keterangan_pulang = '$keterangan_absensi', gambar_pulang = '$gambar_absensi' WHERE username = '$username' AND tanggal_absensi = '$tanggal_absensi'";
             $tambahAbsensiPulangResult = $conn->query($tambahAbsensiPulangQuery);
             if ($tambahAbsensiPulangResult) {
                 $response = array('status' => 'Berhasil');
