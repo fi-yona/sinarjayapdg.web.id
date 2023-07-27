@@ -27,13 +27,17 @@ if (isset($_GET['status']) && $_GET['status'] === 'success') {
 <html>
     <head>
         <title>Data Penugasan</title>
-		<link rel="stylesheet" href="../../../assets/style/style-body.css">
+		<link rel="stylesheet" href="../../../assets/style/style-body.css?v2">
         <link rel="stylesheet" href="../../../assets/style/style-button.css">
         <link rel="stylesheet" href="../../../assets/style/style-img.css">
-        <link rel="stylesheet" href="../../../assets/style/style-input.css">
+        <link rel="stylesheet" href="../../../assets/style/style-input.css?v2">
         <link rel="shortcut icon" href="../../../assets/img/logo.svg">
+        <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
         <script src="../../../script/logout1.js"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js"></script>
+        <script src="../../../script/show-calender.js?v3"></script>
     </head>
     <body>
         <header>
@@ -65,22 +69,37 @@ if (isset($_GET['status']) && $_GET['status'] === 'success') {
                 <form id="form-search-absensi" class="form-search" action="../function/do-search-absensi.php" method="POST"> 
                     <table class="table-layout-search">
                         <tr>
-                            <td class = "td-search-tanggal">
+                        <td class = "td-search-tanggal">
                                 <div class="box-white-black-stroke-search">
-                                    <input type="text" placeholder="Tahun" name="tahun" id="tahun-search" class="input-tahun">/<input type="text" placeholder="Bulan" name="bulan" id="bulan-search" class="input-bulan">/<input type="text" placeholder="Hari" name="hari" id="hari-search" class="input-hari">
+                                    <input type="text" placeholder="Tahun-Bulan-Hari" name="tanggal_search" id="tanggal_search" class="input-text-search-tanggal tanggal-search">
                                 </div>
                             </td>
                             <td class = "td-search-data">
                                 <div class="box-white-black-stroke-search">
-                                    <select class = "select-sales">
-                                        <option value="option1">Pilihan 1</option>
-                                        <option value="option2" selected>Pilihan 2</option>
-                                        <option value="option3">Pilihan 3</option>
+                                    <select name="rute_search" id="rute_search" class="select-rute">
+                                        <option value="Semua">Semua Rute</option>
+                                        <?php require_once '../../../function/select-rute.php';?>
+                                    </select>
+                                </div>
+                            </td>
+                            <td class = "td-search-data">
+                                <div class="box-white-black-stroke-search">
+                                    <select name="username_penugasan_search" id="username_search" class="select-sales">
+                                        <option value="Semua">Semua Sales</option>
+                                        <?php require_once '../../../function/select-username.php';?>
+                                    </select>
+                                </div>
+                            </td>
+                            <td class = "td-search-data">
+                                <div class="box-white-black-stroke-search">
+                                    <select name="penanggung_jawab_search" id="penanggung_jawab_search" class="select-penanggung-jawab">
+                                        <option value="Semua">Semua Penanggung Jawab</option>
+                                        <?php require_once '../../../function/select-penanggung-jawab.php';?>
                                     </select>
                                 </div>
                             </td>
                             <td class = "td-button-search">
-                                <input type="submit" name="search" class="button-submit-search" value="Cari Data Kunjungan">
+                                <input type="submit" name="search" class="button-submit-search" value="Cari Data Penugasan">
                             </td>
                         </tr>
                     </table>
