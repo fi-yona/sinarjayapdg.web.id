@@ -29,6 +29,7 @@ $sql = "SELECT
             tb_kunjungan.username,
             tb_kunjungan.tanggal_kunjungan,
             tb_kunjungan.waktu_kunjungan,
+            tb_rute.nama_rute,
             tb_toko.nama_toko,
             tb_kunjungan.latitude_kunjungan,
             tb_kunjungan.longitude_kunjungan,
@@ -39,6 +40,8 @@ $sql = "SELECT
             tb_karyawan ON tb_kunjungan.username = tb_karyawan.username
         JOIN
             tb_toko ON tb_kunjungan.id_toko = tb_toko.id_toko
+        JOIN
+            tb_rute ON tb_toko.id_rute = tb_rute.id_rute
         ORDER BY
             tb_kunjungan.tanggal_kunjungan DESC, tb_kunjungan.waktu_kunjungan DESC";
 
@@ -53,6 +56,7 @@ if (mysqli_num_rows($result) > 0) {
     echo "<th class='.title-atribut-data-absensi'>Username</th>";
     echo "<th class='.title-atribut-data-absensi'>Tanggal Kunjungan</th>";
     echo "<th class='.title-atribut-data-absensi'>Waktu Kunjungan</th>";
+    echo "<th class='.title-atribut-data-absensi'>Nama Rute</th>";
     echo "<th class='.title-atribut-data-absensi'>Nama Toko</th>";
     echo "<th class='.title-atribut-data-absensi'>Koordinat Kunjungan</th>";
     echo "<th class='.title-atribut-data-absensi'>Lokasi Kunjungan</th>";
@@ -66,6 +70,7 @@ if (mysqli_num_rows($result) > 0) {
         echo "<td>" . $row['username'] . "</td>";
         echo "<td>" . $row['tanggal_kunjungan'] . "</td>";
         echo "<td>" . $row['waktu_kunjungan'] . "</td>";
+        echo "<td>" . $row['nama_rute'] . "</td>";
         echo "<td>" . $row['nama_toko'] . "</td>";
         echo "<td>" . $row['latitude_kunjungan'] . ", " . $row['longitude_kunjungan'] . "</td>";
         echo "<td>" . $row['lokasi_kunjungan'] . "</td>";

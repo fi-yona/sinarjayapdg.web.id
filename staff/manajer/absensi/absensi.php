@@ -30,7 +30,7 @@ if (isset($_GET['status']) && $_GET['status'] === 'error-delete-absensi') {
     <link rel="stylesheet" href="../../../assets/style/style-body.css?v1.2">
     <link rel="stylesheet" href="../../../assets/style/style-button.css">
     <link rel="stylesheet" href="../../../assets/style/style-img.css">
-    <link rel="stylesheet" href="../../../assets/style/style-input.css?v1.1">
+    <link rel="stylesheet" href="../../../assets/style/style-input.css?v1.4">
     <link rel="shortcut icon" href="../../../assets/img/logo.svg">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
@@ -69,7 +69,7 @@ if (isset($_GET['status']) && $_GET['status'] === 'error-delete-absensi') {
                     <td class="td-search-tanggal">
                         <div class="box-white-black-stroke-search">
                             <input type="text" placeholder="Tahun-Bulan-Hari" name="tanggal_search" id="tanggal_search"
-                                   class="input-text-search tanggal-search">
+                                   class="input-text-search-tanggal tanggal-search">
                         </div>
                     </td>
                     <td class="td-search-data">

@@ -65,9 +65,9 @@
 
 .select-sales{
     border: none;
-    font-size: 14px;
+    font-size: 12px;
     font-family: 'Golos Text', sans-serif;
-    width: 200px;
+    width: 150px;
     color: #3A3A3A;
 }
 
@@ -133,5 +133,19 @@ input#kata-kunci{
 }
 
 .input-text-search::placeholder{
+    color: #B0B0B0;
+}
+
+.input-text-search-tanggal{
+    font-family: 'Golos Text', sans-serif;
+    box-sizing: border-box;
+    margin: 0px;
+    font-size: 12px;
+    border: none;
+    outline: none;
+    width: 120px
+}
+
+.input-text-search-tanggal::placeholder{
     color: #B0B0B0;
 }
