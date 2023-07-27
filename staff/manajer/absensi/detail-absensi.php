@@ -27,12 +27,14 @@ $query = "SELECT
             tb_absensi.latitude_masuk, 
             tb_absensi.longitude_masuk, 
             tb_absensi.lokasi_masuk, 
-            tb_absensi.keterangan_masuk, 
+            tb_absensi.keterangan_masuk,
+            tb_absensi.gambar_masuk, 
             tb_absensi.waktu_pulang, 
             tb_absensi.latitude_pulang, 
             tb_absensi.longitude_pulang, 
             tb_absensi.lokasi_pulang, 
-            tb_absensi.keterangan_pulang
+            tb_absensi.keterangan_pulang,
+            tb_absensi.gambar_pulang
           FROM 
             tb_absensi
           INNER JOIN 
@@ -165,7 +167,7 @@ $conn->close();
                                     </table>
                                 </div>
                                 <div class = "layout-button-lihat-foto">
-                                    <a href=""><button type="button" class="button-lihat-foto">Lihat Foto</button></a>
+                                <a href="<?php echo $row['gambar_masuk']; ?>"><button type="button" class="button-lihat-foto">Lihat Foto</button></a>
                                 </div>
                             </div>
                         </td>
@@ -239,8 +241,7 @@ $conn->close();
                                     </table>
                                 </div>
                                 <div class = "layout-button-lihat-foto">
-                                    <a href=""><button type="button" class="button-lihat-foto">Lihat Foto</button></a>
-                                </div>
+                                <a href="<?php echo $row['gambar_pulang']; ?>"><button type="button" class="button-lihat-foto">Lihat Foto</button></a>
                             </div>
                         </td>
                     </tr>
