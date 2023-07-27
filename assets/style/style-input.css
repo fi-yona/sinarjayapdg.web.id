@@ -149,3 +149,19 @@ input#kata-kunci{
 .input-text-search-tanggal::placeholder{
     color: #B0B0B0;
 }
+
+.select-rute{
+    border: none;
+    font-size: 12px;
+    font-family: 'Golos Text', sans-serif;
+    width: 150px;
+    color: #3A3A3A;
+}
+
+.select-toko{
+    border: none;
+    font-size: 12px;
+    font-family: 'Golos Text', sans-serif;
+    width: 150px;
+    color: #3A3A3A;
+}

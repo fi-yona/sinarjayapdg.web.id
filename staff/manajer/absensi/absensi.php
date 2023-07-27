@@ -27,7 +27,7 @@ if (isset($_GET['status']) && $_GET['status'] === 'error-delete-absensi') {
 <html>
 <head>
     <title>Data Absensi</title>
-    <link rel="stylesheet" href="../../../assets/style/style-body.css?v1.2">
+    <link rel="stylesheet" href="../../../assets/style/style-body.css?v1.5">
     <link rel="stylesheet" href="../../../assets/style/style-button.css">
     <link rel="stylesheet" href="../../../assets/style/style-img.css">
     <link rel="stylesheet" href="../../../assets/style/style-input.css?v1.4">
