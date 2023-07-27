@@ -66,7 +66,7 @@ if (isset($_GET['status']) && $_GET['status'] === 'success') {
                 Data Penugasan
             </div>
             <div class = "search-column">
-                <form id="form-search-absensi" class="form-search" action="../function/do-search-absensi.php" method="POST"> 
+                <form id="form-search-penugasan" class="form-search" action="../../../function/do-search-penugasan.php" method="POST"> 
                     <table class="table-layout-search">
                         <tr>
                         <td class = "td-search-tanggal">
@@ -84,7 +84,7 @@ if (isset($_GET['status']) && $_GET['status'] === 'success') {
                             </td>
                             <td class = "td-search-data">
                                 <div class="box-white-black-stroke-search">
-                                    <select name="username_penugasan_search" id="username_search" class="select-sales">
+                                    <select name="username_penugasan_search" id="username_penugasan_search" class="select-sales">
                                         <option value="Semua">Semua Sales</option>
                                         <?php require_once '../../../function/select-username.php';?>
                                     </select>
@@ -113,5 +113,40 @@ if (isset($_GET['status']) && $_GET['status'] === 'success') {
             </div>
         </main>
         <?php include '../../../function/footer.php'; ?>
+        <script>
+            $(document).ready(function () {
+                $("#form-search-penugasan").submit(function (event) {
+                    event.preventDefault(); // Mencegah submit form secara default
+                    cariDataPenugasan(); // Panggil fungsi cariDataKunjungan() untuk melakukan AJAX request
+                });
+
+                function cariDataPenugasan() {
+                    // Ambil nilai dari elemen input
+                    const tanggal = $("#tanggal_search").val();
+                    const rute = $("#rute_search").val();
+                    const username_penugasan = $("#username_penugasan_search").val();
+                    const penanggung_jawab = $("#penanggung_jawab_search").val();
+
+                    // Lakukan request AJAX ke halaman do-search-penugasan.php
+                    $.ajax({
+                        url: '../../../function/do-search-penugasan.php',
+                        type: 'POST',
+                        data: {
+                            tanggal_search: tanggal,
+                            rute_search: rute, 
+                            username_penugasan_search: username_penugasan, 
+                            penanggung_jawab_search: penanggung_jawab
+                        },
+                        success: function (response) {
+                            // Tampilkan hasil pencarian di elemen dengan class search-result
+                            $('.search-result').html(response);
+                        },
+                        error: function (error) {
+                            alert('Terjadi kesalahan saat melakukan pencarian data penugasan');
+                        }
+                    });
+                }
+            });
+        </script>
     </body>
 </html>

@@ -37,7 +37,7 @@ $sql = "SELECT
         JOIN
             tb_rute ON tb_penugasan.rute_penugasan = tb_rute.id_rute
         ORDER BY
-            tb_penugasan.create_at DESC";
+            tb_penugasan.tanggal_penugasan DESC, tb_penugasan.create_at DESC";
 
 // Eksekusi query
 $result = mysqli_query($conn, $sql);

@@ -71,11 +71,11 @@ if (!empty($tanggal) && $rute === 'Semua' && $toko === 'Semua' && $username === 
 } elseif (empty($tanggal) && $rute === 'Semua' && $toko !== 'Semua' && $username !== 'Semua') {
     $query .= " WHERE tb_kunjungan.id_toko = '$toko' AND tb_kunjungan.username = '$username'";
 } elseif (!empty($tanggal) && $rute !== 'Semua' && $toko !== 'Semua' && $username === 'Semua') {
-    $query .= " WHERE tb_tanggal.tanggal_kunjungan = '$tanggal' AND tb_rute.id_rute = '$rute' AND tb_kunjungan.id_toko = '$toko'";
+    $query .= " WHERE tb_kunjungan.tanggal_kunjungan = '$tanggal' AND tb_rute.id_rute = '$rute' AND tb_kunjungan.id_toko = '$toko'";
 } elseif (!empty($tanggal) && $rute !== 'Semua' && $toko === 'Semua' && $username !== 'Semua') {
-    $query .= " WHERE tb_tanggal.tanggal_kunjungan = '$tanggal' AND tb_rute.id_rute = '$rute' AND tb_kunjungan.username = '$username'";
+    $query .= " WHERE tb_kunjungan.tanggal_kunjungan = '$tanggal' AND tb_rute.id_rute = '$rute' AND tb_kunjungan.username = '$username'";
 } elseif (!empty($tanggal) && $rute === 'Semua' && $toko !== 'Semua' && $username !== 'Semua') {
-    $query .= " WHERE tb_tanggal.tanggal_kunjungan = '$tanggal' AND tb_kunjungan.id_toko = '$toko' AND tb_kunjungan.username = '$username'";
+    $query .= " WHERE tb_kunjungan.tanggal_kunjungan = '$tanggal' AND tb_kunjungan.id_toko = '$toko' AND tb_kunjungan.username = '$username'";
 } elseif (empty($tanggal) && $rute !== 'Semua' && $toko !== 'Semua' && $username !== 'Semua') {
     $query .= " WHERE tb_rute.id_rute = '$rute' AND tb_kunjungan.id_toko = '$toko' AND tb_kunjungan.username = '$username'";
 } elseif (!empty($tanggal) && $rute !== 'Semua' && $toko !== 'Semua' && $username !== 'Semua') {
