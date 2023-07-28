@@ -174,3 +174,21 @@ input.button-submit-search:hover {
     width: 200px;
     color: #3A3A3A;
 }
+
+.input-kata-kunci-long {
+    font-family: 'Golos Text', sans-serif;
+    box-sizing: border-box;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    width: 230px;
+    border: none;
+    border-bottom: 1px solid #3a3a3a;
+    color: #3A3A3A;
+    font-size: 12px;
+}
+
+.input-kata-kunci-long::placeholder{
+    color: #B0B0B0;
+}

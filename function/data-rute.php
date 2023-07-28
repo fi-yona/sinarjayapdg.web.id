@@ -38,16 +38,22 @@ $result = mysqli_query($conn, $sql);
 
 // Periksa hasil query
 if (mysqli_num_rows($result) > 0) {
+    $total = mysqli_num_rows($result);
+    echo "<div class='total-data'>Total Data: " . $total . "</div>";
     echo "<table class='table-search-result'>";
     echo "<tr>";
+    echo "<th class='.title-atribut-data-rute'>No</th>";
     echo "<th class='.title-atribut-data-rute'>Nama Rute</th>";
     echo "<th class='.title-atribut-data-rute'>Keterangan Rute</th>";
     echo "<th class='.title-atribut-data-rute'>Detail</th>";
     echo "</tr>";
 
+    $counter = 1;
     // Tampilkan data dalam tabel
     while ($row = mysqli_fetch_assoc($result)) {
         echo "<tr>";
+        echo "<td><center>" . $counter . "</center></td>";
+            $counter++;
         echo "<td>" . $row['nama_rute'] . "</td>";
         echo "<td>" . $row['keterangan_rute'] . "</td>";
         echo "<td>" . createDetailRuteLink($row['id_rute']) . "</td>";
