@@ -46,7 +46,7 @@ if ($manufaktur !== 'Semua' && empty($merek)) {
     $query .= " WHERE tb_manufaktur.id_manufaktur = '$manufaktur' AND tb_merek.nama_merek LIKE '%$merek%'";
 } 
 
-//$query .= " ORDER BY tb_merek.nama_merek ASC";
+$query .= " ORDER BY tb_merek.nama_merek ASC";
 
 // Eksekusi query
 $result = mysqli_query($conn, $query);
