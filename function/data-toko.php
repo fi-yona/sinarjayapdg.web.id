@@ -41,8 +41,11 @@ $result = mysqli_query($conn, $sql);
 
 // Periksa hasil query
 if (mysqli_num_rows($result) > 0) {
+    $total = mysqli_num_rows($result);
+    echo "<div class='total-data'>Total Data: " . $total . "</div>";
     echo "<table class='table-search-result'>";
     echo "<tr>";
+    echo "<th class='.title-atribut-data-absensi'>No</th>";
     echo "<th class='.title-atribut-data-toko'>Id Toko</th>";
     echo "<th class='.title-atribut-data-toko'>Nama Toko</th>";
     echo "<th class='.title-atribut-data-toko'>Nama Rute</th>";
@@ -50,9 +53,12 @@ if (mysqli_num_rows($result) > 0) {
     echo "<th class='.title-atribut-data-toko'>Detail</th>";
     echo "</tr>";
 
+    $counter = 1;
     // Tampilkan data dalam tabel
     while ($row = mysqli_fetch_assoc($result)) {
         echo "<tr>";
+        echo "<td><center>" . $counter . "</center></td>";
+            $counter++;
         echo "<td>" . $row['id_toko'] . "</td>";
         echo "<td>" . $row['nama_toko'] . "</td>";
         echo "<td>" . $row['nama_rute'] . "</td>";

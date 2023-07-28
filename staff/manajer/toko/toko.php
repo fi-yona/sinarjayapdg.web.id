@@ -26,13 +26,17 @@ if (isset($_GET['status']) && $_GET['status'] === 'success') {
 <html>
     <head>
 		<title>Data Toko</title>
-		<link rel="stylesheet" href="../../../assets/style/style-body.css">
+		<link rel="stylesheet" href="../../../assets/style/style-body.css?v3">
         <link rel="stylesheet" href="../../../assets/style/style-button.css">
         <link rel="stylesheet" href="../../../assets/style/style-img.css">
-        <link rel="stylesheet" href="../../../assets/style/style-input.css">
+        <link rel="stylesheet" href="../../../assets/style/style-input.css?v6">
         <link rel="shortcut icon" href="../../../assets/img/logo.svg">
+        <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
         <script src="../../../script/logout1.js"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js"></script>
+        <script src="../../../script/show-calender.js?v3"></script>
 	</head>
     <body>
         <header>
@@ -61,12 +65,20 @@ if (isset($_GET['status']) && $_GET['status'] === 'success') {
                 Data Toko
             </div>
             <div class = "search-column">
-                <form id="form-search-absensi" class="form-search" action="../function/do-search-absensi.php" method="POST"> 
+                <form id="form-search-toko" class="form-search" action="../../../function/do-search-toko.php" method="POST"> 
                     <table class="table-layout-search">
                         <tr>
+                            <td class = "td-search-data">
+                                <div class="box-white-black-stroke-search">
+                                    <select name="rute_search" id="rute_search" class="select-rute">
+                                        <option value="Semua">Semua Rute</option>
+                                        <?php require_once '../../../function/select-rute.php';?>
+                                    </select>
+                                </div>
+                            </td>
                             <td class = "td-search-tanggal">
                                 <div class="box-white-black-stroke-search">
-                                    <input type="text" placeholder="Masukkan Kata Kunci" name="kata-kunci" id="kata-kunci" class="input-kata-kunci">
+                                    <input type="text" placeholder="Masukkan Nama Toko" name="kata_kunci" id="kata_kunci" class="input-kata-kunci">
                                 </div>
                             </td>
                             <td class = "td-button-search">
@@ -84,5 +96,36 @@ if (isset($_GET['status']) && $_GET['status'] === 'success') {
             </div>
         </main>
         <?php include '../../../function/footer.php'; ?>
+        <script>
+            $(document).ready(function () {
+                $("#form-search-toko").submit(function (event) {
+                    event.preventDefault(); // Mencegah submit form secara default
+                    cariDataToko(); // Panggil fungsi cariDataKunjungan() untuk melakukan AJAX request
+                });
+
+                function cariDataToko() {
+                    // Ambil nilai dari elemen input
+                    const rute = $("#rute_search").val();
+                    const toko = $("#kata_kunci").val();
+
+                    // Lakukan request AJAX ke halaman do-search-toko.php
+                    $.ajax({
+                        url: '../../../function/do-search-toko.php',
+                        type: 'POST',
+                        data: {
+                            rute_search: rute, 
+                            toko_search: toko
+                        },
+                        success: function (response) {
+                            // Tampilkan hasil pencarian di elemen dengan class search-result
+                            $('.search-result').html(response);
+                        },
+                        error: function (error) {
+                            alert('Terjadi kesalahan saat melakukan pencarian data toko');
+                        }
+                    });
+                }
+            });
+        </script>
     </body>
 </html>

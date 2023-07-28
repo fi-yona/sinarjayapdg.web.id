@@ -108,7 +108,6 @@ if(isset($_GET['status']) && $_GET['status'] === 'success-delete') {
         <?php include '../../../function/footer.php'; ?>
         <script>
             $(document).ready(function () {
-
                 $("#rute_search").change(function(){
                     const selectedRute = $("#rute_search").val();
                     $.ajax({
