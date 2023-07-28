@@ -43,16 +43,14 @@ if ($result->num_rows === 0) {
 // Ambil data absensi
 $row = $result->fetch_assoc();
 
-$conn->close();
-
 ?>
 
 <!DOCTYPE html>
 <html>
     <head>
         <title>Detail Rute</title>
-        <link rel="stylesheet" href="../../../assets/style/style-body.css?v1.1">
-        <link rel="stylesheet" href="../../../assets/style/style-button.css?v1.1">
+        <link rel="stylesheet" href="../../../assets/style/style-body.css?v4">
+        <link rel="stylesheet" href="../../../assets/style/style-button.css?v2">
         <link rel="stylesheet" href="../../../assets/style/style-img.css">
         <link rel="stylesheet" href="../../../assets/style/style-input.css">
         <link rel="shortcut icon" href="../../../assets/img/logo.svg">
@@ -105,6 +103,13 @@ $conn->close();
             </div>
             <div class = "layout-button-data">
                 <a href="edit-rute.php?id_rute=<?php echo $id_rute; ?>"><button type="button" class="button-edit-data">Edit</button></a><button type="button" class="button-hapus-data" onclick="hapusData(<?php echo $id_rute; ?>)">Hapus</button>
+            </div>
+            <hr>
+            <div class = "sub-title-page">
+                Data Toko di Rute <?php echo $row['nama_rute']; ?>
+            </div>
+            <div class = "search-result">
+                <?php require_once '../../../function/data-toko-rute.php'; ?>
             </div>
         </main>
         <?php include '../../../function/footer.php'; ?>

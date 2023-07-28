@@ -91,6 +91,6 @@ if (mysqli_num_rows($result) > 0) {
     echo "</table>";
 } else {
     // Jika query tidak mengembalikan hasil
-    echo "<p>Tidak ada data riwayat pesanan.</p>";
+    //echo "<p>Tidak ada data riwayat pesanan.</p>";
 }
 ?>
