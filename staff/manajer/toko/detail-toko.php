@@ -183,7 +183,7 @@ $row = $result->fetch_assoc();
                         </table>
                     </div>
                     <div class = "layout-button-lihat-foto">
-                        <center><a href=""><button type="button" class="button-lihat-foto">Lihat QR Code</button></a></center>
+                        <center><a href="lihat-qr-code.php?id_toko=<?php echo $id_toko; ?>"><button type="button" class="button-lihat-foto">Lihat QR Code</button></a></center>
                     </div>
                 </div>
             </div>
