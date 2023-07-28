@@ -50,14 +50,12 @@ if ($result->num_rows === 0) {
 // Ambil data barang
 $row = $result->fetch_assoc();
 
-$conn->close();
-
 ?>
 
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Detail Menufaktur</title>
+        <title>Detail Manufaktur</title>
         <link rel="stylesheet" href="../../../assets/style/style-body.css">
         <link rel="stylesheet" href="../../../assets/style/style-button.css?v1.1">
         <link rel="stylesheet" href="../../../assets/style/style-img.css?v1.1">
@@ -203,6 +201,13 @@ $conn->close();
             </div>
             <div class = "layout-button-data">
                 <a href="edit-manufaktur.php?id_manufaktur=<?php echo $id_manufaktur; ?>"><button type="button" class="button-edit-data">Edit</button></a><button type="button" class="button-hapus-data" onclick="hapusData(<?php echo $id_manufaktur; ?>)">Hapus</button>
+            </div>
+            <hr>
+            <div class = "sub-title-page">
+                Data Merek pada Manufaktur <?php echo $row['nama_manufaktur']?>
+            </div>
+            <div class = "search-result">
+                <?php require_once '../../../function/data-merek-manufaktur.php'; ?>
             </div>
         </main>
         <?php include '../../../function/footer.php'; ?>
