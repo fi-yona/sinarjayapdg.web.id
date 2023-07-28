@@ -29,10 +29,14 @@ if (isset($_GET['status']) && $_GET['status'] === 'success') {
 		<link rel="stylesheet" href="../../../assets/style/style-body.css?v1.1">
         <link rel="stylesheet" href="../../../assets/style/style-button.css?v1.1">
         <link rel="stylesheet" href="../../../assets/style/style-img.css">
-        <link rel="stylesheet" href="../../../assets/style/style-input.css">
+        <link rel="stylesheet" href="../../../assets/style/style-input.css?v3">
         <link rel="shortcut icon" href="../../../assets/img/logo.svg">
+		<link rel="stylesheet" href="https://code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
         <script src="../../../script/logout1.js"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js"></script>
+        <script src="../../../script/show-calender.js?v3"></script>
 	</head>
     <body>
         <header>
@@ -60,12 +64,12 @@ if (isset($_GET['status']) && $_GET['status'] === 'success') {
                 Data Karyawan
             </div>
             <div class = "search-column">
-                <form id="form-search-absensi" class="form-search" action="../function/do-search-absensi.php" method="POST"> 
+                <form id="form-search-karyawan" class="form-search" action="../../../function/do-search-karyawan.php" method="POST"> 
                     <table class="table-layout-search">
                         <tr>
                             <td class = "td-search-tanggal">
                                 <div class="box-white-black-stroke-search">
-                                    <input type="text" placeholder="Masukkan Kata Kunci" name="kata-kunci" id="kata-kunci" class="input-kata-kunci">
+                                    <input type="text" placeholder="Masukkan Nama atau Jabatan" name="kata_kunci" id="kata_kunci" class="input-kata-kunci-long">
                                 </div>
                             </td>
                             <td class = "td-button-search">
@@ -83,5 +87,35 @@ if (isset($_GET['status']) && $_GET['status'] === 'success') {
             </div>
         </main>
         <?php include '../../../function/footer.php'; ?>
+        <script>
+            $(document).ready(function () {
+                $("#form-search-karyawan").submit(function (event) {
+                    event.preventDefault(); // Mencegah submit form secara default
+                    cariDataKaryawan(); // Panggil fungsi cariDataKaryawan() untuk melakukan AJAX request
+                });
+
+                function cariDataKaryawan() {
+                    // Ambil nilai dari elemen input
+                    const kataKunci = $("#kata_kunci").val();
+
+                    // Lakukan request AJAX ke halaman do-search-karyawan.php
+                    $.ajax({
+                        url: '../../../function/do-search-karyawan.php',
+                        type: 'POST',
+                        data: {
+                            kata_kunci: kataKunci
+                        },
+                        success: function (response) {
+                            console.log(response); // Cek respon dari server sebelum ditampilkan di halaman
+                            // Tampilkan hasil pencarian di elemen dengan class search-result
+                            $('.search-result').html(response);
+                        },
+                        error: function (error) {
+                            alert('Terjadi kesalahan saat melakukan pencarian data karyawan');
+                        }
+                    });
+                }
+            });
+        </script>
     </body>
 </html>

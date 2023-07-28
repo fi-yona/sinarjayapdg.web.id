@@ -1,15 +1,15 @@
 <?php
-//session_start();
+session_start();
 
 // Periksa apakah pengguna sudah login
 if (!isset($_SESSION['login']) || $_SESSION['login'] !== true) {
-    header("Location: ../staff/login.html");
+    header("Location: ../../../staff/login.html");
     exit();
 }
 
 // Periksa role pengguna
 if ($_SESSION['role'] !== 'Manajer') {
-    header("Location: ../staff/login.html");
+    header("Location: ../../../staff/login.html");
     echo "Anda tidak memiliki akses ke halaman ini!";
     exit();
 }
@@ -22,26 +22,39 @@ function createDetailKaryawanLink($id_karyawan)
     return $link;
 }
 
-// Query SQL
-$sql = "SELECT
+// Ambil nilai dari request POST
+$kataKunci = isset($_POST['kata_kunci']) ? $_POST['kata_kunci'] : '';
+
+// Buat query untuk pencarian data
+$query = "SELECT
             tb_karyawan.id_karyawan,
             tb_karyawan.nama_lengkap,
+            tb_karyawan.nama_panggilan,
             tb_karyawan.username,
             tb_karyawan.no_telp,
             tb_karyawan.email,
             tb_karyawan.jk,
             tb_karyawan.jabatan
-        FROM
-            tb_karyawan
-        ORDER BY 
-            tb_karyawan.nama_lengkap ASC";
+            FROM
+            tb_karyawan";
+
+// Tambahkan kondisi jika diberikan nilai
+if (!empty($kataKunci)) {
+    $query .= " WHERE nama_lengkap LIKE '%$kataKunci%' OR nama_panggilan LIKE '%$kataKunci%' OR username LIKE '%$kataKunci%' OR jabatan LIKE '%$kataKunci%'";
+} 
+
+$query .= " ORDER BY tb_karyawan.nama_lengkap ASC";
 
 // Eksekusi query
-$result = mysqli_query($conn, $sql);
+$result = mysqli_query($conn, $query);
 
 // Periksa hasil query
-if (mysqli_num_rows($result) > 0) {
-    $total = mysqli_num_rows($result);
+if (!$result) {
+    die("Query error: " . $conn->error);
+}
+
+// Tampilkan hasil pencarian dalam tabel
+$total = mysqli_num_rows($result);
     echo "<div class='total-data'>Total Data: " . $total . "</div>";
     echo "<table class='table-search-result'>";
     echo "<tr>";
@@ -73,9 +86,8 @@ if (mysqli_num_rows($result) > 0) {
         echo "</tr>";
     }
 
-    echo "</table>";
-} else {
-    // Jika query tidak mengembalikan hasil
-    echo "<p><center>Tidak ada data karyawan.</center></p>";
-}
+echo "</table>";
+echo "</div>";
+
+$conn -> close();
 ?>
