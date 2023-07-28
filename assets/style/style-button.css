@@ -159,7 +159,7 @@ button.button-lihat-foto:hover {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 20px 0px 0px 0px;
+    margin: 20px 0px 20px 0px;
 }
 
 button.button-hapus-data {

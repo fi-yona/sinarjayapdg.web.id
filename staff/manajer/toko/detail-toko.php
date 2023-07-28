@@ -51,7 +51,7 @@ if ($result->num_rows === 0) {
 // Ambil data absensi
 $row = $result->fetch_assoc();
 
-$conn->close();
+//$conn->close();
 
 ?>
 
@@ -59,8 +59,8 @@ $conn->close();
 <html>
     <head>
         <title>Detail Toko</title>
-        <link rel="stylesheet" href="../../../assets/style/style-body.css?v1.1">
-        <link rel="stylesheet" href="../../../assets/style/style-button.css?v1.1">
+        <link rel="stylesheet" href="../../../assets/style/style-body.css?v4">
+        <link rel="stylesheet" href="../../../assets/style/style-button.css?v2">
         <link rel="stylesheet" href="../../../assets/style/style-img.css">
         <link rel="stylesheet" href="../../../assets/style/style-input.css">
         <link rel="shortcut icon" href="../../../assets/img/logo.svg">
@@ -189,6 +189,13 @@ $conn->close();
             </div>
             <div class = "layout-button-data">
                 <a href="edit-toko.php?id_toko=<?php echo $id_toko; ?>"><button type="button" class="button-edit-data">Edit</button></a><button type="button" class="button-hapus-data" onclick="hapusData(<?php echo $id_toko; ?>)">Hapus</button>
+            </div>
+            <hr>
+            <div class = "sub-title-page">
+                Data Riwayat Pesanan
+            </div>
+            <div class = "search-result">
+                <?php require_once '../../../function/data-riwayat-pesanan-toko.php'; ?>
             </div>
         </main>
         <?php include '../../../function/footer.php'; ?>
