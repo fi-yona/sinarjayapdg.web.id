@@ -1,15 +1,15 @@
 <?php
-//session_start();
+session_start();
 
 // Periksa apakah pengguna sudah login
 if (!isset($_SESSION['login']) || $_SESSION['login'] !== true) {
-    header("Location: ../staff/login.html");
+    header("Location: ../../../staff/login.html");
     exit();
 }
 
 // Periksa role pengguna
 if ($_SESSION['role'] !== 'Manajer') {
-    header("Location: ../staff/login.html");
+    header("Location: ../../../staff/login.html");
     echo "Anda tidak memiliki akses ke halaman ini!";
     exit();
 }
@@ -22,25 +22,42 @@ function createDetailMerekLink($id_merek)
     return $link;
 }
 
-// Query SQL
-$sql = "SELECT
+// Ambil nilai dari request POST
+$manufaktur = isset($_POST['manufaktur_search']) ? $_POST['manufaktur_search'] : '';
+$merek = isset($_POST['merek_search']) ? $_POST['merek_search'] : '';
+
+// Buat query untuk pencarian data
+$query = "SELECT
             tb_merek.id_merek,
             tb_merek.nama_merek,
             tb_manufaktur.nama_manufaktur,
             tb_merek.website_merek
-        FROM
+            FROM
             tb_merek
-        JOIN
-            tb_manufaktur ON tb_merek.id_manufaktur = tb_manufaktur.id_manufaktur
-        ORDER BY
-            tb_merek.nama_merek ASC";
+            INNER JOIN
+            tb_manufaktur ON tb_merek.id_manufaktur = tb_manufaktur.id_manufaktur";
+
+// Tambahkan kondisi jika diberikan nilai
+if ($manufaktur !== 'Semua' && empty($merek)) {
+    $query .= " WHERE tb_manufaktur.id_manufaktur = '$manufaktur'";
+} elseif ($manufaktur === 'Semua' && !empty($merek)) {
+    $query .= " WHERE tb_merek.nama_merek LIKE '%$merek%'";
+} elseif ($manufaktur !== 'Semua' && !empty($merek)) {
+    $query .= " WHERE tb_manufaktur.id_manufaktur = '$manufaktur' AND tb_merek.nama_merek LIKE '%$merek%'";
+} 
+
+//$query .= " ORDER BY tb_merek.nama_merek ASC";
 
 // Eksekusi query
-$result = mysqli_query($conn, $sql);
+$result = mysqli_query($conn, $query);
 
 // Periksa hasil query
-if (mysqli_num_rows($result) > 0) {
-    $total = mysqli_num_rows($result);
+if (!$result) {
+    die("Query error: " . $conn->error);
+}
+
+// Tampilkan hasil pencarian dalam tabel
+$total = mysqli_num_rows($result);
     echo "<div class='total-data'>Total Data: " . $total . "</div>";
     echo "<table class='table-search-result'>";
     echo "<tr>";
@@ -64,9 +81,6 @@ if (mysqli_num_rows($result) > 0) {
         echo "</tr>";
     }
 
-    echo "</table>";
-} else {
-    // Jika query tidak mengembalikan hasil
-    echo "<p>Tidak ada data merek.</p>";
-}
+echo "</table>";
+echo "</div>";
 ?>

@@ -20,6 +20,7 @@ if (isset($_GET['status']) && $_GET['status'] === 'success') {
 }elseif(isset($_GET['status']) && $_GET['status'] === 'success-delete') {
     echo '<script>alert("Data Berhasil Terhapus");</script>';
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -29,10 +30,14 @@ if (isset($_GET['status']) && $_GET['status'] === 'success') {
 		<link rel="stylesheet" href="../../../assets/style/style-body.css">
         <link rel="stylesheet" href="../../../assets/style/style-button.css">
         <link rel="stylesheet" href="../../../assets/style/style-img.css">
-        <link rel="stylesheet" href="../../../assets/style/style-input.css">
+        <link rel="stylesheet" href="../../../assets/style/style-input.css?v12">
         <link rel="shortcut icon" href="../../../assets/img/logo.svg">
+		<link rel="stylesheet" href="https://code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
         <script src="../../../script/logout1.js"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js"></script>
+        <script src="../../../script/show-calender.js?v3"></script>
 	</head>
     <body>
         <header>
@@ -57,9 +62,9 @@ if (isset($_GET['status']) && $_GET['status'] === 'success') {
             <table class="table-sub-menu">
                 <tr>
                     <td>
-                    <div class = "column-button-sub-menu">
-                        <a href="./barang.php"><button type="button" class="button-sub-menu-back1">Kembali</button></a>
-                    </div>
+                        <div class = "column-button-sub-menu">
+                            <a href="./barang.php"><button type="button" class="button-sub-menu-back1">Kembali</button></a>
+                        </div>
                     </td>
                     <td>
                         <div class = "column-button-sub-menu">
@@ -72,12 +77,20 @@ if (isset($_GET['status']) && $_GET['status'] === 'success') {
                 Data Merek
             </div>
             <div class = "search-column">
-                <form id="form-search-absensi" class="form-search" action="../function/do-search-absensi.php" method="POST"> 
+                <form id="form-search-merek" class="form-search" action="../../../function/do-search-merek.php" method="POST"> 
                     <table class="table-layout-search">
                         <tr>
+                            <td class = "td-search-data">
+                                <div class="box-white-black-stroke-search">
+                                    <select name="manufaktur_search" id="manufaktur_search" class="select-manufaktur">
+                                        <option value="Semua">Semua Manufaktur</option>
+                                        <?php require_once '../../../function/select-manufaktur.php';?>
+                                    </select>
+                                </div>
+                            </td>
                             <td class = "td-search-tanggal">
                                 <div class="box-white-black-stroke-search">
-                                    <input type="text" placeholder="Masukkan Kata Kunci" name="kata-kunci" id="kata-kunci" class="input-kata-kunci">
+                                    <input type="text" placeholder="Masukkan Nama Merek" name="merek_search" id="merek_search" class="input-kata-kunci">
                                 </div>
                             </td>
                             <td class = "td-button-search">
@@ -95,5 +108,37 @@ if (isset($_GET['status']) && $_GET['status'] === 'success') {
             </div>
         </main>
         <?php include '../../../function/footer.php'; ?>
+        <script>
+            $(document).ready(function () {
+                $("#form-search-merek").submit(function (event) {
+                    event.preventDefault(); // Mencegah submit form secara default
+                    cariDataMerek(); // Panggil fungsi cariDataBarang() untuk melakukan AJAX request
+                });
+
+                function cariDataMerek() {
+                    // Ambil nilai dari elemen input
+                    const manufaktur = $("#manufaktur_search").val();
+                    const merek = $("#merek_search").val();
+
+                    // Lakukan request AJAX ke halaman do-search-barang.php
+                    $.ajax({
+                        url: '../../../function/do-search-merek.php',
+                        type: 'POST',
+                        data: {
+                            manufaktur_search: manufaktur, 
+                            merek_search: merek
+                        },
+                        success: function (response) {
+                            console.log(response); // Cek respon dari server sebelum ditampilkan di halaman
+                            // Tampilkan hasil pencarian di elemen dengan class search-result
+                            $('.search-result').html(response);
+                        },
+                        error: function (error) {
+                            alert('Terjadi kesalahan saat melakukan pencarian data merek');
+                        }
+                    });
+                }
+            });
+        </script>
     </body>
 </html>
