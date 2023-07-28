@@ -43,7 +43,7 @@ $sql = "SELECT
         INNER JOIN
             tb_karyawan ON tb_pesanan.username = tb_karyawan.username
         WHERE
-            MONTH(tanggal_pesanan) = '06'
+            MONTH(tanggal_pesanan) = '$bulan'
         ORDER BY
             tb_pesanan.tanggal_pesanan DESC, tb_pesanan.waktu_pesanan DESC";
 

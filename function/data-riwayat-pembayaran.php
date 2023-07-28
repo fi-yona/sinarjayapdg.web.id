@@ -16,6 +16,8 @@ if ($_SESSION['role'] !== 'Manajer') {
 
 require_once 'dbconfig.php';
 
+$bulan = date('m');
+
 function createDetailPembayaranLink($id_pembayaran)
 {
     $link = '<a href="detail-pembayaran.php?id_pembayaran=' . $id_pembayaran . '">Detail</a>';
@@ -41,6 +43,8 @@ $sql = "SELECT
             tb_toko ON tb_pesanan.id_toko = tb_toko.id_toko
         INNER JOIN 
             tb_karyawan ON tb_pembayaran.username = tb_karyawan.username
+        WHERE
+            MONTH(tanggal_pembayaran) = '$bulan'
         ORDER BY 
             tb_pembayaran.tanggal_pembayaran DESC, tb_pembayaran.waktu_pembayaran DESC";
 
@@ -49,8 +53,14 @@ $result = mysqli_query($conn, $sql);
 
 // Periksa hasil query
 if (mysqli_num_rows($result) > 0) {
+    $total = mysqli_num_rows($result);
+    echo "<div class='total-data'>";
+    echo "<p>*Dalam bulan ini</p>";
+    echo "<p>Total Data: " . $total . "</p>";
+    echo "</div>";
     echo "<table class='table-search-result'>";
     echo "<tr>";
+    echo "<th class='.title-atribut-data-pesanan'>No</th>";
     echo "<th class='.title-atribut-data-pesanan'>Id Pembayaran</th>";
     echo "<th class='.title-atribut-data-pesanan'>Tanggal Pembayaran</th>";
     echo "<th class='.title-atribut-data-pesanan'>Id Pesanan</th>";
@@ -62,9 +72,12 @@ if (mysqli_num_rows($result) > 0) {
     echo "<th class='.title-atribut-data-pesanan'>Detail</th>";
     echo "</tr>";
 
+    $counter = 1;
     // Tampilkan data dalam tabel
     while ($row = mysqli_fetch_assoc($result)) {
         echo "<tr>";
+        echo "<td><center>" . $counter . "</center></td>";
+            $counter++;
         echo "<td>" . $row['id_pembayaran'] . "</td>";
         echo "<td>" . $row['tanggal_pembayaran'] . "</td>";
         echo "<td>" . $row['id_pesanan'] . "</td>";

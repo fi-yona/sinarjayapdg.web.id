@@ -22,10 +22,14 @@ if ($_SESSION['role'] !== 'Manajer') {
 		<link rel="stylesheet" href="../../../assets/style/style-body.css?v1.1">
         <link rel="stylesheet" href="../../../assets/style/style-button.css">
         <link rel="stylesheet" href="../../../assets/style/style-img.css">
-        <link rel="stylesheet" href="../../../assets/style/style-input.css">
+        <link rel="stylesheet" href="../../../assets/style/style-input.css?v2">
         <link rel="shortcut icon" href="../../../assets/img/logo.svg">
+		<link rel="stylesheet" href="https://code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
         <script src="../../../script/logout1.js"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js"></script>
+        <script src="../../../script/show-calender.js?v3"></script>
 	</head>
     <body>
         <header>
@@ -53,16 +57,43 @@ if ($_SESSION['role'] !== 'Manajer') {
                 Data Riwayat Pembayaran
             </div>
             <div class = "search-column">
-                <form id="form-search-absensi" class="form-search" action="../function/do-search-absensi.php" method="POST"> 
+                <form id="form-search-pembayaran" class="form-search" action="../../../function/do-search-pembayaran.php" method="POST"> 
                     <table class="table-layout-search">
                         <tr>
                             <td class = "td-search-tanggal">
                                 <div class="box-white-black-stroke-search">
-                                    <input type="text" placeholder="Masukkan Kata Kunci" name="kata-kunci" id="kata-kunci" class="input-kata-kunci">
+                                    <input type="text" placeholder="Dari Tanggal" name="tanggal_dari_search" id="tanggal_dari_search" class="input-text-search-tanggal tanggal-search">
+                                </div>
+                            </td>
+                            <td class = "td-search-tanggal">
+                                <div class="box-white-black-stroke-search">
+                                    <input type="text" placeholder="Hingga Tanggal" name="tanggal_hingga_search" id="tanggal_hingga_search" class="input-text-search-tanggal tanggal-search">
+                                </div>
+                            </td>
+                            <td class = "td-search-tanggal">
+                                <div class="box-white-black-stroke-search">
+                                    <input type="text" placeholder="Masukkan Nama Toko" name="toko_search" id="toko_search" class="input-kata-kunci">
+                                </div>
+                            </td>
+                            <td class = "td-search-data">
+                                <div class="box-white-black-stroke-search">
+                                    <select name="metode_pembayaran_search" id="metode_pembayaran_search" class="select-metode-pembayaran">
+                                        <option value='Semua'>Semua Metode Pembayaran</option>
+                                        <option value='QRIS'>QRIS</option>
+                                        <option value='Tunai'>Tunai</option>
+                                    </select>
+                                </div>
+                            </td>
+                            <td class = "td-search-data">
+                                <div class="box-white-black-stroke-search">
+                                    <select name="username_search" id="username_search" class="select-penerima">
+                                        <option value='Semua'>Semua Penerima</option>
+                                        <?php require_once '../../../function/select-username.php';?>
+                                    </select>
                                 </div>
                             </td>
                             <td class = "td-button-search">
-                                <input type="submit" name="search" class="button-submit-search" value="Cari Data Riwayat Pesanan">
+                                <input type="submit" name="search" class="button-submit-search" value="Cari Data Pembayaran">
                             </td>
                         </tr>
                     </table>
@@ -73,5 +104,43 @@ if ($_SESSION['role'] !== 'Manajer') {
             </div>
         </main>
         <?php include '../../../function/footer.php'; ?>
+        <script>
+            $(document).ready(function () {
+                $("#form-search-pembayaran").submit(function (event) {
+                    event.preventDefault(); // Mencegah submit form secara default
+                    cariDataPembayaran(); // Panggil fungsi cariDataPembayaran() untuk melakukan AJAX request
+                });
+
+                function cariDataPembayaran() {
+                    // Ambil nilai dari elemen input
+                    const tanggalDari = $("#tanggal_dari_search").val();
+                    const tanggalHingga = $("#tanggal_hingga_search").val();
+                    const toko = $("#toko_search").val();
+                    const metodePembayaran = $("#metode_pembayaran_search").val();
+                    const username = $("#username_search").val();
+
+                    // Lakukan request AJAX ke halaman do-search-pembayaran.php
+                    $.ajax({
+                        url: '../../../function/do-search-pembayaran.php',
+                        type: 'POST',
+                        data: {
+                            tanggal_dari_search: tanggalDari,
+                            tanggal_hingga_search: tanggalHingga, 
+                            toko_search: toko, 
+                            metode_pembayaran_search: metodePembayaran,
+                            username_search: username
+                        },
+                        success: function (response) {
+                            console.log(response);
+                            // Tampilkan hasil pencarian di elemen dengan class search-result
+                            $('.search-result').html(response);
+                        },
+                        error: function (error) {
+                            alert('Terjadi kesalahan saat melakukan pencarian data pembayaran');
+                        }
+                    });
+                }
+            });
+        </script>
     </body>
 </html>
