@@ -67,7 +67,7 @@
     border: none;
     font-size: 12px;
     font-family: 'Golos Text', sans-serif;
-    width: 150px;
+    width: 95px;
     color: #3A3A3A;
 }
 
@@ -163,7 +163,7 @@ input.button-submit-search:hover {
     border: none;
     font-size: 12px;
     font-family: 'Golos Text', sans-serif;
-    width: 150px;
+    width: 90px;
     color: #3A3A3A;
 }
 
@@ -202,6 +202,22 @@ input.button-submit-search:hover {
 }
 
 .select-manufaktur{
+    border: none;
+    font-size: 12px;
+    font-family: 'Golos Text', sans-serif;
+    width: 150px;
+    color: #3A3A3A;
+}
+
+.select-status-bayar{
+    border: none;
+    font-size: 12px;
+    font-family: 'Golos Text', sans-serif;
+    width: 135px;
+    color: #3A3A3A;
+}
+
+.select-cara-penagihan{
     border: none;
     font-size: 12px;
     font-family: 'Golos Text', sans-serif;

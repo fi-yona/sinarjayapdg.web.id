@@ -19,13 +19,17 @@ if ($_SESSION['role'] !== 'Manajer') {
 <html>
     <head>
 		<title>Data Riwayat Pesanan</title>
-		<link rel="stylesheet" href="../../../assets/style/style-body.css?v1.1">
-        <link rel="stylesheet" href="../../../assets/style/style-button.css?v1.1">
+		<link rel="stylesheet" href="../../../assets/style/style-body.css?v7">
+        <link rel="stylesheet" href="../../../assets/style/style-button.css?v3">
         <link rel="stylesheet" href="../../../assets/style/style-img.css">
-        <link rel="stylesheet" href="../../../assets/style/style-input.css">
+        <link rel="stylesheet" href="../../../assets/style/style-input.css?v13">
         <link rel="shortcut icon" href="../../../assets/img/logo.svg">
+		<link rel="stylesheet" href="https://code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
         <script src="../../../script/logout1.js"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js"></script>
+        <script src="../../../script/show-calender.js?v3"></script>
 	</head>
     <body>
         <header>
@@ -56,16 +60,59 @@ if ($_SESSION['role'] !== 'Manajer') {
                 Data Riwayat Pesanan
             </div>
             <div class = "search-column">
-                <form id="form-search-absensi" class="form-search" action="../function/do-search-absensi.php" method="POST"> 
+                <form id="form-search-pesanan" class="form-search" action="../../../function/do-search-pesanan.php" method="POST"> 
                     <table class="table-layout-search">
                         <tr>
                             <td class = "td-search-tanggal">
                                 <div class="box-white-black-stroke-search">
-                                    <input type="text" placeholder="Masukkan Kata Kunci" name="kata-kunci" id="kata-kunci" class="input-kata-kunci">
+                                    <input type="text" placeholder="Dari Tanggal" name="tanggal_dari_search" id="tanggal_dari_search" class="input-text-search-tanggal tanggal-search">
+                                </div>
+                            </td>
+                            <td class = "td-search-tanggal">
+                                <div class="box-white-black-stroke-search">
+                                    <input type="text" placeholder="Hingga Tanggal" name="tanggal_hingga_search" id="tanggal_hingga_search" class="input-text-search-tanggal tanggal-search">
+                                </div>
+                            </td>
+                            <td class = "td-search-data">
+                                <div class="box-white-black-stroke-search">
+                                    <select name="toko_search" id="toko_search" class="select-toko">
+                                        <?php require_once '../../../function/select-toko.php';?>
+                                    </select>
+                                </div>
+                            </td>
+                            <td class = "td-search-data">
+                                <div class="box-white-black-stroke-search">
+                                    <select name="status_bayar_search" id="status_bayar_search" class="select-status-bayar">
+                                        <option value='Semua'>Semua Status Bayar</option>
+                                        <option value='Belum Lunas'>Belum Lunas</option>
+                                        <option value='Lunas'>Lunas</option>
+                                    </select>
+                                </div>
+                            </td>
+                            <td class = "td-search-data">
+                                <div class="box-white-black-stroke-search">
+                                    <select name="cara_penagihan_search" id="cara_penagihan_search" class="select-cara-penagihan">
+                                        <option value='Semua'>Semua Cara Penagihan</option>
+                                        <option value='Cicilan'>Cicilan</option>
+                                        <option value='Lunas'>Lunas</option>
+                                    </select>
+                                </div>
+                            </td>
+                            <td class = "td-search-tanggal">
+                                <div class="box-white-black-stroke-search">
+                                    <input type="text" placeholder="Jatuh Tempo" name="jatuh_tempo_search" id="jatuh_tempo_search" class="input-text-search-tanggal tanggal-search">
+                                </div>
+                            </td>
+                            <td class = "td-search-data">
+                                <div class="box-white-black-stroke-search">
+                                    <select name="username_search" id="username_search" class="select-sales">
+                                        <option value='Semua'>Semua Sales</option>
+                                        <?php require_once '../../../function/select-username.php';?>
+                                    </select>
                                 </div>
                             </td>
                             <td class = "td-button-search">
-                                <input type="submit" name="search" class="button-submit-search" value="Cari Data Riwayat Pesanan">
+                                <input type="submit" name="search" class="button-submit-search" value="Cari Data Pesanan">
                             </td>
                         </tr>
                     </table>
@@ -76,5 +123,47 @@ if ($_SESSION['role'] !== 'Manajer') {
             </div>
         </main>
         <?php include '../../../function/footer.php'; ?>
+        <script>
+            $(document).ready(function () {
+                $("#form-search-pesanan").submit(function (event) {
+                    event.preventDefault(); // Mencegah submit form secara default
+                    cariDataPesanan(); // Panggil fungsi cariDataKunjungan() untuk melakukan AJAX request
+                });
+
+                function cariDataPesanan() {
+                    // Ambil nilai dari elemen input
+                    const tanggalDari = $("#tanggal_dari_search").val();
+                    const tanggalHingga = $("#tanggal_hingga_search").val();
+                    const toko = $("#toko_search").val();
+                    const statusBayar = $("#status_bayar_search").val();
+                    const caraPenagihan = $("#cara_penagihan_search").val();
+                    const jatuhTempo = $("#jatuh_tempo_search").val();
+                    const username = $("#username_search").val();
+
+                    // Lakukan request AJAX ke halaman do-search-kunjungan.php
+                    $.ajax({
+                        url: '../../../function/do-search-pesanan.php',
+                        type: 'POST',
+                        data: {
+                            tanggal_dari_search: tanggalDari,
+                            tanggal_hingga_search: tanggalHingga, 
+                            toko_search: toko, 
+                            status_bayar_search: statusBayar, 
+                            cara_penagihan_search: caraPenagihan, 
+                            jatuh_tempo_search: jatuhTempo,
+                            username_search: username
+                        },
+                        success: function (response) {
+                            console.log(response);
+                            // Tampilkan hasil pencarian di elemen dengan class search-result
+                            $('.search-result').html(response);
+                        },
+                        error: function (error) {
+                            alert('Terjadi kesalahan saat melakukan pencarian data pesanan');
+                        }
+                    });
+                }
+            });
+        </script>
     </body>
 </html>
