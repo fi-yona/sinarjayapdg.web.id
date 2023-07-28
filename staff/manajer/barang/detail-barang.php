@@ -87,7 +87,7 @@ $conn->close();
         </header>
         <main>
             <div class = "column-button-sub-menu">
-                <a href="./barang.php"><button type="button" class="button-sub-menu-back">Kembali</button></a>
+                <a href="javascript:history.back()"><button type="button" class="button-sub-menu-back">Kembali</button></a>
             </div>
             <div class = "title-page">
                 Detail Barang

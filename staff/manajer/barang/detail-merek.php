@@ -46,8 +46,6 @@ if ($result->num_rows === 0) {
 // Ambil data barang
 $row = $result->fetch_assoc();
 
-$conn->close();
-
 ?>
 
 <!DOCTYPE html>
@@ -55,7 +53,7 @@ $conn->close();
     <head>
         <title>Detail Merek</title>
         <link rel="stylesheet" href="../../../assets/style/style-body.css">
-        <link rel="stylesheet" href="../../../assets/style/style-button.css?v1.1">
+        <link rel="stylesheet" href="../../../assets/style/style-button.css?v3">
         <link rel="stylesheet" href="../../../assets/style/style-img.css?v1.1">
         <link rel="stylesheet" href="../../../assets/style/style-input.css">
         <link rel="shortcut icon" href="../../../assets/img/logo.svg">
@@ -83,7 +81,7 @@ $conn->close();
         </header>
         <main>
             <div class = "column-button-sub-menu">
-                <a href="./merek.php"><button type="button" class="button-sub-menu-back">Kembali</button></a>
+                <a href="javascript:history.back()"><button type="button" class="button-sub-menu-back">Kembali</button></a>
             </div>
             <div class = "title-page">
                 Detail Merek
@@ -120,6 +118,13 @@ $conn->close();
             </div>
             <div class = "layout-button-data">
                 <a href="edit-merek.php?id_merek=<?php echo $id_merek; ?>"><button type="button" class="button-edit-data">Edit</button></a><button type="button" class="button-hapus-data" onclick="hapusData(<?php echo $id_merek; ?>)">Hapus</button>
+            </div>
+            <hr>
+            <div class = "sub-title-page">
+                Data Barang Merek <?php echo $row['nama_merek']?>
+            </div>
+            <div class = "search-result">
+                <?php require_once '../../../function/data-barang-merek.php'; ?>
             </div>
         </main>
         <?php include '../../../function/footer.php'; ?>
