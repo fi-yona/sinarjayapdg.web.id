@@ -1,15 +1,15 @@
 <?php
-//session_start();
+session_start();
 
 // Periksa apakah pengguna sudah login
 if (!isset($_SESSION['login']) || $_SESSION['login'] !== true) {
-    header("Location: ../staff/login.html");
+    header("Location: ../../../staff/login.html");
     exit();
 }
 
 // Periksa role pengguna
 if ($_SESSION['role'] !== 'Manajer') {
-    header("Location: ../staff/login.html");
+    header("Location: ../../../staff/login.html");
     echo "Anda tidak memiliki akses ke halaman ini!";
     exit();
 }
@@ -22,10 +22,13 @@ function createDetailPesananLink($id_pesanan)
     return $link;
 }
 
+// Ambil nilai dari request POST
+$rute = isset($_POST['rute_search']) ? $_POST['rute_search'] : '';
+$toko = isset($_POST['toko_search']) ? $_POST['toko_search'] : '';
 $tanggal = date("Y-m-d");
 
-// Query SQL
-$sql = "SELECT
+// Buat query untuk pencarian data
+$query = "SELECT
             tb_pesanan.id_pesanan,
             tb_pesanan.jatuh_tempo,
             tb_pesanan.tanggal_pesanan,
@@ -34,29 +37,39 @@ $sql = "SELECT
             tb_pesanan.total_harga_pesanan,
             tb_pesanan.status_bayar_pesanan,
             tb_pesanan.cara_penagihan
-        FROM 
+            FROM 
             tb_pesanan
-        INNER JOIN
+            INNER JOIN
             tb_toko ON tb_pesanan.id_toko = tb_toko.id_toko
-        INNER JOIN
+            INNER JOIN
             tb_karyawan ON tb_pesanan.username = tb_karyawan.username
-        INNER JOIN 
+            INNER JOIN 
             tb_rute ON tb_toko.id_rute = tb_rute.id_rute
-        WHERE 
-            tb_pesanan.status_bayar_pesanan = 'Belum Lunas' AND jatuh_tempo <= '$tanggal'
-        ORDER BY
-            tb_pesanan.jatuh_tempo ASC";
+            WHERE 
+            tb_pesanan.status_bayar_pesanan = 'Belum Lunas' AND jatuh_tempo <= '$tanggal'";
+
+// Tambahkan kondisi jika diberikan nilai
+if ($rute !== 'Semua' && $toko === 'Semua') {
+    $query .= " AND tb_rute.id_rute = '$rute'";
+} elseif ($rute === 'Semua' && $toko !== 'Semua') {
+    $query .= " AND tb_toko.id_toko = '$toko'";
+} elseif ($rute !== 'Semua' && $toko !== 'Semua') {
+    $query .= " AND tb_rute.id_rute = '$rute' AND tb_toko.id_toko = '$toko'";
+} 
+
+$query .= " ORDER BY tb_pesanan.jatuh_tempo ASC";
 
 // Eksekusi query
-$result = mysqli_query($conn, $sql);
+$result = mysqli_query($conn, $query);
 
 // Periksa hasil query
-if (mysqli_num_rows($result) > 0) {
-    $total = mysqli_num_rows($result);
-    echo "<div class='total-data'>";
-    //echo "<p>*Pesanan yang belum lunas & jatuh tempo hingga hari ini</p>";
-    echo "<p>Total Data: " . $total . "</p>";
-    echo "</div>";
+if (!$result) {
+    die("Query error: " . $conn->error);
+}
+
+// Tampilkan hasil pencarian dalam tabel
+$total = mysqli_num_rows($result);
+    echo "<div class='total-data'>Total Data: " . $total . "</div>";
     echo "<table class='table-search-result'>";
     echo "<tr>";
     echo "<th class='.title-atribut-data-absensi'>No</th>";
@@ -89,9 +102,6 @@ if (mysqli_num_rows($result) > 0) {
         echo "</tr>";
     }
 
-    echo "</table>";
-} else {
-    // Jika query tidak mengembalikan hasil
-    echo "<p>Tidak ada data pesanan jatuh tempo.</p>";
-}
+echo "</table>";
+echo "</div>";
 ?>
