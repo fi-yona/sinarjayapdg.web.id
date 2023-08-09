@@ -43,7 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 
                 if ($updateDetailPesananResult) {
                     $response = array('status' => 'Berhasil');
-                        echo json_encode($response);
+                    echo json_encode($response);
                 } else {
                     $response = array('status' => 'Gagal');
                     echo json_encode($response);

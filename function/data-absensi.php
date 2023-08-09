@@ -16,6 +16,8 @@ if ($_SESSION['role'] !== 'Manajer') {
 
 require_once 'dbconfig.php';
 
+$bulan = date('m');
+
 function createDetailAbsensiLink($id_absensi)
 {
     $link = '<a href="detail-absensi.php?id_absensi=' . $id_absensi . '">Detail</a>';
@@ -44,6 +46,8 @@ $sql = "SELECT
             tb_karyawan ON tb_absensi.username = tb_karyawan.username
         JOIN
             tb_user ON tb_absensi.username = tb_user.username
+        WHERE
+            MONTH(tanggal_absensi) = '$bulan'
         ORDER BY
             tb_absensi.tanggal_absensi DESC, tb_absensi.waktu_masuk DESC";
 
@@ -53,7 +57,10 @@ $result = mysqli_query($conn, $sql);
 // Periksa hasil query
 if (mysqli_num_rows($result) > 0) {
     $total = mysqli_num_rows($result);
-    echo "<div class='total-data'>Total Data: " . $total . "</div>";
+    echo "<div class='total-data'>";
+    echo "<p>*Dalam bulan ini</p>";
+    echo "<p>Total Data: " . $total . "</p>";
+    echo "</div>";
     echo "<table class='table-search-result'>";
     echo "<tr>";
     echo "<th class='.title-atribut-data-absensi'>No</th>";
@@ -95,6 +102,6 @@ if (mysqli_num_rows($result) > 0) {
     echo "</table>";
 } else {
     // Jika query tidak mengembalikan hasil
-    echo "<p>Tidak ada data absensi.</p>";
+    echo "<p>Tidak ada data absensi untuk bulan ini.</p>";
 }
 ?>

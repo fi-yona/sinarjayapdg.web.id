@@ -16,6 +16,8 @@ if ($_SESSION['role'] !== 'Manajer') {
 
 require_once 'dbconfig.php';
 
+$bulan = date('m');
+
 function createDetailKunjunganLink($id_kunjungan)
 {
     $link = '<a href="detail-kunjungan.php?id_kunjungan=' . $id_kunjungan . '">Detail</a>';
@@ -42,6 +44,8 @@ $sql = "SELECT
             tb_toko ON tb_kunjungan.id_toko = tb_toko.id_toko
         JOIN
             tb_rute ON tb_toko.id_rute = tb_rute.id_rute
+        WHERE
+            MONTH(tanggal_kunjungan) = '$bulan'
         ORDER BY
             tb_kunjungan.tanggal_kunjungan DESC, tb_kunjungan.waktu_kunjungan DESC";
 
@@ -51,7 +55,10 @@ $result = mysqli_query($conn, $sql);
 // Periksa hasil query
 if (mysqli_num_rows($result) > 0) {
     $total = mysqli_num_rows($result);
-    echo "<div class='total-data'>Total Data: " . $total . "</div>";
+    echo "<div class='total-data'>";
+    echo "<p>*Dalam bulan ini</p>";
+    echo "<p>Total Data: " . $total . "</p>";
+    echo "</div>";
     echo "<table class='table-search-result'>";
     echo "<tr>";
     echo "<th class='.title-atribut-data-absensi'>No</th>";
@@ -87,6 +94,6 @@ if (mysqli_num_rows($result) > 0) {
     echo "</table>";
 } else {
     // Jika query tidak mengembalikan hasil
-    echo "<p>Tidak ada data kunjungan.</p>";
+    echo "<p>Tidak ada data kunjungan untuk bulan ini.</p>";
 }
 ?>

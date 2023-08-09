@@ -89,44 +89,50 @@ $result = mysqli_query($conn, $query);
 
 // Periksa hasil query
 if (!$result) {
-    die("Query error: " . $conn->error);
+    die("Query error: " . mysqli_error($conn));
 }
 
-// Tampilkan hasil pencarian dalam tabel
-$total = mysqli_num_rows($result);
-echo "<div class='total-data'>Total Data: " . $total . "</div>";
-echo "<table class='table-search-result'>";
-echo "<tr>";
-echo "<th class='.title-atribut-data-absensi'>No</th>";
-echo "<th class='.title-atribut-data-absensi'>Nama Lengkap</th>";
-echo "<th class='.title-atribut-data-absensi'>Username</th>";
-echo "<th class='.title-atribut-data-absensi'>Tanggal Kunjungan</th>";
-echo "<th class='.title-atribut-data-absensi'>Waktu Kunjungan</th>";
-echo "<th class='.title-atribut-data-absensi'>Nama Rute</th>";
-echo "<th class='.title-atribut-data-absensi'>Nama Toko</th>";
-echo "<th class='.title-atribut-data-absensi'>Koordinat Kunjungan</th>";
-echo "<th class='.title-atribut-data-absensi'>Lokasi Kunjungan</th>";
-echo "<th class='.title-atribut-data-absensi'>Detail</th>";
-echo "</tr>";
-
-$counter = 1;
-// Tampilkan data dalam tabel
-while ($row = mysqli_fetch_assoc($result)) {
+// Periksa hasil query
+if (mysqli_num_rows($result) > 0) {
+    // Tampilkan hasil pencarian dalam tabel
+    $total = mysqli_num_rows($result);
+    echo "<div class='total-data'>Total Data: " . $total . "</div>";
+    echo "<table class='table-search-result'>";
     echo "<tr>";
-    echo "<td>" . $counter . "</td>";
-        $counter++;
-    echo "<td>" . $row['nama_lengkap'] . "</td>";
-    echo "<td>" . $row['username'] . "</td>";
-    echo "<td>" . $row['tanggal_kunjungan'] . "</td>";
-    echo "<td>" . $row['waktu_kunjungan'] . "</td>";
-    echo "<td>" . $row['nama_rute'] . "</td>";
-    echo "<td>" . $row['nama_toko'] . "</td>";
-    echo "<td>" . $row['latitude_kunjungan'] . ", " . $row['longitude_kunjungan'] . "</td>";
-    echo "<td>" . $row['lokasi_kunjungan'] . "</td>";
-    echo "<td>" . createDetailKunjunganLink($row['id_kunjungan']) . "</td>";
+    echo "<th class='.title-atribut-data-absensi'>No</th>";
+    echo "<th class='.title-atribut-data-absensi'>Nama Lengkap</th>";
+    echo "<th class='.title-atribut-data-absensi'>Username</th>";
+    echo "<th class='.title-atribut-data-absensi'>Tanggal Kunjungan</th>";
+    echo "<th class='.title-atribut-data-absensi'>Waktu Kunjungan</th>";
+    echo "<th class='.title-atribut-data-absensi'>Nama Rute</th>";
+    echo "<th class='.title-atribut-data-absensi'>Nama Toko</th>";
+    echo "<th class='.title-atribut-data-absensi'>Koordinat Kunjungan</th>";
+    echo "<th class='.title-atribut-data-absensi'>Lokasi Kunjungan</th>";
+    echo "<th class='.title-atribut-data-absensi'>Detail</th>";
     echo "</tr>";
-}
 
-echo "</table>";
-echo "</div>";
+    $counter = 1;
+    // Tampilkan data dalam tabel
+    while ($row = mysqli_fetch_assoc($result)) {
+        echo "<tr>";
+        echo "<td>" . $counter . "</td>";
+            $counter++;
+        echo "<td>" . $row['nama_lengkap'] . "</td>";
+        echo "<td>" . $row['username'] . "</td>";
+        echo "<td>" . $row['tanggal_kunjungan'] . "</td>";
+        echo "<td>" . $row['waktu_kunjungan'] . "</td>";
+        echo "<td>" . $row['nama_rute'] . "</td>";
+        echo "<td>" . $row['nama_toko'] . "</td>";
+        echo "<td>" . $row['latitude_kunjungan'] . ", " . $row['longitude_kunjungan'] . "</td>";
+        echo "<td>" . $row['lokasi_kunjungan'] . "</td>";
+        echo "<td>" . createDetailKunjunganLink($row['id_kunjungan']) . "</td>";
+        echo "</tr>";
+    }
+
+    echo "</table>";
+    echo "</div>";
+} else {
+    // Jika query tidak mengembalikan hasil
+    echo "<p>Tidak ada data kunjungan yang ditemukan.</p>";
+}
 ?>

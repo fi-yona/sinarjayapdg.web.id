@@ -31,7 +31,7 @@ $caraPenagihan = isset($_POST['cara_penagihan_search']) ? $_POST['cara_penagihan
 $jatuhTempo = isset($_POST['jatuh_tempo_search']) ? $_POST['jatuh_tempo_search'] : '';
 $username = isset($_POST['username_search']) ? $_POST['username_search'] : '';
 
-// Buat query untuk pencarian data kunjungan
+// Buat query untuk pencarian data pesanan
 $query = "SELECT
             tb_pesanan.id_pesanan,
             tb_pesanan.tanggal_pesanan,
@@ -121,11 +121,13 @@ $result = mysqli_query($conn, $query);
 
 // Periksa hasil query
 if (!$result) {
-    die("Query error: " . $conn->error);
+    die("Query error: " . mysqli_error($conn));
 }
 
-// Tampilkan hasil pencarian dalam tabel
-$total = mysqli_num_rows($result);
+// Periksa hasil query
+if (mysqli_num_rows($result) > 0) {
+    // Tampilkan hasil pencarian dalam tabel
+    $total = mysqli_num_rows($result);
     echo "<div class='total-data'>";
     echo "<p>Total Data: " . $total . "</p>";
     echo "</div>";
@@ -165,6 +167,10 @@ $total = mysqli_num_rows($result);
         echo "</tr>";
     }
 
-echo "</table>";
-echo "</div>";
+    echo "</table>";
+    echo "</div>";
+} else {
+    // Jika query tidak mengembalikan hasil
+    echo "<p>Tidak ada data pesanan yang ditemukan.</p>";
+}
 ?>

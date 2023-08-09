@@ -65,50 +65,56 @@ $result = mysqli_query($conn, $query);
 
 // Periksa hasil query
 if (!$result) {
-    die("Query error: " . $conn->error);
+    die("Query error: " . mysqli_error($conn));
 }
 
-// Tampilkan hasil pencarian dalam tabel
-$total = mysqli_num_rows($result);
-echo "<div class='total-data'>Total Data: " . $total . "</div>";
-echo "<table class='table-search-result'>";
-echo "<tr>";
-echo "<th class='.title-atribut-data-absensi'>No</th>";
-echo "<th class='.title-atribut-data-absensi'>Nama Lengkap</th>";
-echo "<th class='.title-atribut-data-absensi'>Username</th>";
-echo "<th class='.title-atribut-data-absensi'>Tanggal</th>";
-echo "<th class='.title-atribut-data-absensi'>Waktu Masuk</th>";
-echo "<th class='.title-atribut-data-absensi'>Koordinat Masuk</th>";
-echo "<th class='.title-atribut-data-absensi'>Lokasi Masuk</th>";
-echo "<th class='.title-atribut-data-absensi'>Keterangan Masuk</th>";
-echo "<th class='.title-atribut-data-absensi'>Waktu Pulang</th>";
-echo "<th class='.title-atribut-data-absensi'>Koordinat Pulang</th>";
-echo "<th class='.title-atribut-data-absensi'>Lokasi Pulang</th>";
-echo "<th class='.title-atribut-data-absensi'>Keterangan Pulang</th>";
-echo "<th class='.title-atribut-data-absensi'>Detail</th>";
-echo "</tr>";
-
-$counter = 1;
-// Tampilkan data dalam tabel
-while ($row = mysqli_fetch_assoc($result)) {
+// Periksa hasil query
+if (mysqli_num_rows($result) > 0) {
+    // Tampilkan hasil pencarian dalam tabel
+    $total = mysqli_num_rows($result);
+    echo "<div class='total-data'>Total Data: " . $total . "</div>";
+    echo "<table class='table-search-result'>";
     echo "<tr>";
-    echo "<td>" . $counter . "</td>";
-        $counter++;
-    echo "<td>" . $row['nama_lengkap'] . "</td>";
-    echo "<td>" . $row['username'] . "</td>";
-    echo "<td>" . $row['tanggal_absensi'] . "</td>";
-    echo "<td>" . $row['waktu_masuk'] . "</td>";
-    echo "<td>" . $row['latitude_masuk'] . ", " . $row['longitude_masuk'] . "</td>";
-    echo "<td>" . $row['lokasi_masuk'] . "</td>";
-    echo "<td>" . $row['keterangan_masuk'] . "</td>";
-    echo "<td>" . $row['waktu_pulang'] . "</td>";
-    echo "<td>" . $row['latitude_pulang'] . ", " . $row['longitude_pulang'] . "</td>";
-    echo "<td>" . $row['lokasi_pulang'] . "</td>";
-    echo "<td>" . $row['keterangan_pulang'] . "</td>";
-    echo "<td>" . createDetailAbsensiLink($row['id_absensi']) . "</td>";
+    echo "<th class='.title-atribut-data-absensi'>No</th>";
+    echo "<th class='.title-atribut-data-absensi'>Nama Lengkap</th>";
+    echo "<th class='.title-atribut-data-absensi'>Username</th>";
+    echo "<th class='.title-atribut-data-absensi'>Tanggal</th>";
+    echo "<th class='.title-atribut-data-absensi'>Waktu Masuk</th>";
+    echo "<th class='.title-atribut-data-absensi'>Koordinat Masuk</th>";
+    echo "<th class='.title-atribut-data-absensi'>Lokasi Masuk</th>";
+    echo "<th class='.title-atribut-data-absensi'>Keterangan Masuk</th>";
+    echo "<th class='.title-atribut-data-absensi'>Waktu Pulang</th>";
+    echo "<th class='.title-atribut-data-absensi'>Koordinat Pulang</th>";
+    echo "<th class='.title-atribut-data-absensi'>Lokasi Pulang</th>";
+    echo "<th class='.title-atribut-data-absensi'>Keterangan Pulang</th>";
+    echo "<th class='.title-atribut-data-absensi'>Detail</th>";
     echo "</tr>";
-}
 
-echo "</table>";
-echo "</div>";
+    $counter = 1;
+    // Tampilkan data dalam tabel
+    while ($row = mysqli_fetch_assoc($result)) {
+        echo "<tr>";
+        echo "<td>" . $counter . "</td>";
+            $counter++;
+        echo "<td>" . $row['nama_lengkap'] . "</td>";
+        echo "<td>" . $row['username'] . "</td>";
+        echo "<td>" . $row['tanggal_absensi'] . "</td>";
+        echo "<td>" . $row['waktu_masuk'] . "</td>";
+        echo "<td>" . $row['latitude_masuk'] . ", " . $row['longitude_masuk'] . "</td>";
+        echo "<td>" . $row['lokasi_masuk'] . "</td>";
+        echo "<td>" . $row['keterangan_masuk'] . "</td>";
+        echo "<td>" . $row['waktu_pulang'] . "</td>";
+        echo "<td>" . $row['latitude_pulang'] . ", " . $row['longitude_pulang'] . "</td>";
+        echo "<td>" . $row['lokasi_pulang'] . "</td>";
+        echo "<td>" . $row['keterangan_pulang'] . "</td>";
+        echo "<td>" . createDetailAbsensiLink($row['id_absensi']) . "</td>";
+        echo "</tr>";
+    }
+
+    echo "</table>";
+    echo "</div>";
+} else {
+    // Jika query tidak mengembalikan hasil
+    echo "<p>Tidak ada data absensi yang ditemukan.</p>";
+}
 ?>

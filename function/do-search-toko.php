@@ -54,36 +54,42 @@ $result = mysqli_query($conn, $query);
 
 // Periksa hasil query
 if (!$result) {
-    die("Query error: " . $conn->error);
+    die("Query error: " . mysqli_error($conn));
 }
 
-// Tampilkan hasil pencarian dalam tabel
-$total = mysqli_num_rows($result);
-echo "<div class='total-data'>Total Data: " . $total . "</div>";
-echo "<table class='table-search-result'>";
-echo "<tr>";
-echo "<th class='.title-atribut-data-absensi'>No</th>";
-echo "<th class='.title-atribut-data-toko'>Id Toko</th>";
-echo "<th class='.title-atribut-data-toko'>Nama Toko</th>";
-echo "<th class='.title-atribut-data-toko'>Nama Rute</th>";
-echo "<th class='.title-atribut-data-toko'>Kontak Toko</th>";
-echo "<th class='.title-atribut-data-toko'>Detail</th>";
-echo "</tr>";
-
-$counter = 1;
-// Tampilkan data dalam tabel
-while ($row = mysqli_fetch_assoc($result)) {
+// Periksa hasil query
+if (mysqli_num_rows($result) > 0) {
+    // Tampilkan hasil pencarian dalam tabel
+    $total = mysqli_num_rows($result);
+    echo "<div class='total-data'>Total Data: " . $total . "</div>";
+    echo "<table class='table-search-result'>";
     echo "<tr>";
-    echo "<td>" . $counter . "</td>";
-        $counter++;
-    echo "<td>" . $row['id_toko'] . "</td>";
-    echo "<td>" . $row['nama_toko'] . "</td>";
-    echo "<td>" . $row['nama_rute'] . "</td>";
-    echo "<td>" . $row['kontak_toko'] . "</td>";
-    echo "<td>" . createDetailTokoLink($row['id_toko']) . "</td>";
+    echo "<th class='.title-atribut-data-absensi'>No</th>";
+    echo "<th class='.title-atribut-data-toko'>Id Toko</th>";
+    echo "<th class='.title-atribut-data-toko'>Nama Toko</th>";
+    echo "<th class='.title-atribut-data-toko'>Nama Rute</th>";
+    echo "<th class='.title-atribut-data-toko'>Kontak Toko</th>";
+    echo "<th class='.title-atribut-data-toko'>Detail</th>";
     echo "</tr>";
-}
 
-echo "</table>";
-echo "</div>";
+    $counter = 1;
+    // Tampilkan data dalam tabel
+    while ($row = mysqli_fetch_assoc($result)) {
+        echo "<tr>";
+        echo "<td>" . $counter . "</td>";
+            $counter++;
+        echo "<td>" . $row['id_toko'] . "</td>";
+        echo "<td>" . $row['nama_toko'] . "</td>";
+        echo "<td>" . $row['nama_rute'] . "</td>";
+        echo "<td>" . $row['kontak_toko'] . "</td>";
+        echo "<td>" . createDetailTokoLink($row['id_toko']) . "</td>";
+        echo "</tr>";
+    }
+
+    echo "</table>";
+    echo "</div>";
+} else {
+    // Jika query tidak mengembalikan hasil
+    echo "<p>Tidak ada data toko yang ditemukan.</p>";
+}
 ?>

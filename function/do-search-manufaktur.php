@@ -48,38 +48,44 @@ $result = mysqli_query($conn, $query);
 
 // Periksa hasil query
 if (!$result) {
-    die("Query error: " . $conn->error);
+    die("Query error: " . mysqli_error($conn));
 }
 
-// Tampilkan hasil pencarian dalam tabel
-$total = mysqli_num_rows($result);
-echo "<div class='total-data'>Total Data: " . $total . "</div>";
-echo "<table class='table-search-result'>";
-echo "<tr>";
-echo "<th class='.title-atribut-data-manufaktur'>No</th>";
-echo "<th class='.title-atribut-data-manufaktur'>Nama Manufaktur</th>";
-echo "<th class='.title-atribut-data-manufaktur'>Kontak</th>";
-echo "<th class='.title-atribut-data-manufaktur'>Email</th>";
-echo "<th class='.title-atribut-data-manufaktur'>Alamat</th>";
-echo "<th class='.title-atribut-data-manufaktur'>Kode Pos</th>";
-echo "<th class='.title-atribut-data-manufaktur'>Detail</th>";
-echo "</tr>";
-
-$counter = 1;
-// Tampilkan data dalam tabel
-while ($row = mysqli_fetch_assoc($result)) {
+// Periksa hasil query
+if (mysqli_num_rows($result) > 0) {
+    // Tampilkan hasil pencarian dalam tabel
+    $total = mysqli_num_rows($result);
+    echo "<div class='total-data'>Total Data: " . $total . "</div>";
+    echo "<table class='table-search-result'>";
     echo "<tr>";
-    echo "<td><center>" . $counter . "</center></td>";
-        $counter++;
-    echo "<td>" . $row['nama_manufaktur'] . "</td>";
-    echo "<td>" . $row['kontak_manufaktur'] . "</td>";
-    echo "<td>" . $row['email_manufaktur'] . "</td>";
-    echo "<td>" . $row['alamat_manufaktur'] . "</td>";
-    echo "<td>" . $row['kode_pos_manufaktur'] . "</td>";
-    echo "<td>" . createDetailManukfakturLink($row['id_manufaktur']) . "</td>";
+    echo "<th class='.title-atribut-data-manufaktur'>No</th>";
+    echo "<th class='.title-atribut-data-manufaktur'>Nama Manufaktur</th>";
+    echo "<th class='.title-atribut-data-manufaktur'>Kontak</th>";
+    echo "<th class='.title-atribut-data-manufaktur'>Email</th>";
+    echo "<th class='.title-atribut-data-manufaktur'>Alamat</th>";
+    echo "<th class='.title-atribut-data-manufaktur'>Kode Pos</th>";
+    echo "<th class='.title-atribut-data-manufaktur'>Detail</th>";
     echo "</tr>";
-}
 
-echo "</table>";
-echo "</div>";
+    $counter = 1;
+    // Tampilkan data dalam tabel
+    while ($row = mysqli_fetch_assoc($result)) {
+        echo "<tr>";
+        echo "<td><center>" . $counter . "</center></td>";
+            $counter++;
+        echo "<td>" . $row['nama_manufaktur'] . "</td>";
+        echo "<td>" . $row['kontak_manufaktur'] . "</td>";
+        echo "<td>" . $row['email_manufaktur'] . "</td>";
+        echo "<td>" . $row['alamat_manufaktur'] . "</td>";
+        echo "<td>" . $row['kode_pos_manufaktur'] . "</td>";
+        echo "<td>" . createDetailManukfakturLink($row['id_manufaktur']) . "</td>";
+        echo "</tr>";
+    }
+
+    echo "</table>";
+    echo "</div>";
+} else {
+    // Jika query tidak mengembalikan hasil
+    echo "<p>Tidak ada data manufaktur yang ditemukan.</p>";
+}
 ?>

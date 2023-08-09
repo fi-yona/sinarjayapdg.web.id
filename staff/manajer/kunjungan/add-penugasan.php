@@ -72,7 +72,7 @@ $username = $_SESSION['username'];
                         <table class="table-add-data">
                             <tr>
                                 <th>Tanggal Penugasan</th>
-                                <td><input type="text" placeholder="Tahun-Bulan-Hari" name="tanggal_penugasan" id="tanggal_penugasan" class="input-text-add tanggal-penugasan"></td>
+                                <td><input type="text" placeholder="Tahun-Bulan-Hari" name="tanggal_penugasan" id="tanggal_penugasan" class="input-text-add tanggal-penugasan" onchange="validateDate()"></td>
                             </tr>
                             <tr>
                                 <th>Username Penugasan</th>
@@ -106,5 +106,28 @@ $username = $_SESSION['username'];
             </div>
         </main>
         <?php include '../../../function/footer.php'; ?>
+        <script>
+            // Fungsi untuk memeriksa apakah tanggal penugasan lebih besar atau sama dengan tanggal saat ini
+            function isDateValid(inputDate) {
+                var currentDate = new Date().toISOString().split('T')[0];
+                return inputDate >= currentDate;
+            }
+
+            // Fungsi untuk validasi tanggal saat input berubah
+            function validateDate() {
+                var tanggalPenugasan = document.getElementById('tanggal_penugasan').value;
+                var isValid = isDateValid(tanggalPenugasan);
+                
+                if (!isValid) {
+                    showInvalidDateAlert();
+                    document.getElementById('tanggal_penugasan').value = ''; // Bersihkan input
+                }
+            }
+            
+            // Fungsi untuk menampilkan pesan peringatan
+            function showInvalidDateAlert() {
+                window.alert("Masukkan tanggal yang valid!");
+            }
+        </script>
     </body>
 </html>

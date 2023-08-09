@@ -64,11 +64,13 @@ $result = mysqli_query($conn, $query);
 
 // Periksa hasil query
 if (!$result) {
-    die("Query error: " . $conn->error);
+    die("Query error: " . mysqli_error($conn));
 }
 
-// Tampilkan hasil pencarian dalam tabel
-$total = mysqli_num_rows($result);
+// Periksa hasil query
+if (mysqli_num_rows($result) > 0) {
+    // Tampilkan hasil pencarian dalam tabel
+    $total = mysqli_num_rows($result);
     echo "<div class='total-data'>Total Data: " . $total . "</div>";
     echo "<table class='table-search-result'>";
     echo "<tr>";
@@ -102,6 +104,10 @@ $total = mysqli_num_rows($result);
         echo "</tr>";
     }
 
-echo "</table>";
-echo "</div>";
+    echo "</table>";
+    echo "</div>";
+} else {
+    // Jika query tidak mengembalikan hasil
+    echo "<p>Tidak ada data pesanan jatuh tempo yang ditemukan.</p>";
+}
 ?>
