@@ -48,7 +48,7 @@ if (isset($_POST['add-data-barang'])) {
         exit();
     } else {
         // Jika terjadi kesalahan saat penyimpanan
-        echo "Terjadi kesalahan saat menyimpan data barang: " . $conn->error;
+        echo "Terjadi kesalahan saat menyimpan data barang: " . mysqli_error($error);
     }
 
     $conn->close();

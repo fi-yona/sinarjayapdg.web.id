@@ -39,7 +39,7 @@ if (isset($_POST['add-data-manufaktur'])) {
         exit();
     } else {
         // Jika terjadi kesalahan saat penyimpanan
-        echo "Terjadi kesalahan saat menyimpan data manufaktur: " . $conn->connect_error;
+        echo "Terjadi kesalahan saat menyimpan data manufaktur: " . mysqli_error($error);
     }
 
     $conn->close();
