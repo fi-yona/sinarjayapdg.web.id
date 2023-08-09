@@ -52,7 +52,7 @@ if ($_SESSION['role'] !== 'Manajer') {
             </div>
             <div class = "detail-data">
                 <div class = "box-green-1">
-                    <form id="form-add-data-toko" class="table-form-add" action="../../../function/add-data-toko.php" method="POST">
+                    <form id="form-add-data-toko" class="table-form-add" action="../../../function/add-data-toko.php" method="POST" onsubmit="return validateForm()">
                         <table class="table-add-data">
                             <tr>
                                 <th>Nama Toko</th>
@@ -108,5 +108,18 @@ if ($_SESSION['role'] !== 'Manajer') {
             </div>
         </main>
         <?php include '../../../function/footer.php'; ?>
+        <script>
+            function validateForm() {
+                var namaToko = document.getElementById('nama_toko').value;
+
+                if (namaToko.trim() === '') {
+                    alert('Nama toko tidak boleh kosong!');
+                    return false; // Menghentikan pengiriman formulir
+                }
+
+                // Lanjutkan dengan pengiriman formulir jika nama toko tidak kosong
+                return true;
+            }
+        </script>
     </body>
 </html>
