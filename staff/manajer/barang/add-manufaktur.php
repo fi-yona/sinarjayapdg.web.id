@@ -52,7 +52,7 @@ if ($_SESSION['role'] !== 'Manajer') {
             </div>
             <div class = "detail-data">
                 <div class = "box-green-1">
-                    <form id="form-add-data-manufaktur" class="table-form-add" action="../../../function/add-data-manufaktur.php" method="POST">
+                    <form id="form-add-data-manufaktur" class="table-form-add" action="../../../function/add-data-manufaktur.php" method="POST" onsubmit="return validateForm()">
                         <table class="table-add-data">
                             <tr>
                                 <th>Nama Manufaktur</th>
@@ -98,5 +98,17 @@ if ($_SESSION['role'] !== 'Manajer') {
             </div>
         </main>
         <?php include '../../../function/footer.php'; ?>
+        <script>
+            function validateForm() {
+                var namaManufaktur = document.getElementById('nama_manufaktur').value;
+
+                if (namaManufaktur.trim() === '') {
+                    alert('Nama manufaktur tidak boleh kosong!');
+                    return false; // Menghentikan pengiriman formulir
+                }
+                
+                return true;
+            }
+        </script>
     </body>
 </html>

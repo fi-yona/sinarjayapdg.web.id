@@ -37,7 +37,7 @@ $result = $conn->query($query);
 
 // Periksa hasil query
 if (!$result) {
-    die("Query error: " . $conn->error);
+    die("Query error: " . mysqli_error($conn));
 }
 
 // Periksa apakah data ditemukan
@@ -92,7 +92,7 @@ $row = $result->fetch_assoc();
             </div>
             <div class = "detail-data">
                 <div class="box-green-1">
-                    <form id="form-edit-data-manufaktur" class="table-form-add" action="../../../function/edit-data-manufaktur.php?id_manufaktur=<?php echo $id_manufaktur; ?>" method="POST">
+                    <form id="form-edit-data-manufaktur" class="table-form-add" action="../../../function/edit-data-manufaktur.php?id_manufaktur=<?php echo $id_manufaktur; ?>" method="POST" onsubmit="return validateForm()">
                         <table class="table-add-data">
                         <tr>
                                 <th>Nama Manufaktur</th>
@@ -138,5 +138,17 @@ $row = $result->fetch_assoc();
             </div>
         </main>
         <?php include '../../../function/footer.php'; ?>
+        <script>
+            function validateForm() {
+                var namaManufaktur = document.getElementById('nama_manufaktur').value;
+
+                if (namaManufaktur.trim() === '') {
+                    alert('Nama manufaktur tidak boleh kosong!');
+                    return false; // Menghentikan pengiriman formulir
+                }
+                
+                return true;
+            }
+        </script>
     </body>
 </html>
