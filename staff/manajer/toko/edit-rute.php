@@ -30,7 +30,7 @@ $result = $conn->query($query);
 
 // Periksa hasil query
 if (!$result) {
-    die("Query error: " . $conn->error);
+    die("Query error: " . mysqli_error($conn));
 }
 
 // Periksa apakah data ditemukan
@@ -85,7 +85,7 @@ $row = $result->fetch_assoc();
             </div>
             <div class = "detail-data">
                 <div class="box-green-1">
-                    <form id="form-edit-data-rute" class="table-form-add" action="../../../function/edit-data-rute.php?id_rute=<?php echo $id_rute; ?>" method="POST">
+                    <form id="form-edit-data-rute" class="table-form-add" action="../../../function/edit-data-rute.php?id_rute=<?php echo $id_rute; ?>" method="POST" onsubmit="return validateForm()">
                         <table class="table-add-data">
                             <tr>
                                 <th>Nama Rute</th>
@@ -109,5 +109,18 @@ $row = $result->fetch_assoc();
             </div>
         </main>
         <?php include '../../../function/footer.php'; ?>
+        <script>
+            function validateForm() {
+                var namaToko = document.getElementById('nama_rute').value;
+
+                if (namaToko.trim() === '') {
+                    alert('Nama rute tidak boleh kosong!');
+                    return false; // Menghentikan pengiriman formulir
+                }
+
+                // Lanjutkan dengan pengiriman formulir jika nama rute tidak kosong
+                return true;
+            }
+        </script>
     </body>
 </html>

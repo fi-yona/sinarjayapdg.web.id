@@ -83,7 +83,7 @@ if ($_SESSION['role'] !== 'Manajer') {
                     return false; // Menghentikan pengiriman formulir
                 }
 
-                // Lanjutkan dengan pengiriman formulir jika nama rutw tidak kosong
+                // Lanjutkan dengan pengiriman formulir jika nama rute tidak kosong
                 return true;
             }
         </script>
