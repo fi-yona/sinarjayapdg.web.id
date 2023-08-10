@@ -111,9 +111,9 @@ $row = $result->fetch_assoc();
         <?php include '../../../function/footer.php'; ?>
         <script>
             function validateForm() {
-                var namaToko = document.getElementById('nama_rute').value;
+                var namaRute = document.getElementById('nama_rute').value;
 
-                if (namaToko.trim() === '') {
+                if (namaRute.trim() === '') {
                     alert('Nama rute tidak boleh kosong!');
                     return false; // Menghentikan pengiriman formulir
                 }

@@ -59,7 +59,7 @@ if (isset($_GET['status']) && $_GET['status'] === 'success') {
             </div>
             <div class = "detail-data">
                 <div class = "box-green-1">
-                    <form id="form-add-data-barang" class="table-form-add" action="../../../function/add-data-barang.php" method="POST">
+                    <form id="form-add-data-barang" class="table-form-add" action="../../../function/add-data-barang.php" method="POST" onsubmit="return validateForm()">
                         <table class="table-add-data">
                             <tr>
                                 <th>Merek</th>
@@ -105,5 +105,24 @@ if (isset($_GET['status']) && $_GET['status'] === 'success') {
             </div>
         </main>
         <?php include '../../../function/footer.php'; ?>
+        <script>
+            function validateForm() {
+                var namaBarang = document.getElementById('nama_barang').value;
+                var banyakBarang = document.getElementById('banyak_barang').value;
+                var harga = document.getElementById('harga_barang').value;
+
+                if (namaBarang.trim() === '') {
+                    alert('Nama barang tidak boleh kosong!');
+                    return false; // Menghentikan pengiriman formulir
+                }else if (banyakBarang.trim() === ''){
+                    alert('Banyak barang tidak boleh kosong!');
+                    return false; // Menghentikan pengiriman formulir
+                }else if (harga.trim() === ''){
+                    alert('Harga barang tidak boleh kosong!');
+                    return false; // Menghentikan pengiriman formulir
+                }
+                return true;
+            }
+        </script>
     </body>
 </html>

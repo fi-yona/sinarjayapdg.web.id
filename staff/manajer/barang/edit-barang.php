@@ -38,7 +38,7 @@ $result = $conn->query($query);
 
 // Periksa hasil query
 if (!$result) {
-    die("Query error: " . $conn->error);
+    die("Query error: " . mysqli_error($conn));
 }
 
 // Periksa apakah data ditemukan
@@ -93,7 +93,7 @@ $row = $result->fetch_assoc();
             </div>
             <div class = "detail-data">
                 <div class="box-green-1">
-                    <form id="form-edit-data-barang" class="table-form-add" action="../../../function/edit-data-barang.php?id_barang=<?php echo $id_barang; ?>" method="POST">
+                    <form id="form-edit-data-barang" class="table-form-add" action="../../../function/edit-data-barang.php?id_barang=<?php echo $id_barang; ?>" method="POST" onsubmit="return validateForm()">
                         <table class="table-add-data">
                             <tr>
                                 <th>Merek</th>
@@ -139,5 +139,24 @@ $row = $result->fetch_assoc();
             </div>
         </main>
         <?php include '../../../function/footer.php'; ?>
+        <script>
+            function validateForm() {
+                var namaBarang = document.getElementById('nama_barang').value;
+                var banyakBarang = document.getElementById('banyak_barang').value;
+                var harga = document.getElementById('harga_barang').value;
+
+                if (namaBarang.trim() === '') {
+                    alert('Nama barang tidak boleh kosong!');
+                    return false; // Menghentikan pengiriman formulir
+                }else if (banyakBarang.trim() === ''){
+                    alert('Banyak barang tidak boleh kosong!');
+                    return false; // Menghentikan pengiriman formulir
+                }else if (harga.trim() === ''){
+                    alert('Harga barang tidak boleh kosong!');
+                    return false; // Menghentikan pengiriman formulir
+                }
+                return true;
+            }
+        </script>
     </body>
 </html>
