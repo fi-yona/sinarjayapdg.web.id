@@ -46,7 +46,7 @@ $result = $conn->query($query);
 
 // Periksa hasil query
 if (!$result) {
-    die("Query error: " . $conn->error);
+    die("Query error: " . mysqli_error($conn));
 }
 
 // Periksa apakah data ditemukan
@@ -217,5 +217,33 @@ $row = $result->fetch_assoc();
             </div>
         </main>
         <?php include '../../../function/footer.php'; ?>
+        <script>
+            function validateForm() {
+                var noKtp = document.getElementById('no_ktp').value;
+                var namaLengkap = document.getElementById('nama_lengkap').value;
+                var namaPanggilan = document.getElementById('nama_panggilan').value;
+                var jabatan = document.getElementById('jabatan').value;
+                var tanggalDiterima = document.getElementById('tanggal_diterima').value;
+
+                if (noKtp.trim() === '') {
+                    alert('No KTP tidak boleh kosong!');
+                    return false; // Menghentikan pengiriman formulir
+                }else if (namaLengkap.trim() === '') {
+                    alert('Nama lengkap tidak boleh kosong!');
+                    return false; // Menghentikan pengiriman formulir
+                }else if (namaPanggilan.trim() === '') {
+                    alert('Nama panggilan tidak boleh kosong!');
+                    return false; // Menghentikan pengiriman formulir
+                }else if (jabatan.trim() === '') {
+                    alert('Jabatan tidak boleh kosong!');
+                    return false; // Menghentikan pengiriman formulir
+                }else if (tanggalDiterima.trim() === '') {
+                    alert('Tanggal Diterima tidak boleh kosong!');
+                    return false; // Menghentikan pengiriman formulir
+                }
+                
+                return true;
+            }
+        </script>
     </body>
 </html>

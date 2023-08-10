@@ -56,7 +56,7 @@ if ($_SESSION['role'] !== 'Manajer') {
             </div>
             <div class = "detail-data">
                 <div class = "box-green-1">
-                    <form id="form-add-data-karyawan" class="table-form-add" action="../../../function/add-data-karyawan.php" method="POST">
+                    <form id="form-add-data-karyawan" class="table-form-add" action="../../../function/add-data-karyawan.php" method="POST" onsubmit="return validateForm()">
                         <table class="table-add-data">
                             <tr>
                                 <th>Username</th>
@@ -172,5 +172,33 @@ if ($_SESSION['role'] !== 'Manajer') {
             </div>
         </main>
         <?php include '../../../function/footer.php'; ?>
+        <script>
+            function validateForm() {
+                var noKtp = document.getElementById('no_ktp').value;
+                var namaLengkap = document.getElementById('nama_lengkap').value;
+                var namaPanggilan = document.getElementById('nama_panggilan').value;
+                var jabatan = document.getElementById('jabatan').value;
+                var tanggalDiterima = document.getElementById('tanggal_diterima').value;
+
+                if (noKtp.trim() === '') {
+                    alert('No KTP tidak boleh kosong!');
+                    return false; // Menghentikan pengiriman formulir
+                }else if (namaLengkap.trim() === '') {
+                    alert('Nama lengkap tidak boleh kosong!');
+                    return false; // Menghentikan pengiriman formulir
+                }else if (namaPanggilan.trim() === '') {
+                    alert('Nama panggilan tidak boleh kosong!');
+                    return false; // Menghentikan pengiriman formulir
+                }else if (jabatan.trim() === '') {
+                    alert('Jabatan tidak boleh kosong!');
+                    return false; // Menghentikan pengiriman formulir
+                }else if (tanggalDiterima.trim() === '') {
+                    alert('Tanggal Diterima tidak boleh kosong!');
+                    return false; // Menghentikan pengiriman formulir
+                }
+                
+                return true;
+            }
+        </script>
     </body>
 </html>

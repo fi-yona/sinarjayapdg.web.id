@@ -41,36 +41,46 @@ if (isset($_POST['edit-data-karyawan'])) {
     // Lakukan proses penyimpanan data ke database
     require_once 'dbconfig.php';
 
-    // Update data 
-    $id_karyawan = $_GET['id_karyawan'];
-    $query_update = "UPDATE tb_karyawan 
-                     SET username = '$username', 
-                         no_ktp = '$no_ktp', 
-                         nama_lengkap = '$nama_lengkap', 
-                         nama_panggilan = '$nama_panggilan',
-                         tempat_lahir = '$tempat_lahir', 
-                         tanggal_lahir = '$tanggal_lahir', 
-                         jk = '$jk', 
-                         agama = '$agama',
-                         status = '$status', 
-                         pendidikan_terakhir = '$pendidikan_terakhir', 
-                         no_telp = '$no_telp',
-                         email = '$email', 
-                         domisili = '$domisili', 
-                         jabatan = '$jabatan',
-                         tanggal_diterima = '$tanggal_diterima', 
-                         tanggal_berhenti = '$tanggal_berhenti', 
-                         foto_karyawan = '$foto_karyawan',
-                         update_at = '$dateTime'
-                     WHERE id_karyawan = '$id_karyawan'";
-
-    if ($conn->query($query_update) === true) {
-        // Jika penyimpanan berhasil
-        header("Location: ../staff/manajer/karyawan/karyawan.php?status=success");
-        exit();
+    // Cek apakah username sudah ada di tb_karyawan
+    $query_check_username = "SELECT username FROM tb_karyawan WHERE username = '$username'";
+    $result = $conn->query($query_check_username);
+    
+    if ($result->num_rows > 0) {
+        // Jika username sudah ada, tampilkan pesan dan berhenti
+        echo '<script>alert("Username sudah terdaftar pada karyawan yang lain!");</script>';
+        echo '<script>window.history.back();</script>';
     } else {
-        // Jika terjadi kesalahan saat penyimpanan
-        echo "Terjadi kesalahan saat menyimpan data karyawan: " . $conn->error;
+        // Update data 
+        $id_karyawan = $_GET['id_karyawan'];
+        $query_update = "UPDATE tb_karyawan 
+                        SET username = '$username', 
+                            no_ktp = '$no_ktp', 
+                            nama_lengkap = '$nama_lengkap', 
+                            nama_panggilan = '$nama_panggilan',
+                            tempat_lahir = '$tempat_lahir', 
+                            tanggal_lahir = '$tanggal_lahir', 
+                            jk = '$jk', 
+                            agama = '$agama',
+                            status = '$status', 
+                            pendidikan_terakhir = '$pendidikan_terakhir', 
+                            no_telp = '$no_telp',
+                            email = '$email', 
+                            domisili = '$domisili', 
+                            jabatan = '$jabatan',
+                            tanggal_diterima = '$tanggal_diterima', 
+                            tanggal_berhenti = '$tanggal_berhenti', 
+                            foto_karyawan = '$foto_karyawan',
+                            update_at = '$dateTime'
+                        WHERE id_karyawan = '$id_karyawan'";
+
+        if ($conn->query($query_update) === true) {
+            // Jika penyimpanan berhasil
+            header("Location: ../staff/manajer/karyawan/karyawan.php?status=success");
+            exit();
+        } else {
+            // Jika terjadi kesalahan saat penyimpanan
+            echo "Terjadi kesalahan saat menyimpan data karyawan: " . mysqli_error($conn);
+        }
     }
 
     $conn->close();
