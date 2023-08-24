@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     $get_token = $_GET['get_token'];
     $username = $_GET['username'];
     $id_toko = $_GET['id_toko'];
-    $dateNow = date('Y-m-d');
+    $tanggal_hari_ini = $_GET['tanggal_hari_ini'];
 
     $tokenQuery = "SELECT * FROM token WHERE get_token = '$get_token'";
     $tokenResult = $conn->query($tokenQuery);
@@ -36,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
                             WHERE 
                                 tb_penugasan.username_penugasan = '$username'
                             AND 
-                                tb_penugasan.tanggal_penugasan = '$dateNow'
+                                tb_penugasan.tanggal_penugasan = '$tanggal_hari_ini'
                             AND 
                                 tb_toko.id_toko = '$id_toko'";
         $cekTokoRuteResult = $conn->query($cekTokoRuteQuery);

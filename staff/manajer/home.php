@@ -19,7 +19,7 @@ if ($_SESSION['role'] !== 'Manajer') {
 <html>
     <head>
 		<title>Home</title>
-		<link rel="stylesheet" href="../../assets/style/style-body.css">
+		<link rel="stylesheet" href="../../assets/style/style-body.css?v8">
         <link rel="stylesheet" href="../../assets/style/style-button.css">
         <link rel="stylesheet" href="../../assets/style/style-img.css">
         <link rel="shortcut icon" href="../../assets/img/logo.svg">
@@ -50,26 +50,7 @@ if ($_SESSION['role'] !== 'Manajer') {
                 <div class="title-data-home">
                     Data Absensi Terkonfirmasi Hari Ini
                 </div>
-                <div class="box-white-black-stroke-2">
-                    <div class="total-data-home">
-                        Total: (Data Jumlah Orang)
-                    </div>
-                    <div>
-                        <table class="table-data-home">
-                            <tr>
-                                <th class=".title-atribut-data-home">Nama Lengkap</td>
-                                <th class=".title-atribut-data-home">Username</td>
-                                <th class=".title-atribut-data-home">Waktu Masuk</td>
-                                <th class=".title-atribut-data-home">Keterangan Masuk</td>
-                                <th class=".title-atribut-data-home">Waktu Pulang</td>
-                                <th class=".title-atribut-data-home">Keterangan Pulang</td>
-                            </tr>
-                            <tr>
-
-                            </tr>
-                        </table>
-                    </div>
-                </div>
+                <?php include '../../function/home-absensi-hari-ini.php'; ?>
             </div>
             <table class="table-layout-home">
                 <tr>
