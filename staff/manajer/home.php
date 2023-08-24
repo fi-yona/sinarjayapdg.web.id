@@ -105,17 +105,13 @@ if ($_SESSION['role'] !== 'Manajer') {
                                 <div class="title-nama-data-home">
                                     Hari Ini
                                 </div>
-                                <div class="total-data-home">
-                                    Total: (Jumlah Data Pesanan)
-                                </div>
+                                <?php include '../../function/home-pesanan-hari-ini.php'; ?>
                             </div>
                             <div class="box-white-black-stroke-2">
                                 <div class="title-nama-data-home">
                                     Bulan Ini
                                 </div>
-                                <div class="total-data-home">
-                                    Total: (Jumlah Data Pesanan)
-                                </div>
+                                <?php include '../../function/home-pesanan-bulan-ini.php'; ?>
                             </div>
                         </div>
                     </td>
@@ -128,17 +124,13 @@ if ($_SESSION['role'] !== 'Manajer') {
                                 <div class="title-nama-data-home">
                                     Hari Ini
                                 </div>
-                                <div class="total-data-home">
-                                    Total: (Jumlah Data Pembayaran)
-                                </div>
+                                <?php include '../../function/home-pembayaran-hari-ini.php'; ?>
                                 </div>
                                 <div class="box-white-black-stroke-2">
                                 <div class="title-nama-data-home">
                                     Bulan Ini
                                 </div>
-                                <div class="total-data-home">
-                                    Total: (Jumlah Data Pembayaran)
-                                </div>
+                                <?php include '../../function/home-pembayaran-bulan-ini.php'; ?>
                             </div>
                         </div>
                     </td>
