@@ -22,11 +22,11 @@ $tahun = date('Y');
 // Query SQL
 $sql = "SELECT *
         FROM
-            tb_kunjungan
+            tb_toko
         WHERE 
-            MONTH(tanggal_kunjungan) = '$bulan'
+            MONTH(create_at) = '$bulan'
         AND 
-            YEAR(tanggal_kunjungan) = '$tahun'";
+            YEAR(create_at) = '$tahun'";
 
 // Eksekusi query
 $result = mysqli_query($conn, $sql);

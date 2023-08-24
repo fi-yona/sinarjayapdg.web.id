@@ -16,17 +16,11 @@ if ($_SESSION['role'] !== 'Manajer') {
 
 require_once 'dbconfig.php';
 
-$bulan = date('m');
-$tahun = date('Y');
 
 // Query SQL
 $sql = "SELECT *
         FROM
-            tb_kunjungan
-        WHERE 
-            MONTH(tanggal_kunjungan) = '$bulan'
-        AND 
-            YEAR(tanggal_kunjungan) = '$tahun'";
+            tb_toko";
 
 // Eksekusi query
 $result = mysqli_query($conn, $sql);

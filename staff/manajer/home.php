@@ -82,17 +82,13 @@ if ($_SESSION['role'] !== 'Manajer') {
                                 <div class="title-nama-data-home">
                                     Penambahan Bulan Ini
                                 </div>
-                                <div class="total-data-home">
-                                    Total: (Jumlah Data Toko)
-                                </div>
+                                    <?php include '../../function/home-toko-bulan-ini.php'; ?>
                                 </div>
                                 <div class="box-white-black-stroke-2">
                                 <div class="title-nama-data-home">
-                                    Bulan Ini
+                                    Total Seluruh Toko
                                 </div>
-                                <div class="total-data-home">
-                                    Total: (Jumlah Data Toko)
-                                </div>
+                                <?php include '../../function/home-toko-all.php'; ?>
                             </div>
                         </div>
                     </td>
