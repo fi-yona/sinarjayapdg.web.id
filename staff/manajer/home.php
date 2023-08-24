@@ -63,17 +63,13 @@ if ($_SESSION['role'] !== 'Manajer') {
                                 <div class="title-nama-data-home">
                                     Hari Ini
                                 </div>
-                                <div class="total-data-home">
-                                    Total: (Jumlah Data Kunjungan)
-                                </div>
+                                <?php include '../../function/home-kunjungan-hari-ini.php'; ?>
                             </div>
                             <div class="box-white-black-stroke-2">
                                 <div class="title-nama-data-home">
                                     Bulan Ini
                                 </div>
-                                <div class="total-data-home">
-                                    Total: (Jumlah Data Kunjungan)
-                                </div>
+                                <?php include '../../function/home-kunjungan-bulan-ini.php'; ?>
                             </div>
                         </div>
                     </td>
