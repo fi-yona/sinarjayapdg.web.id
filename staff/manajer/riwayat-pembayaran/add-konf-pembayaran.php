@@ -9,7 +9,6 @@ if (!isset($_SESSION['login']) || $_SESSION['login'] !== true) {
 
 // Periksa role pengguna
 if ($_SESSION['role'] !== 'Manajer') {
-    header("Location: ../staff/login.html");
     echo "Anda tidak memiliki akses ke halaman ini!";
     exit();
 }
@@ -69,35 +68,24 @@ $id_pembayaran = $_GET['id_pembayaran'];
             </div>
             <div class="detail-data">
                 <div class = "box-green-1">
-                    <form id="form-add-data-konf-pembayaran" class="table-form-add" action="../../../function/add-data-konf-pembayaran.php" method="POST">
+                    <form id="form-add-data-konf-pembayaran" class="table-form-add" action="../../../function/add-data-konf-pembayaran.php?id_pembayaran=<?php echo $id_pembayaran; ?>" method="POST">
                         <table class="table-add-data">
                             <tr>
-                                <th>Tanggal Penugasan</th>
-                                <td><input type="text" placeholder="Tahun-Bulan-Hari" name="tanggal_penugasan" id="tanggal_penugasan" class="input-text-add tanggal-penugasan" onchange="validateDate()"></td>
+                                <th>Dikonfirmasi Oleh</th>
+                                <td class = "td-username"><?php echo $username?></td>
                             </tr>
                             <tr>
-                                <th>Username Penugasan</th>
+                                <th>Status Konfirmasi</th>
                                 <td>
-                                    <select name="username_penugasan" id="username_penugasan" class="input-text-add">
-                                        <?php require_once '../../../function/select-username.php';?>
+                                    <select name="status_konf" id="status_konf" class="input-text-add">
+                                        <option value="Belum Terkonfirmasi">Belum Terkonfirmasi</option>
+                                        <option value="Terkonfirmasi">Terkonfirmasi</option>
                                     </select>
                                 </td>
-                            </tr>
-                            <tr>
-                                <th>Rute Penugasan</th>
-                                <td>
-                                    <select name="rute_penugasan" id="rute_penugasan" class="input-text-add">
-                                        <?php require_once '../../../function/select-rute.php';?>
-                                    </select>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>Ditugaskan Oleh</th>
-                                <td class = "td-username"><?php echo $username; ?></td>
                             </tr>
                         </table>
                         <div class="layout-button-submit">
-                            <input type="submit" name="add-data-penugasan" class="button-submit-add" value="Submit">
+                            <input type="submit" name="add-data-konf-pembayaran" class="button-submit-add" value="Submit">
                         </div>
                     </form>
                 </div>
@@ -107,28 +95,5 @@ $id_pembayaran = $_GET['id_pembayaran'];
             </div>
         </main>
         <?php include '../../../function/footer.php'; ?>
-        <script>
-            // Fungsi untuk memeriksa apakah tanggal penugasan lebih besar atau sama dengan tanggal saat ini
-            function isDateValid(inputDate) {
-                var currentDate = new Date().toISOString().split('T')[0];
-                return inputDate >= currentDate;
-            }
-
-            // Fungsi untuk validasi tanggal saat input berubah
-            function validateDate() {
-                var tanggalPenugasan = document.getElementById('tanggal_penugasan').value;
-                var isValid = isDateValid(tanggalPenugasan);
-                
-                if (!isValid) {
-                    showInvalidDateAlert();
-                    document.getElementById('tanggal_penugasan').value = ''; // Bersihkan input
-                }
-            }
-            
-            // Fungsi untuk menampilkan pesan peringatan
-            function showInvalidDateAlert() {
-                window.alert("Masukkan tanggal yang valid!");
-            }
-        </script>
     </body>
 </html>

@@ -16,6 +16,11 @@ if ($_SESSION['role'] !== 'Manajer') {
     }
 }
 
+//memuncul data berhasil tersimpan
+if (isset($_GET['status']) && $_GET['status'] === 'success') {
+    echo '<script>alert("Data Berhasil Tersimpan");</script>';
+}
+
 $id_pembayaran = $_GET['id_pembayaran'];
 
 require_once '../../../function/dbconfig.php';

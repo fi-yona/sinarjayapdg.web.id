@@ -126,9 +126,6 @@ $conn->close();
                     </div>
                 </div>
             </div>
-            <div class = "layout-button-data">
-                <a href=""><button type="button" class="button-edit-data">Edit</button></a><a href=""><button type="button" class="button-hapus-data">Hapus</button></a>
-            </div>
         </main>
         <?php include '../../../function/footer.php'; ?>
     </body>

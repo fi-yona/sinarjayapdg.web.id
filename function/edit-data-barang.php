@@ -62,7 +62,7 @@ if (isset($_POST['edit-data-barang'])) {
         exit();
     } else {
         // Jika terjadi kesalahan saat penyimpanan
-        echo "Terjadi kesalahan saat menyimpan data toko: " . $conn->error;
+        echo "Terjadi kesalahan saat menyimpan data toko: " . mysqli_error($conn);
     }
 
     $conn->close();
