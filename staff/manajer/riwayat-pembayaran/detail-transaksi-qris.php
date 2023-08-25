@@ -9,31 +9,23 @@ if (!isset($_SESSION['login']) || $_SESSION['login'] !== true) {
 
 // Periksa role pengguna
 if ($_SESSION['role'] !== 'Manajer') {
-    if ($_SESSION['role'] !== 'Admin Kantor'){
-        header("Location: ../staff/login.html");
-        echo "Anda tidak memiliki akses ke halaman ini!";
-        exit();
-    }
+    echo "Anda tidak memiliki akses ke halaman ini!";
+    exit();
 }
 
-$id_penugasan = $_GET['id_penugasan'];
+$qris_invoiceid = $_GET['qris_invoiceid'];
 
 require_once '../../../function/dbconfig.php';
 
 $query = "SELECT
-                tb_penugasan.tanggal_penugasan,
-                tb_karyawan.nama_lengkap,
-                tb_penugasan.username_penugasan,
-                tb_rute.nama_rute,
-                tb_penugasan.penanggung_jawab
-            FROM
-                tb_penugasan
-            JOIN
-                tb_karyawan ON tb_penugasan.username_penugasan = tb_karyawan.username
-            JOIN
-                tb_rute ON tb_penugasan.rute_penugasan = tb_rute.id_rute
+                id_pembayaran,
+                qris_request_date,
+                qris_payment_customername, 
+                qris_payment_methodby
+            FROM 
+                tb_tr_qris
             WHERE 
-                id_penugasan = '$id_penugasan'";
+                qris_invoiceid = '$qris_invoiceid'";
 
 // Eksekusi query
 $result = $conn->query($query);
@@ -45,23 +37,21 @@ if (!$result) {
 
 // Periksa apakah data ditemukan
 if ($result->num_rows === 0) {
-    echo "Data penugasan tidak ditemukan";
+    echo "Data transaksi QRIS tidak ditemukan";
     exit();
 }
 
 // Ambil data absensi
 $row = $result->fetch_assoc();
 
-$conn->close();
-
 ?>
 
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Detail Penugasan</title>
-        <link rel="stylesheet" href="../../../assets/style/style-body.css?v1.1">
-        <link rel="stylesheet" href="../../../assets/style/style-button.css?v1.1">
+        <title>Detail Transaksi QRIS</title>
+        <link rel="stylesheet" href="../../../assets/style/style-body.css?v1.2">
+        <link rel="stylesheet" href="../../../assets/style/style-button.css?v1.2">
         <link rel="stylesheet" href="../../../assets/style/style-img.css">
         <link rel="stylesheet" href="../../../assets/style/style-input.css">
         <link rel="shortcut icon" href="../../../assets/img/logo.svg">
@@ -77,11 +67,11 @@ $conn->close();
                 <ul class="nav-home-ul">
                     <li><a href="../home.php">Home</a></li>
                     <li><a href="../absensi/absensi.php">Absensi</a></li>
-                    <li><a href="./kunjungan.php">Kunjungan</a></li>
+                    <li><a href="../kunjungan/kunjungan.php">Kunjungan</a></li>
                     <li><a href="../toko/toko.php">Toko</a></li>
                     <li><a href="../barang/barang.php">Barang</a></li>
                     <li><a href="../riwayat-pesanan/riwayat-pesanan.php">Riwayat Pesanan</a></li>
-                    <li><a href="../riwayat-pembayaran/riwayat-pembayaran.php">Riwayat Pembayaran</a></li>
+                    <li><a href="./riwayat-pembayaran.php">Riwayat Pembayaran</a></li>
                     <li><a href="../karyawan/karyawan.php">Karyawan</a></li>
                     <li><a href="#" onclick="logout()"><button type="button" class="btn-log-out">Log Out</button></a></li>
                 </ul>
@@ -89,55 +79,45 @@ $conn->close();
         </header>
         <main>
             <div class = "column-button-sub-menu">
-                <a href="./penugasan.php"><button type="button" class="button-sub-menu-back">Kembali</button></a>
+                <a href="javascript:history.back()"><button type="button" class="button-sub-menu-back">Kembali</button></a>
             </div>
             <div class = "title-page">
-                Detail Penugasan
+                Detail Transaksi QRIS
             </div>
             <div class = "detail-data">
-                <div class="box-green-1">
+                <div class="box-white">
                     <div class = "layout-table-absensi">
                         <table class = "table-data-absensi">
                             <tr>
-                                <th>Tanggal Penugasan</th>
+                                <th>No Invoice QRIS</th>
                                 <td> : </td>
-                                <td><?php echo $row['tanggal_penugasan']; ?></td>
+                                <td><?php echo $qris_invoiceid; ?></td>
                             </tr>
                             <tr>
-                                <th>Nama Lengkap</th>
+                                <th>Id Pembayaran</th>
                                 <td> : </td>
-                                <td><?php echo $row['nama_lengkap']; ?></td>
+                                <td><?php echo $row['id_pembayaran']; ?></td>
                             </tr>
                             <tr>
-                                <th>Username Sales</th>
+                                <th>Tanggal Request QRIS</th>
                                 <td> : </td>
-                                <td><?php echo $row['username_penugasan']; ?></td>
+                                <td><?php echo $row['qris_request_date']; ?></td>
                             </tr>
                             <tr>
-                                <th>Nama Rute Penugasan </th>
+                                <th>Nama Akun Customer QRIS</th>
                                 <td> : </td>
-                                <td><?php echo $row['nama_rute']; ?></td>
+                                <td><?php echo $row['qris_payment_customername']; ?></td>
                             </tr>
                             <tr>
-                                <th>Ditugaskan Oleh</th>
+                                <th>Bank/Dompet Digital</th>
                                 <td> : </td>
-                                <td><?php echo $row['penanggung_jawab']; ?></td>
+                                <td><?php echo $row['qris_payment_methodby']; ?></td>
                             </tr>
                         </table>
                     </div>
                 </div>
             </div>
-            <div class = "layout-button-data">
-                <a href="edit-penugasan.php?id_penugasan=<?php echo $id_penugasan; ?>"><button type="button" class="button-edit-data">Edit</button></a><button type="button" class="button-hapus-data" onclick="hapusData(<?php echo $id_penugasan; ?>)">Hapus</button>
-            </div>
         </main>
         <?php include '../../../function/footer.php'; ?>
-        <script>
-            function hapusData(id) {
-                if (confirm("Apakah Anda yakin ingin menghapus data ini?")) {
-                    window.location.href = "../../../function/delete-data-penugasan.php?id_penugasan=" + id;
-                }
-            }
-        </script>
     </body>
 </html>

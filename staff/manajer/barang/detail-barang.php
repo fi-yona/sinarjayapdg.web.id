@@ -40,7 +40,7 @@ $result = $conn->query($query);
 
 // Periksa hasil query
 if (!$result) {
-    die("Query error: " . $conn->connect_error);
+    die("Query error: " . mysqli_error($conn));
 }
 
 // Periksa apakah data ditemukan

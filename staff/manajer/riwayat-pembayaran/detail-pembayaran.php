@@ -93,7 +93,7 @@ $row = $result->fetch_assoc();
         </header>
         <main>
             <div class = "column-button-sub-menu">
-                <a href="./riwayat-pembayaran.php"><button type="button" class="button-sub-menu-back">Kembali</button></a>
+                <a href="javascript:history.back()"><button type="button" class="button-sub-menu-back">Kembali</button></a>
             </div>
             <div class = "title-page">
                 Detail Pembayaran
@@ -138,15 +138,40 @@ $row = $result->fetch_assoc();
                                 <td><?php echo number_format($row['jumlah_pembayaran'], 0, ',', '.'); ?></td>
                             </tr>
                             <tr>
-                                <th>Metode Pembayaran</th>
-                                <td> : </td>
-                                <td><?php echo $row['metode_pembayaran']; ?></td>
-                            </tr>
-                            <tr>
                                 <th>Diterima Oleh</th>
                                 <td> : </td>
                                 <td><?php echo $row['nama_lengkap']." (username: ".$row['username'].")"; ?></td>
                             </tr>
+                            <tr>
+                                <th>Metode Pembayaran</th>
+                                <td> : </td>
+                                <td><?php echo $row['metode_pembayaran']; ?></td>
+                            </tr>
+                            <?php
+                                if($row['metode_pembayaran'] === 'QRIS'){
+                                    $query2 = "SELECT qris_invoiceid FROM tb_tr_qris WHERE id_pembayaran = '$id_pembayaran'";
+                                    // Eksekusi query
+                                    $result2 = $conn->query($query2);
+
+                                    // Periksa hasil query
+                                    if (!$result2) {
+                                        die("Query error: " . mysqli_error($conn));
+                                    }
+                                    // Periksa apakah data ditemukan
+                                    if ($result2->num_rows === 0) {
+                                        echo "Data transaksi QRIS tidak ditemukan";
+                                        exit();
+                                    }
+                                    // Ambil data absensi
+                                    $row2 = $result2->fetch_assoc();
+
+                                    echo "<tr>";
+                                    echo "<th>No Invoice QRIS</th>";
+                                    echo "<td> : </td>";
+                                    echo "<td><a href='detail_transaksi_qris.php?qris_invoiceid=" . $row2['qris_invoiceid'] . "'>" . $row2['qris_invoiceid'] . "</a></td>";
+                                    echo "</tr>";
+                                }
+                            ?>
                         </table>
                     </div>
                 </div>

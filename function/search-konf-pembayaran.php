@@ -34,7 +34,7 @@ $result = mysqli_query($conn, $sql);
 if (mysqli_num_rows($result) > 0) {
     while ($row = mysqli_fetch_assoc($result)) {
         $id_status_konf = $row['id_status_konf'];
-        echo "<a href='konf-pembayaran.php?id_status_konf=$id_status_konf'><button type='button' class='button-add-data'>Lihat Konfirmasi Pembayaran</button></a>";
+        echo "<a href='detail-konf-pembayaran.php?id_status_konf=$id_status_konf'><button type='button' class='button-add-data'>Lihat Konfirmasi Pembayaran</button></a>";
     }
 } else {
     // Jika query tidak mengembalikan hasil
