@@ -9,11 +9,12 @@ if (!isset($_SESSION['login']) || $_SESSION['login'] !== true) {
 
 // Periksa role pengguna
 if ($_SESSION['role'] !== 'Manajer') {
-    header("Location: ../staff/login.html");
-    echo "Anda tidak memiliki akses ke halaman ini!";
-    exit();
+    if ($_SESSION['role'] !== 'Admin Kantor'){
+        header("Location: ../staff/login.html");
+        echo "Anda tidak memiliki akses ke halaman ini!";
+        exit();
+    }
 }
-
 require_once 'dbconfig.php';
 
 $id_rute = $_POST['rute_search'];

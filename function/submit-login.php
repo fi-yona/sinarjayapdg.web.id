@@ -24,9 +24,9 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
             // Redirect ke halaman admin
             header("Location: ../staff/admin/home.php");
             exit();
-        } elseif ($_SESSION['role'] === 'Super Admin') {
-            // Redirect ke halaman super admin
-            header("Location: ../staff/super-admin/home.php");
+        } elseif ($_SESSION['role'] === 'Admin Kantor') {
+            // Redirect ke halaman admin kantor
+            header("Location: ../staff/manajer/home.php");
             exit();
         } else {
             // Role tidak dikenali, tampilkan pesan error atau redirect ke halaman lain

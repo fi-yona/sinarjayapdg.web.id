@@ -7,12 +7,14 @@
         exit();
     }
 
-    // Periksa role pengguna
-    if ($_SESSION['role'] !== 'Manajer') {
+// Periksa role pengguna
+if ($_SESSION['role'] !== 'Manajer') {
+    if ($_SESSION['role'] !== 'Admin Kantor'){
         header("Location: ../staff/login.html");
         echo "Anda tidak memiliki akses ke halaman ini!";
         exit();
     }
+}
 
     require_once 'dbconfig.php';
 
