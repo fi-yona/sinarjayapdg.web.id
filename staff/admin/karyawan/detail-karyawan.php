@@ -8,7 +8,7 @@ if (!isset($_SESSION['login']) || $_SESSION['login'] !== true) {
 }
 
 // Periksa role pengguna
-if ($_SESSION['role'] !== 'Manajer') {
+if ($_SESSION['role'] !== 'Admin') {
     echo "Anda tidak memiliki akses ke halaman ini!";
     exit();
 }
@@ -81,13 +81,8 @@ $conn->close();
             <nav class="nav-home">
                 <ul class="nav-home-ul">
                     <li><a href="../home.php">Home</a></li>
-                    <li><a href="../absensi/absensi.php">Absensi</a></li>
-                    <li><a href="../kunjungan/kunjungan.php">Kunjungan</a></li>
-                    <li><a href="../toko/toko.php">Toko</a></li>
-                    <li><a href="../barang/barang.php">Barang</a></li>
-                    <li><a href="../riwayat-pesanan/riwayat-pesanan.php">Riwayat Pesanan</a></li>
-                    <li><a href="../riwayat-pembayaran/riwayat-pembayaran.php">Riwayat Pembayaran</a></li>
                     <li><a href="./karyawan.php">Karyawan</a></li>
+                    <li><a href="../user/user.php">User</a></li>
                     <li><a href="#" onclick="logout()"><button type="button" class="btn-log-out">Log Out</button></a></li>
                 </ul>
             </nav>
@@ -226,7 +221,7 @@ $conn->close();
                 </div>
             </div>
             <div class = "layout-button-data">
-                <a href="edit-karyawan.php?id_karyawan=<?php echo $id_karyawan; ?>"><button type="button" class="button-edit-data">Edit</button></a><button type="button" class="button-hapus-data" onclick="hapusData(<?php echo $id_karyawan; ?>)">Hapus</button>
+                <a href="edit-karyawan.php?id_karyawan=<?php echo $id_karyawan; ?>"><button type="button" class="button-edit-data">Edit</button></a>
             </div>
         </main>
         <?php include '../../../function/footer.php'; ?>

@@ -9,9 +9,10 @@ if (!isset($_SESSION['login']) || $_SESSION['login'] !== true) {
 
 // Periksa role pengguna
 if ($_SESSION['role'] !== 'Manajer') {
-    header("Location: ../staff/login.html");
-    echo "Anda tidak memiliki akses ke halaman ini!";
-    exit();
+    if ($_SESSION['role'] !== 'Admin'){
+        echo "Anda tidak memiliki akses ke halaman ini!";
+        exit();
+    }
 }
 
 // Periksa apakah data karyawan telah dikirimkan
@@ -75,8 +76,13 @@ if (isset($_POST['edit-data-karyawan'])) {
 
         if ($conn->query($query_update) === true) {
             // Jika penyimpanan berhasil
-            header("Location: ../staff/manajer/karyawan/karyawan.php?status=success");
-            exit();
+            if($_SESSION['role'] === 'Manajer'){
+                header("Location: ../staff/manajer/karyawan/karyawan.php?status=success");
+                exit();
+            }else if($_SESSION['role'] === 'Admin'){
+                header("Location: ../staff/admin/karyawan/karyawan.php?status=success");
+                exit();
+            }
         } else {
             // Jika terjadi kesalahan saat penyimpanan
             echo "Terjadi kesalahan saat menyimpan data karyawan: " . mysqli_error($conn);
