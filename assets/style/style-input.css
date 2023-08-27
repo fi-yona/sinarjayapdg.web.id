@@ -240,3 +240,11 @@ input.button-submit-search:hover {
     width: 120px;
     color: #3A3A3A;
 }
+
+.select-role{
+    border: none;
+    font-size: 12px;
+    font-family: 'Golos Text', sans-serif;
+    width: 120px;
+    color: #3A3A3A;
+}
