@@ -23,6 +23,7 @@ if (isset($_POST['edit-data-merek'])) {
     $nama_merek = $_POST['nama_merek'];
     $website_merek = $_POST['website_merek'];
 
+    date_default_timezone_set('Asia/Jakarta');
     // Mengambil tanggal dan waktu saat ini
     $dateTime = date('Y-m-d H:i:s');
 
@@ -54,7 +55,7 @@ if (isset($_POST['edit-data-merek'])) {
         exit();
     } else {
         // Jika terjadi kesalahan saat penyimpanan
-        echo "Terjadi kesalahan saat menyimpan data merek: " . $conn->error;
+        echo "Terjadi kesalahan saat menyimpan data merek: " . mysqli_error($conn);
     }
 
     $conn->close();

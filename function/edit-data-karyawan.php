@@ -36,6 +36,7 @@ if (isset($_POST['edit-data-karyawan'])) {
     $tanggal_berhenti = $_POST['tanggal_berhenti'];
     $foto_karyawan = $_POST['foto_karyawan'];
 
+    date_default_timezone_set('Asia/Jakarta');
     // Mengambil tanggal dan waktu saat ini
     $dateTime = date('Y-m-d H:i:s');
 

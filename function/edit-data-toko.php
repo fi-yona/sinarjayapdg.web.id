@@ -28,6 +28,7 @@ if (isset($_POST['edit-data-toko'])) {
     $link_gmaps = $_POST['link_gmaps'];
     $gambar_toko = $_POST['gambar_toko'];
 
+    date_default_timezone_set('Asia/Jakarta');
     // Mengambil tanggal dan waktu saat ini
     $dateTime = date('Y-m-d H:i:s');
 
@@ -64,7 +65,7 @@ if (isset($_POST['edit-data-toko'])) {
         exit();
     } else {
         // Jika terjadi kesalahan saat penyimpanan
-        echo "Terjadi kesalahan saat menyimpan data toko: " . $conn->error;
+        echo "Terjadi kesalahan saat menyimpan data toko: " . mysqli_error($conn);
     }
 
     $conn->close();

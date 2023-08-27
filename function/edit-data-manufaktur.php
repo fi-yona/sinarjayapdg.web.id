@@ -28,6 +28,7 @@ if (isset($_POST['edit-data-manufaktur'])) {
     $kota_manufaktur = $_POST['kota_manufaktur'];
     $website_manufaktur = $_POST['website_manufaktur'];
 
+    date_default_timezone_set('Asia/Jakarta');
     // Mengambil tanggal dan waktu saat ini
     $dateTime = date('Y-m-d H:i:s');
 
@@ -54,7 +55,7 @@ if (isset($_POST['edit-data-manufaktur'])) {
         exit();
     } else {
         // Jika terjadi kesalahan saat penyimpanan
-        echo "Terjadi kesalahan saat menyimpan data manufaktur: " . $conn->error;
+        echo "Terjadi kesalahan saat menyimpan data manufaktur: " . mysqli_error($conn);
     }
 
     $conn->close();

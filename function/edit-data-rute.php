@@ -22,6 +22,7 @@ if (isset($_POST['edit-data-rute'])) {
     $nama_rute = $_POST['nama_rute'];
     $keterangan_rute = $_POST['keterangan_rute'];
 
+    date_default_timezone_set('Asia/Jakarta');
     // Mengambil tanggal dan waktu saat ini
     $dateTime = date('Y-m-d H:i:s');
 
@@ -44,7 +45,7 @@ if (isset($_POST['edit-data-rute'])) {
         exit();
     } else {
         // Jika terjadi kesalahan saat penyimpanan
-        echo "Terjadi kesalahan saat menyimpan data rute: " . $conn->error;
+        echo "Terjadi kesalahan saat menyimpan data rute: " . mysqli_error($conn);
     }
 
     $conn->close();

@@ -46,7 +46,7 @@ if (isset($_POST['add-data-merek'])) {
         exit();
     } else {
         // Jika terjadi kesalahan saat penyimpanan
-        echo "Terjadi kesalahan saat menyimpan data merek: " . $conn->connect_error;
+        echo "Terjadi kesalahan saat menyimpan data merek: " . mysqli_error($conn);
     }
 
     $conn->close();

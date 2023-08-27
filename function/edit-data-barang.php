@@ -27,6 +27,7 @@ if (isset($_POST['edit-data-barang'])) {
     $gambar_barang = $_POST['gambar_barang'];
     $keterangan = $_POST['keterangan'];
 
+    date_default_timezone_set('Asia/Jakarta');
     // Mengambil tanggal dan waktu saat ini
     $dateTime = date('Y-m-d H:i:s');
 
