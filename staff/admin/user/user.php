@@ -115,7 +115,7 @@ if (isset($_GET['status']) && $_GET['status'] === 'success') {
                         data: {
                             role_search: role,
                             kata_kunci: kataKunci,
-                            status: status_search
+                            status_search: status
                         },
                         success: function (response) {
                             console.log(response); // Cek respon dari server sebelum ditampilkan di halaman
