@@ -90,6 +90,9 @@ if (isset($_GET['status']) && $_GET['status'] === 'success') {
                     </table>
                 </form>
             </div>
+            <div class = "add-data">
+                <a href="./add-user.php"><button type="button" class="button-add-data">Tambah User</button></a>
+            </div>
             <div class = "search-result">
                 <?php include '../../../function/data-user.php'; ?>
             </div>
