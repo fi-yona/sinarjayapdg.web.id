@@ -19,6 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $total_harga_barang = $_POST['total_harga_barang'];
 
     $id_pesanan = $_POST['id_pesanan'];
+    date_default_timezone_set('Asia/Jakarta');
     $dateTime = date('Y-m-d H:i:s');
 
     $tokenQuery = "SELECT * FROM token WHERE insert_token = '$insert_token'";

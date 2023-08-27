@@ -15,6 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $id_pesanan = $_POST['id_pesanan'];
     $sisa_pembayaran_pesanan = $_POST['sisa_pembayaran_pesanan'];
     $status_bayar_pesanan = $_POST['status_bayar_pesanan'];
+    date_default_timezone_set('Asia/Jakarta');
     $dateTime = date('Y-m-d H:i:s');
 
     $tokenQuery = "SELECT * FROM token WHERE update_token = '$update_token'";
